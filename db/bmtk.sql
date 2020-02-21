@@ -28,10 +28,11 @@ CREATE TABLE IF NOT EXISTS `user` (
   `phone` VARCHAR(10) NULL,
   `payment_method` VARCHAR(45) NULL,
   `username` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(150) NOT NULL,
   `active` TINYINT NOT NULL,
   `role` ENUM('customer', 'employee', 'manager') NOT NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC))
 ENGINE = InnoDB;
 
 
@@ -89,3 +90,13 @@ GRANT SELECT, INSERT, TRIGGER, UPDATE, DELETE ON TABLE * TO 'user'@'localhost';
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- -----------------------------------------------------
+-- Data for table `user`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `bmtkdb`;
+INSERT INTO `user` (`id`, `name`, `address`, `email`, `phone`, `payment_method`, `username`, `password`, `active`, `role`) VALUES (1, 'admin', NULL, 'admin@admin.com', NULL, NULL, 'admin', 'admin', 1, 'manager');
+
+COMMIT;
+
