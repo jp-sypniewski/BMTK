@@ -1,0 +1,38 @@
+MVP
+
+As an anonymous user:
+-Create company and company-manager
+-View company page
+-View company services
+-Create company customer
+-Update pre-created company-employee
+
+As a logged-in company-manager:
+-View all/filtered tasks (by company)
+-View single task
+-Modify single task
+  -update description, due date, paid
+-View single task_detail
+-Modify single task_detail
+  -update assigned employee, completion status, start, end, business expense, task_detail description
+-View aggregated task, task_detail information
+
+As a logged-in company-employee:
+-View all/filtered tasks
+-Modify task_detail
+  -update start, end, completion status, task_detail description
+-View aggregated task information
+
+As a logged-in company-customer:
+-Create task
+-Modify task created by this user
+-View all/filtered tasks created by customer
+
+--------------------------------------------------------------------------------
+
+STRETCH
+-tasks have subtasks
+-tasks/companies have inventory item(s)
+-tasks/employees have pay rate
+-tasks have priority
+-
