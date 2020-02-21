@@ -1,0 +1,44 @@
+MVP
+
+As an anonymous user:
+-Create company and company-manager
+-View company page
+-View company 'services' (task template)
+-Create company-customer
+-Update pre-created company-employee
+
+As a logged-in company-manager:
+-View all/filtered tasks (by company)
+-Create company-employee
+  -include link to provide to employee to complete signup (maybe flip to stretch)
+-CRUD inventory_items
+-View single task
+-Modify single task
+  -update description, due date, paid
+-View single task_detail
+-Modify single task_detail
+  -update assigned employee, completion status, start, end, business expense, task_detail description, inventory_item
+-View aggregated order, task_detail information
+-Create task template
+
+As a logged-in company-employee:
+-View all/filtered orders
+-Modify task_detail
+  -update start, end, completion status, task_detail description
+-View aggregated order information
+
+As a logged-in company-customer:
+-Modify self
+  -first name, last name, password, email, address(street, zip, country), phone, active
+-Create task (custom or template)
+-Modify task created by this user
+  -description, due date
+-View all/filtered tasks created by customer
+
+--------------------------------------------------------------------------------
+
+STRETCH
+-orders have suborders
+-orders/companies have inventory item(s)
+-orders/employees have pay rate
+-orders have priority
