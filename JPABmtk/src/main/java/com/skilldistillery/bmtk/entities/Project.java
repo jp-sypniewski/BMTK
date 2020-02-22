@@ -1,11 +1,14 @@
 package com.skilldistillery.bmtk.entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -29,6 +32,10 @@ public class Project {
 		@ManyToOne
 		@JoinColumn(name="company_id")
 		private Company comp;
+		
+		
+		@OneToMany(mappedBy="proj")
+		List<Task> tasks;
 
 		//Constructors
 		
@@ -42,6 +49,26 @@ public class Project {
 			this.name = name;
 			this.cust = cust;
 			this.comp = comp;
+		}
+		
+		
+
+		public Project(int id, String name, Customer cust, Company comp, List<Task> tasks) {
+			super();
+			this.id = id;
+			this.name = name;
+			this.cust = cust;
+			this.comp = comp;
+			this.tasks = tasks;
+		}
+		
+
+		public List<Task> getTasks() {
+			return tasks;
+		}
+
+		public void setTasks(List<Task> tasks) {
+			this.tasks = tasks;
 		}
 
 		public int getId() {

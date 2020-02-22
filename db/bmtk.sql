@@ -136,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `task` (
   `template` TINYINT NULL,
   `start_date` VARCHAR(45) NULL,
   `complete_date` VARCHAR(45) NULL,
-  `status` ENUM('not-assigned', 'assigned', 'in-progress', 'complete') NULL,
+  `status` ENUM('NOTASSIGNED', 'ASSIGNED', 'INPROGRESS', 'COMPLETE') NULL,
   `type` VARCHAR(45) NULL,
   `priority` VARCHAR(45) NULL,
   `payment_detail` VARCHAR(45) NULL,
@@ -334,7 +334,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bmtkdb`;
-INSERT INTO `task` (`id`, `name`, `description`, `due_date`, `paid`, `created_at`, `updated_at`, `template`, `start_date`, `complete_date`, `status`, `type`, `priority`, `payment_detail`, `price`, `project_id`) VALUES (1, 'test task', 'task description', '02-29-2020', 0, NULL, NULL, NULL, NULL, NULL, 'assigned', NULL, 'high', NULL, 1000.00, 1);
+INSERT INTO `task` (`id`, `name`, `description`, `due_date`, `paid`, `created_at`, `updated_at`, `template`, `start_date`, `complete_date`, `status`, `type`, `priority`, `payment_detail`, `price`, `project_id`) VALUES (1, 'test task', 'task description', '02-29-2020', 0, NULL, NULL, NULL, NULL, NULL, 'ASSIGNED', NULL, 'high', NULL, 1000.00, 1);
 
 COMMIT;
 
