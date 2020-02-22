@@ -1,10 +1,14 @@
 package com.skilldistillery.bmtk.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -19,7 +23,11 @@ public class Customer {
 	
 	
 	@OneToOne
+	@JoinColumn(name="user_detail_id")
 	private UserDetail uDetail;
+	
+	@OneToMany(mappedBy="cust")
+	private List<Project> projects;
 
 	
 	
@@ -37,6 +45,29 @@ public class Customer {
 		this.id = id;
 		this.paymentMethod = paymentMethod;
 		this.uDetail = uDetail;
+	}
+
+	
+
+
+	public Customer(int id, String paymentMethod, UserDetail uDetail, List<Project> projects) {
+		super();
+		this.id = id;
+		this.paymentMethod = paymentMethod;
+		this.uDetail = uDetail;
+		this.projects = projects;
+	}
+
+
+
+	public List<Project> getProjects() {
+		return projects;
+	}
+
+
+
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
 	}
 
 
