@@ -13,13 +13,14 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.skilldistillery.bmtk.entities.Customer;
+import com.skilldistillery.bmtk.entities.Project;
 import com.skilldistillery.bmtk.entities.User;
 
-class CustomerTests {
+class ProjectTests {
+
 	private EntityManager em;
 	private static EntityManagerFactory emf;
-	private Customer cust;
+	private Project proj;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -34,20 +35,19 @@ class CustomerTests {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		cust = em.find(Customer.class, 1);
+		proj = em.find(Project.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		cust = null;
+		proj = null;
 	}
 
 	@Test
 	void test() {
-		assertNotNull(cust);
-		assertEquals("paypal", cust.getPaymentMethod());
-		assertEquals(4, cust.getuDetail().getId());
+		assertNotNull(proj);
+		assertEquals("Test Company", proj.getComp().getName());
 	}
 
 }
