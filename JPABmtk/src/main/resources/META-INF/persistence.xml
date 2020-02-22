@@ -9,7 +9,12 @@
     </provider>
     
 
+    <class>com.skilldistillery.bmtk.entities.Company</class>
+    <class>com.skilldistillery.bmtk.entities.Customer</class>
+    <class>com.skilldistillery.bmtk.entities.Employee</class>
+    
     <class>com.skilldistillery.bmtk.entities.User</class>
+    <class>com.skilldistillery.bmtk.entities.UserDetail</class>
     
 
     <properties>
