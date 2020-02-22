@@ -12,6 +12,7 @@
     <class>com.skilldistillery.bmtk.entities.Company</class>
     <class>com.skilldistillery.bmtk.entities.Customer</class>
     <class>com.skilldistillery.bmtk.entities.Employee</class>
+    <class>com.skilldistillery.bmtk.entities.InventoryItem</class>
     <class>com.skilldistillery.bmtk.entities.Project</class>
     <class>com.skilldistillery.bmtk.entities.Task</class>
     <class>com.skilldistillery.bmtk.entities.User</class>
