@@ -19,3 +19,18 @@
 
 </tbody>
 </table>
+
+ <h3>Create User</h3>
+ <form id = "newUser">
+  <label for="username">username:</label>
+  <input type="string" id="username" name="username"><br><br>
+  <label for="password">password:</label>
+  <input type="string" id="password" name="password"><br><br>
+  <label for="active">active:</label>
+  <input type="boolean" id="active" name="active"><br><br>
+</form>
+<button type="submit" (click)="createUser()">Create User</button>
+
+    <button type="submit" (click)="getAllUsers()">Update List</button>
+
+    <ul id = "showNewUser"></ul>

@@ -20,13 +20,23 @@ user: User = new User();
   }
 
   getAllUsers(){
-    this.userService.findAll().subscribe(
+    this.userService.getAllUsers().subscribe(
       user => {
         this.user = user;
       },
       err => {console.log(err);
       }
     );
+  }
+
+  createUser(): void{
+    this.user.username = "test";
+    var newUser: User = Object.assign({}, this.user);
+    //newUser.username = document.getElementById("username").nodeValue;
+    this.userService.createUser(newUser).subscribe(
+
+      (error: any) => console.log(error)
+      );
   }
 
 }

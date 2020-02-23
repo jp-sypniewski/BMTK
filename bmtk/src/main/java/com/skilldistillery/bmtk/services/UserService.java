@@ -13,7 +13,7 @@ public interface UserService {
 	
 	Optional<User> listById(int id);
 	
-	public User create(User user);
+	public User createUser(User user);
 	
 	public Optional<User> update(int id, User user);
 	
