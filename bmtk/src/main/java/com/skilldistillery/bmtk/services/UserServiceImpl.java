@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public Optional<User> listById(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return UserRepo.findById(id);
 	}
 
 	@Override
@@ -34,16 +34,29 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public Optional<User> update(int id, User user) {
-		// TODO Auto-generated method stub
-		return null;
+	public Optional<User> updateUser(int id, User user) {
+		if (UserRepo.findById(id).isPresent()){
+            User existingUser = UserRepo.findById(id).get();
+            existingUser.setUsername(user.getUsername());
+            existingUser.setPassword(user.getPassword());
+            existingUser.setUpdatedAt(user.getUpdatedAt());
+            existingUser.setCreatedAt(user.getCreatedAt());
+            existingUser.setActive(user.getActive());
+            UserRepo.save(existingUser);
+            return UserRepo.findById(id);
+        }else{
+            return null;
+        }
 	}
 
 	@Override
-	public Boolean delete(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public Boolean deleteUser(int id) {
+		 if (UserRepo.findById(id).isPresent()){
+			 UserRepo.deleteById(id);
+			 return true;
+		 }
+		 else {return false;}
+		 }
 
 	
 
