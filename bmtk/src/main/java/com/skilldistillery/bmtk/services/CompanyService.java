@@ -14,7 +14,7 @@ List<Company> listAllCompany();
 	
 Optional<Company> listCompanyById(int id);
 	
-public Company createCompany(Company company);
+public Company createCompany(Company company, String username);
 	
 public Optional<Company> updateCompany(int id, Company company);
 	

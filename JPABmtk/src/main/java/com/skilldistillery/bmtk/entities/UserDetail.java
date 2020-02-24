@@ -33,12 +33,17 @@ public class UserDetail {
 		private String country;
 		private String phone;
 		
+		@JsonIgnore
 		@OneToOne(mappedBy="userDetail")
 		private User user;
 		
 		@JsonIgnore
 		@ManyToMany(mappedBy="owners")
 		private List<Company> myCompanies;
+		
+		@JsonIgnore
+		@OneToOne(mappedBy="userDetail")
+		private Customer customer;
 		
 	//Constructors
 		
@@ -201,6 +206,20 @@ public class UserDetail {
 
 	public void setMyCompanies(List<Company> myCompanies) {
 		this.myCompanies = myCompanies;
+	}
+	
+	
+
+
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 

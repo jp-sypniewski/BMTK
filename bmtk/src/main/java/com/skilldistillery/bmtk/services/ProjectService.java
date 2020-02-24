@@ -10,4 +10,6 @@ public interface ProjectService {
 
 	List<Project> getProjectsByCompany(int id);
 
+	Project addProject(int id, Project project, String username);
+
 }

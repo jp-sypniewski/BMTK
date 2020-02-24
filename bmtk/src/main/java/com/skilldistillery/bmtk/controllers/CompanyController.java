@@ -69,8 +69,19 @@ public class CompanyController {
 	// make new company
 
 	@PostMapping(value = "companies")
-	public Company createCompany(@RequestBody Company company) {
-		return compSvc.createCompany(company);
+	public Company createCompany(HttpServletRequest req,
+			HttpServletResponse res,
+			Principal principal,
+			@RequestBody Company company) {
+		
+		if (principal != null) {
+			company = compSvc.createCompany(company, principal.getName());
+			res.setStatus(201);
+			return company;
+		} else {
+			res.setStatus(401);
+			return null;
+		}
 	}
 	
 	// update company

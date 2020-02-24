@@ -23,31 +23,32 @@ import com.skilldistillery.bmtk.services.UserService;
 public class UserController {
 	
 	@Autowired
-	private UserService UserSvc;
+	private UserService userSvc;
 	
-	@GetMapping(value = "ping")
-	public String pingPong() {
-		return "pong";
-	}
 	
 	@GetMapping(value = "user")
 	public List<User> listUser() {
-	return  UserSvc.listAllUser();
+		return  userSvc.listAllUser();
 	}
 	
-	@PostMapping(value = "createUser")
+	@PostMapping(value = "user")
 	public User createUser(@RequestBody User user){
-	return UserSvc.createUser(user);
+		user = userSvc.createUser(user);
+		
+		
+		
+		
+		return user;
 	}
 	
-	@PutMapping(value = "updateUser/{id}")
+	@PutMapping(value = "user/{id}")
 	public Optional<User> updateUser(@PathVariable("id") int id, @RequestBody User user){
-	return UserSvc.updateUser(id, user);
+		return userSvc.updateUser(id, user);
 	}
 	
-	@DeleteMapping(value = "deleteUser/{id}")
+	@DeleteMapping(value = "user/{id}")
 	public Boolean deleteUser(@PathVariable("id") int id) {
-		return UserSvc.deleteUser(id).booleanValue();
+		return userSvc.deleteUser(id).booleanValue();
 	}
 
 }
