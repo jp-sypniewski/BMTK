@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { EmployeeListComponent } from './employee/employee-list/employee-list.component';
-import { UserListComponent } from './user/user-list/user-list.component';
+import { EmployeeListComponent } from './components/employee-list/employee-list.component';
+import { UserListComponent } from './components/user-list/user-list.component';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './login/login/login.component';
-import { LearnMoreComponent } from './learn-more/learn-more/learn-more.component';
-import { CurrentCustomersComponent } from './current-customers/current-customers/current-customers.component';
+import { LoginComponent } from './components/login/login.component';
+import { LearnMoreComponent } from './components/learn-more/learn-more.component';
+import { CurrentCustomersComponent } from './components/current-customers/current-customers.component';
 
 const routes: Routes = [
   {path: 'employee', component: EmployeeListComponent},
