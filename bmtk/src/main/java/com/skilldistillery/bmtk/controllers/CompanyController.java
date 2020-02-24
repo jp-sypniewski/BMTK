@@ -3,6 +3,7 @@ package com.skilldistillery.bmtk.controllers;
 import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.bmtk.entities.Company;
+import com.skilldistillery.bmtk.entities.Customer;
 import com.skilldistillery.bmtk.services.CompanyService;
 
 @RestController
@@ -51,6 +53,17 @@ public class CompanyController {
 	@GetMapping(value = "companies/{id}")
 	public Optional<Company> listCompanyById(Integer id) {
 		return compSvc.listCompanyById(id);
+	}
+	
+	@GetMapping(value="companies/{id}/customers")
+	public Set<Customer> getCustomersForACompany(HttpServletRequest req,
+			HttpServletResponse res,
+			Principal principal,
+			@PathVariable("id") Integer id){
+		Set<Customer> myCustomers = compSvc.getMyCustomers(id);
+		
+		
+		return myCustomers;
 	}
 	
 	// make new company
