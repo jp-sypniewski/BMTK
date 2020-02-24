@@ -39,10 +39,12 @@ public class Task {
 		@Temporal(TemporalType.TIMESTAMP)
 		@Column(name="created_at")
 		private Date createdAt;
+		
 		@UpdateTimestamp
 		@Temporal(TemporalType.TIMESTAMP)
 		@Column(name="updated_at")
 		private Date updatedAt;
+		
 		private Boolean template;
 		
 		

@@ -47,6 +47,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `created_at` DATETIME NULL,
   `updated_at` DATETIME NULL,
   `user_detail_id` INT NOT NULL,
+  `role` ENUM('admin', 'user') NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC),
   INDEX `fk_user_user_detail1_idx` (`user_detail_id` ASC),
@@ -291,10 +292,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bmtkdb`;
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`) VALUES (1, 'admin', 'admin', 1, NULL, NULL, 1);
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`) VALUES (2, 'testowner', 'testowner', 1, NULL, NULL, 2);
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`) VALUES (3, 'testemp', 'testemp', 1, NULL, NULL, 3);
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`) VALUES (4, 'testuser', 'testuser', 1, NULL, NULL, 4);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (1, 'admin', '$2a$10$3jkVrSRhKouYOYrvIhBLOeWCFOxw6a/nIyId8xRSYB42YWHWVQ8ke', 1, NULL, NULL, 1, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (2, 'testowner', '$2a$10$MEf8iCwCd8acksi2w6Vgw./gIFv4qXpjUfv3EwNF6AFFHPqECgi/a', 1, NULL, NULL, 2, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (3, 'testemp', '$2a$10$jNuLJEvyoH5gNB7QkEPYveqetgbFKI..2ghUH0/kniY3hZ/QgSD0.', 1, NULL, NULL, 3, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (4, 'testuser', '$2a$10$gvjch3eQpa.sPm2Z0wcG9e4CDuk0YdjUl3dKIGOpnyeM.fHYoEraO', 1, NULL, NULL, 4, NULL);
 
 COMMIT;
 

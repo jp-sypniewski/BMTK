@@ -38,7 +38,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 		if (EmployeeRepo.findById(id).isPresent()){
             Employee existingEmployee = EmployeeRepo.findById(id).get();
             existingEmployee.setComp(employee.getComp());
-            existingEmployee.setuDetail(employee.getuDetail());
+            existingEmployee.setUserDetail(employee.getUserDetail());
             EmployeeRepo.save(existingEmployee);
             return EmployeeRepo.findById(id);
         }else{

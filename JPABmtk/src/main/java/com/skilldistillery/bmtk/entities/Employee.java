@@ -21,7 +21,7 @@ public class Employee {
 		
 		@OneToOne
 		@JoinColumn(name="user_detail_id")
-		private UserDetail uDetail;
+		private UserDetail userDetail;
 		
 		@JsonIgnore
 		@ManyToOne
@@ -35,7 +35,7 @@ public class Employee {
 		public Employee(int id, UserDetail uDetail, Company comp) {
 			super();
 			this.id = id;
-			this.uDetail = uDetail;
+			this.userDetail = uDetail;
 			this.comp = comp;
 		}
 
@@ -47,12 +47,12 @@ public class Employee {
 			this.id = id;
 		}
 
-		public UserDetail getuDetail() {
-			return uDetail;
+		public UserDetail getUserDetail() {
+			return userDetail;
 		}
 
-		public void setuDetail(UserDetail uDetail) {
-			this.uDetail = uDetail;
+		public void setUserDetail(UserDetail uDetail) {
+			this.userDetail = uDetail;
 		}
 
 		public Company getComp() {
@@ -65,7 +65,7 @@ public class Employee {
 
 		@Override
 		public String toString() {
-			return "Employee [id=" + id + ", uDetail=" + uDetail + ", comp=" + comp + "]";
+			return "Employee [id=" + id + ", uDetail=" + userDetail + ", comp=" + comp + "]";
 		}
 
 		@Override
@@ -74,7 +74,7 @@ public class Employee {
 			int result = 1;
 			result = prime * result + ((comp == null) ? 0 : comp.hashCode());
 			result = prime * result + id;
-			result = prime * result + ((uDetail == null) ? 0 : uDetail.hashCode());
+			result = prime * result + ((userDetail == null) ? 0 : userDetail.hashCode());
 			return result;
 		}
 
@@ -94,10 +94,10 @@ public class Employee {
 				return false;
 			if (id != other.id)
 				return false;
-			if (uDetail == null) {
-				if (other.uDetail != null)
+			if (userDetail == null) {
+				if (other.userDetail != null)
 					return false;
-			} else if (!uDetail.equals(other.uDetail))
+			} else if (!userDetail.equals(other.userDetail))
 				return false;
 			return true;
 		}

@@ -24,9 +24,9 @@ public class Customer {
 	
 	@OneToOne
 	@JoinColumn(name="user_detail_id")
-	private UserDetail uDetail;
+	private UserDetail userDetail;
 	
-	@OneToMany(mappedBy="cust")
+	@OneToMany(mappedBy="customer")
 	private List<Project> projects;
 
 	
@@ -44,7 +44,7 @@ public class Customer {
 		super();
 		this.id = id;
 		this.paymentMethod = paymentMethod;
-		this.uDetail = uDetail;
+		this.userDetail = uDetail;
 	}
 
 	
@@ -54,7 +54,7 @@ public class Customer {
 		super();
 		this.id = id;
 		this.paymentMethod = paymentMethod;
-		this.uDetail = uDetail;
+		this.userDetail = uDetail;
 		this.projects = projects;
 	}
 
@@ -97,13 +97,13 @@ public class Customer {
 
 
 	public UserDetail getuDetail() {
-		return uDetail;
+		return userDetail;
 	}
 
 
 
 	public void setuDetail(UserDetail uDetail) {
-		this.uDetail = uDetail;
+		this.userDetail = uDetail;
 	}
 
 
@@ -114,7 +114,7 @@ public class Customer {
 		int result = 1;
 		result = prime * result + id;
 		result = prime * result + ((paymentMethod == null) ? 0 : paymentMethod.hashCode());
-		result = prime * result + ((uDetail == null) ? 0 : uDetail.hashCode());
+		result = prime * result + ((userDetail == null) ? 0 : userDetail.hashCode());
 		return result;
 	}
 
@@ -136,10 +136,10 @@ public class Customer {
 				return false;
 		} else if (!paymentMethod.equals(other.paymentMethod))
 			return false;
-		if (uDetail == null) {
-			if (other.uDetail != null)
+		if (userDetail == null) {
+			if (other.userDetail != null)
 				return false;
-		} else if (!uDetail.equals(other.uDetail))
+		} else if (!userDetail.equals(other.userDetail))
 			return false;
 		return true;
 	}
@@ -148,7 +148,7 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", paymentMethod=" + paymentMethod + ", uDetail=" + uDetail + "]";
+		return "Customer [id=" + id + ", paymentMethod=" + paymentMethod + ", uDetail=" + userDetail + "]";
 	}
 
 	

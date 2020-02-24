@@ -26,7 +26,7 @@ public class Project {
 		@JsonIgnore
 		@ManyToOne
 		@JoinColumn(name="customer_id")
-		private Customer cust;
+		private Customer customer;
 		
 		@JsonIgnore
 		@ManyToOne
@@ -47,7 +47,7 @@ public class Project {
 			super();
 			this.id = id;
 			this.name = name;
-			this.cust = cust;
+			this.customer = cust;
 			this.comp = comp;
 		}
 		
@@ -57,7 +57,7 @@ public class Project {
 			super();
 			this.id = id;
 			this.name = name;
-			this.cust = cust;
+			this.customer = cust;
 			this.comp = comp;
 			this.tasks = tasks;
 		}
@@ -88,11 +88,11 @@ public class Project {
 		}
 
 		public Customer getCust() {
-			return cust;
+			return customer;
 		}
 
 		public void setCust(Customer cust) {
-			this.cust = cust;
+			this.customer = cust;
 		}
 
 		public Company getComp() {
@@ -105,7 +105,7 @@ public class Project {
 
 		@Override
 		public String toString() {
-			return "Project [id=" + id + ", name=" + name + ", cust=" + cust + ", comp=" + comp + "]";
+			return "Project [id=" + id + ", name=" + name + ", cust=" + customer + ", comp=" + comp + "]";
 		}
 
 		@Override
@@ -113,7 +113,7 @@ public class Project {
 			final int prime = 31;
 			int result = 1;
 			result = prime * result + ((comp == null) ? 0 : comp.hashCode());
-			result = prime * result + ((cust == null) ? 0 : cust.hashCode());
+			result = prime * result + ((customer == null) ? 0 : customer.hashCode());
 			result = prime * result + id;
 			result = prime * result + ((name == null) ? 0 : name.hashCode());
 			return result;
@@ -133,10 +133,10 @@ public class Project {
 					return false;
 			} else if (!comp.equals(other.comp))
 				return false;
-			if (cust == null) {
-				if (other.cust != null)
+			if (customer == null) {
+				if (other.customer != null)
 					return false;
-			} else if (!cust.equals(other.cust))
+			} else if (!customer.equals(other.customer))
 				return false;
 			if (id != other.id)
 				return false;
