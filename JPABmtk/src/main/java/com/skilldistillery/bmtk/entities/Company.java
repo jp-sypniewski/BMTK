@@ -2,12 +2,18 @@ package com.skilldistillery.bmtk.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Company {
@@ -27,7 +33,18 @@ public class Company {
 		private String companyUrl;
 		
 		@OneToMany(mappedBy="comp")
-		List<Employee> employees;
+		private List<Employee> employees;
+		
+		@JsonIgnore
+		@ManyToMany(cascade= {CascadeType.PERSIST, CascadeType.REMOVE})
+		@JoinTable(name="owner",
+			joinColumns=@JoinColumn(name="company_id"),
+			inverseJoinColumns=@JoinColumn(name="user_detail_id"))
+		private List<UserDetail> owners;
+		
+		@OneToMany(mappedBy="company")
+		private List<Project> projects;
+		
 		
 		//Constructors
 		
@@ -132,6 +149,26 @@ public class Company {
 
 		public void setEmployees(List<Employee> employees) {
 			this.employees = employees;
+		}
+		
+		
+
+		public List<UserDetail> getOwners() {
+			return owners;
+		}
+
+		public void setOwners(List<UserDetail> owners) {
+			this.owners = owners;
+		}
+		
+		
+
+		public List<Project> getProjects() {
+			return projects;
+		}
+
+		public void setProjects(List<Project> projects) {
+			this.projects = projects;
 		}
 
 		@Override

@@ -292,10 +292,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bmtkdb`;
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (1, 'admin', '$2a$10$3jkVrSRhKouYOYrvIhBLOeWCFOxw6a/nIyId8xRSYB42YWHWVQ8ke', 1, NULL, NULL, 1, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (2, 'testowner', '$2a$10$MEf8iCwCd8acksi2w6Vgw./gIFv4qXpjUfv3EwNF6AFFHPqECgi/a', 1, NULL, NULL, 2, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (3, 'testemp', '$2a$10$jNuLJEvyoH5gNB7QkEPYveqetgbFKI..2ghUH0/kniY3hZ/QgSD0.', 1, NULL, NULL, 3, NULL);
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (4, 'testuser', '$2a$10$gvjch3eQpa.sPm2Z0wcG9e4CDuk0YdjUl3dKIGOpnyeM.fHYoEraO', 1, NULL, NULL, 4, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (1, 'admin', '$2a$10$3jkVrSRhKouYOYrvIhBLOeWCFOxw6a/nIyId8xRSYB42YWHWVQ8ke', 1, NULL, NULL, 1, 'admin');
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (2, 'testowner', '$2a$10$MEf8iCwCd8acksi2w6Vgw./gIFv4qXpjUfv3EwNF6AFFHPqECgi/a', 1, NULL, NULL, 2, 'user');
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (3, 'testemp', '$2a$10$jNuLJEvyoH5gNB7QkEPYveqetgbFKI..2ghUH0/kniY3hZ/QgSD0.', 1, NULL, NULL, 3, 'user');
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (4, 'testuser', '$2a$10$gvjch3eQpa.sPm2Z0wcG9e4CDuk0YdjUl3dKIGOpnyeM.fHYoEraO', 1, NULL, NULL, 4, 'user');
 
 COMMIT;
 
@@ -335,7 +335,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bmtkdb`;
-INSERT INTO `task` (`id`, `name`, `description`, `due_date`, `paid`, `created_at`, `updated_at`, `template`, `start_date`, `complete_date`, `status`, `type`, `priority`, `payment_detail`, `price`, `project_id`) VALUES (1, 'test task', 'task description', '02-29-2020', 0, NULL, NULL, NULL, NULL, NULL, 'ASSIGNED', NULL, 'high', NULL, 1000.00, 1);
+INSERT INTO `task` (`id`, `name`, `description`, `due_date`, `paid`, `created_at`, `updated_at`, `template`, `start_date`, `complete_date`, `status`, `type`, `priority`, `payment_detail`, `price`, `project_id`) VALUES (1, 'test task', 'task description', '02-29-2020', 0, NULL, NULL, 0, NULL, NULL, 'ASSIGNED', NULL, 'high', NULL, 1000.00, 1);
 
 COMMIT;
 

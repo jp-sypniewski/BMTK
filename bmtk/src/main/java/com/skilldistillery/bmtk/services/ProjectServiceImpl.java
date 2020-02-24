@@ -21,13 +21,23 @@ public class ProjectServiceImpl implements ProjectService {
 	
 	@Override
 	public List<Project> getProjectsForCustomer(String username){
-		User user = userRepo.findByUsername(username).get(0);
-		Integer id = user.getUserDetail().getId();
 		
-		List<Project> projects = projRepo.findByCustomer_UserDetail_Id(id);
+		List<User> users = userRepo.findByUsername(username);
+		User user = null;
+		List<Project> projects = null;
 		
+		if (users.size() > 0) {
+			user = users.get(0);
+			Integer id = user.getUserDetail().getId();
+			projects = projRepo.findByCustomer_UserDetail_Id(id);
+		}
 		
-		
+		return projects;
+	}
+	
+	@Override
+	public List<Project> getProjectsByCompany(int id){
+		List<Project> projects = projRepo.findByCompany_Id(id);
 		
 		return projects;
 	}

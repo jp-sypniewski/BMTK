@@ -8,4 +8,6 @@ public interface ProjectService {
 
 	List<Project> getProjectsForCustomer(String username);
 
+	List<Project> getProjectsByCompany(int id);
+
 }
