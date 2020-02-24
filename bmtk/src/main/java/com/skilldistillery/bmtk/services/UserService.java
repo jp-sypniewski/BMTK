@@ -9,7 +9,7 @@ public interface UserService {
 	
 	List<User> listAllUser();
 	
-	Optional<User> listById(int id);
+	Optional<User> listUserById(int id);
 	
 	public User createUser(User user);
 	

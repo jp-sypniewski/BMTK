@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public Optional<User> listById(int id) {
+	public Optional<User> listUserById(int id) {
 		// TODO Auto-generated method stub
 		return UserRepo.findById(id);
 	}
