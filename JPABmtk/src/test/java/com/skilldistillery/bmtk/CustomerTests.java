@@ -47,7 +47,7 @@ class CustomerTests {
 	void test() {
 		assertNotNull(cust);
 		assertEquals("paypal", cust.getPaymentMethod());
-		assertEquals(4, cust.getuDetail().getId());
+		assertEquals(4, cust.getUserDetail().getId());
 	}
 
 }
