@@ -64,6 +64,8 @@ public class CompanyServiceImpl implements CompanyService {
 			ownerList.add(ud);
 			company.setOwners(ownerList);
 			company = compRepo.saveAndFlush(company);
+		} else {
+			company = null;
 		}
 		
 		return company;

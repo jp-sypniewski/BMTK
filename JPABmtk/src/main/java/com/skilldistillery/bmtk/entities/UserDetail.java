@@ -33,6 +33,7 @@ public class UserDetail {
 		private String country;
 		private String phone;
 		
+		@JsonIgnore
 		@OneToOne(mappedBy="userDetail")
 		private User user;
 		
