@@ -1,0 +1,5 @@
+export enum status {
+
+  NOTASSIGNED, ASSIGNED, INPROGRESS, COMPLETE
+
+}
