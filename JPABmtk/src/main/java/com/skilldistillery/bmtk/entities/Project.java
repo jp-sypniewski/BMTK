@@ -31,7 +31,7 @@ public class Project {
 		@JsonIgnore
 		@ManyToOne
 		@JoinColumn(name="company_id")
-		private Company comp;
+		private Company company;
 		
 		
 		@OneToMany(mappedBy="proj")
@@ -48,7 +48,7 @@ public class Project {
 			this.id = id;
 			this.name = name;
 			this.customer = cust;
-			this.comp = comp;
+			this.company = comp;
 		}
 		
 		
@@ -58,7 +58,7 @@ public class Project {
 			this.id = id;
 			this.name = name;
 			this.customer = cust;
-			this.comp = comp;
+			this.company = comp;
 			this.tasks = tasks;
 		}
 		
@@ -95,24 +95,34 @@ public class Project {
 			this.customer = cust;
 		}
 
-		public Company getComp() {
-			return comp;
+		public Company getCompany() {
+			return company;
 		}
 
-		public void setComp(Company comp) {
-			this.comp = comp;
+		public void setCompany(Company comp) {
+			this.company = comp;
+		}
+		
+		
+
+		public Customer getCustomer() {
+			return customer;
+		}
+
+		public void setCustomer(Customer customer) {
+			this.customer = customer;
 		}
 
 		@Override
 		public String toString() {
-			return "Project [id=" + id + ", name=" + name + ", cust=" + customer + ", comp=" + comp + "]";
+			return "Project [id=" + id + ", name=" + name + ", cust=" + customer + ", comp=" + company + "]";
 		}
 
 		@Override
 		public int hashCode() {
 			final int prime = 31;
 			int result = 1;
-			result = prime * result + ((comp == null) ? 0 : comp.hashCode());
+			result = prime * result + ((company == null) ? 0 : company.hashCode());
 			result = prime * result + ((customer == null) ? 0 : customer.hashCode());
 			result = prime * result + id;
 			result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -128,10 +138,10 @@ public class Project {
 			if (getClass() != obj.getClass())
 				return false;
 			Project other = (Project) obj;
-			if (comp == null) {
-				if (other.comp != null)
+			if (company == null) {
+				if (other.company != null)
 					return false;
-			} else if (!comp.equals(other.comp))
+			} else if (!company.equals(other.company))
 				return false;
 			if (customer == null) {
 				if (other.customer != null)

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,13 +26,20 @@ public class ProjectController {
 	private ProjectService projSvc;
 		
 	@GetMapping(path="projects")
-	public List<Project> getProjects(HttpServletRequest req,
+	public List<Project> getProjectsByCustomer(HttpServletRequest req,
 			HttpServletResponse res,
 			Principal principal){
 		List<Project> projects = projSvc.getProjectsForCustomer(principal.getName());
-		
-		
 		return projects;
 	}
 
+	@GetMapping(path="companies/{cid}/projects")
+	public List<Project> getProjectsByCompany(HttpServletRequest req,
+			HttpServletResponse res,
+			Principal principal,
+			@PathVariable("cid") Integer cid){
+		List<Project> projects = null;
+		
+		return projects;
+	}
 }

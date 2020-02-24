@@ -42,7 +42,8 @@ public class Company {
 			inverseJoinColumns=@JoinColumn(name="user_detail_id"))
 		private List<UserDetail> owners;
 		
-		
+		@OneToMany(mappedBy="company")
+		private List<Project> projects;
 		
 		
 		//Constructors
@@ -158,6 +159,16 @@ public class Company {
 
 		public void setOwners(List<UserDetail> owners) {
 			this.owners = owners;
+		}
+		
+		
+
+		public List<Project> getProjects() {
+			return projects;
+		}
+
+		public void setProjects(List<Project> projects) {
+			this.projects = projects;
 		}
 
 		@Override
