@@ -42,9 +42,7 @@ public class CompanyController {
 	public List<Company> listMyCompanies(HttpServletRequest req,
 			HttpServletResponse res,
 			Principal principal){
-		List<Company> myCompanies = null;
-		
-		
+		List<Company> myCompanies = compSvc.listMyCompanies(principal.getName());
 		return myCompanies;
 	}
 

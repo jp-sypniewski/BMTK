@@ -13,6 +13,8 @@ import javax.persistence.OneToOne;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 	
@@ -35,6 +37,7 @@ public class User {
 	
 	private String role;
 	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="user_detail_id")
 	private UserDetail userDetail;

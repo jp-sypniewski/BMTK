@@ -43,6 +43,8 @@ public class Company {
 		private List<UserDetail> owners;
 		
 		
+		
+		
 		//Constructors
 		
 		public Company() {

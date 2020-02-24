@@ -13,16 +13,17 @@ import com.skilldistillery.bmtk.repositories.CompanyRepository;
 public class CompanyServiceImpl implements CompanyService{
 	
 	@Autowired
-	private CompanyRepository CompanyRepo;
+	private CompanyRepository compRepo;
 
 	@Override
 	public List<Company> listAllCompany() {
 		// TODO Auto-generated method stub
-		return CompanyRepo.findAll();
+		return compRepo.findAll();
 	}
 	
+	@Override
 	public List<Company> listMyCompanies(String username){
-		List<Company> myCompanies = null;
+		List<Company> myCompanies = compRepo.findCompaniesByOwnerUsername(username);
 		
 		
 		
@@ -32,19 +33,19 @@ public class CompanyServiceImpl implements CompanyService{
 	@Override
 	public Optional<Company> listCompanyById(int id) {
 		// TODO Auto-generated method stub
-		return CompanyRepo.findById(id);
+		return compRepo.findById(id);
 	}
 
 	@Override
 	public Company createCompany(Company company) {
 		// TODO Auto-generated method stub
-		return CompanyRepo.save(company);
+		return compRepo.save(company);
 	}
 
 	@Override
 	public Optional<Company> updateCompany(int id, Company company) {
-		if (CompanyRepo.findById(id).isPresent()){
-            Company existingCompany = CompanyRepo.findById(id).get();
+		if (compRepo.findById(id).isPresent()){
+            Company existingCompany = compRepo.findById(id).get();
             existingCompany.setName(company.getName());
             existingCompany.setPhone(company.getPhone());
             existingCompany.setAddress(company.getAddress());
@@ -52,8 +53,8 @@ public class CompanyServiceImpl implements CompanyService{
             existingCompany.setDescription(company.getDescription());
             existingCompany.setType(company.getType());
             existingCompany.setEmployees(company.getEmployees());
-            CompanyRepo.save(existingCompany);
-            return CompanyRepo.findById(id);
+            compRepo.save(existingCompany);
+            return compRepo.findById(id);
         }else{
             return null;
         }
@@ -61,8 +62,8 @@ public class CompanyServiceImpl implements CompanyService{
 
 	@Override
 	public Boolean deleteCompany(int id) {
-		if (CompanyRepo.findById(id).isPresent()){
-			 CompanyRepo.deleteById(id);
+		if (compRepo.findById(id).isPresent()){
+			compRepo.deleteById(id);
 			 return true;
 		 }
 		 else {return false;}

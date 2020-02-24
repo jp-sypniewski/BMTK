@@ -18,4 +18,6 @@ public Optional<Company> updateCompany(int id, Company company);
 	
 public Boolean deleteCompany(int id);
 
+List<Company> listMyCompanies(String username);
+
 }
