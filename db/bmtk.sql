@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `created_at` DATETIME NULL,
   `updated_at` DATETIME NULL,
   `user_detail_id` INT NOT NULL,
-  `role` VARCHAR(45) NULL,
+  `role` ENUM('admin', 'user') NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC),
   INDEX `fk_user_user_detail1_idx` (`user_detail_id` ASC),

@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 @Entity
 public class User {
 	
@@ -21,10 +24,16 @@ public class User {
 	private String username;
 	private String password;
 	private Boolean active;
+	
 	@Column(name="created_at")
+	@CreationTimestamp
 	private LocalDateTime createdAt;
+	
 	@Column(name="updated_at")
+	@UpdateTimestamp
 	private LocalDateTime updatedAt;
+	
+	private String role;
 	
 	@OneToOne
 	@JoinColumn(name="user_detail_id")
@@ -167,6 +176,16 @@ public class User {
 	public void setUserDetail(UserDetail userDetail) {
 		this.userDetail = userDetail;
 	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+	
+	
 
 	
 	
