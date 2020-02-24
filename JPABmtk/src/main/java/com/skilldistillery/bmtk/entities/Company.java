@@ -27,7 +27,9 @@ public class Company {
 		private String companyUrl;
 		
 		@OneToMany(mappedBy="comp")
-		List<Employee> employees;
+		private List<Employee> employees;
+		
+		
 		
 		//Constructors
 		

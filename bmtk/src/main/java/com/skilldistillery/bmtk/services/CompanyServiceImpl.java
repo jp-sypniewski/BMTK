@@ -20,6 +20,14 @@ public class CompanyServiceImpl implements CompanyService{
 		// TODO Auto-generated method stub
 		return CompanyRepo.findAll();
 	}
+	
+	public List<Company> listMyCompanies(String username){
+		List<Company> myCompanies = null;
+		
+		
+		
+		return myCompanies;
+	}
 
 	@Override
 	public Optional<Company> listCompanyById(int id) {
