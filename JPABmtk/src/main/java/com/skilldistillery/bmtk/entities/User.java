@@ -28,7 +28,7 @@ public class User {
 	
 	@OneToOne
 	@JoinColumn(name="user_detail_id")
-	private UserDetail uDetail;
+	private UserDetail userDetail;
 	
 	
 
@@ -159,6 +159,16 @@ public class User {
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+
+	public UserDetail getUserDetail() {
+		return userDetail;
+	}
+
+	public void setUserDetail(UserDetail userDetail) {
+		this.userDetail = userDetail;
+	}
+
+	
 	
 	
 	
