@@ -30,7 +30,7 @@ user: User = new User();
   }
 
   createUser(): void{
-    this.user.username = "test";
+    //this.user.username = "test";
     var newUser: User = Object.assign({}, this.user);
     //newUser.username = document.getElementById("username").nodeValue;
     this.userService.createUser(newUser).subscribe(
