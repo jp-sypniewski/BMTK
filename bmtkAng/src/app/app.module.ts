@@ -12,19 +12,27 @@ import {EmployeeService} from './employee/employee.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home/home.component';
 
+import {RouterModule, Routes} from '@angular/router';
+import { LoginComponent } from './login/login/login.component';
+import { LearnMoreComponent } from './learn-more/learn-more/learn-more.component';
+import { CurrentCustomersComponent } from './current-customers/current-customers/current-customers.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
     EmployeeListComponent,
-
-    HomeComponent
+    LoginComponent,
+    HomeComponent,
+    LearnMoreComponent,
+    CurrentCustomersComponent
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+
   ],
   providers: [UserService, EmployeeService],
   bootstrap: [AppComponent]

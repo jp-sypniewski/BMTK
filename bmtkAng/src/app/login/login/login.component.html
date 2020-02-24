@@ -1,14 +1,8 @@
-
-
- <h3>Create A New BMTK User Account</h3>
- <form id = "newUser">
+<h3>User Login</h3>
+ <form id = "userLogin">
   <label for="username">username:</label>
   <input type="string" id="username" name="username"><br><br>
   <label for="password">password:</label>
   <input type="string" id="password" name="password"><br><br>
 </form>
-<button type="submit" (click)="createUser()">Create User</button>
-
-
-
-    <ul id = "showNewUser"></ul>
+<button type="submit" (click)="getUserByUserNamePassword()">Login</button>
