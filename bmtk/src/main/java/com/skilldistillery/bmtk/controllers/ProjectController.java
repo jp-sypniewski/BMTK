@@ -38,7 +38,9 @@ public class ProjectController {
 			HttpServletResponse res,
 			Principal principal,
 			@PathVariable("cid") Integer cid){
-		List<Project> projects = null;
+		List<Project> projects = projSvc.getProjectsByCompany(cid);
+		
+		
 		
 		return projects;
 	}
