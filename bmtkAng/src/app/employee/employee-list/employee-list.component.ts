@@ -22,7 +22,9 @@ export class EmployeeListComponent implements OnInit {
   getAllEmployees(){
     this.employeeService.getAllEmployees().subscribe(
       employee => {
-        this.employee = employee;
+
+        //this.employee = employee;
+
       },
       err => {console.log(err);
       }

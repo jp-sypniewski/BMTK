@@ -5,17 +5,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { UserListComponent } from './user/user-list/user-list.component';
-import { EmployeeListComponent } from './employee/employee-list/employee-list.component';
+import {EmployeeListComponent} from './employee/employee-list/employee-list.component'
 import { UserService } from './user/user.service';
-import { EmployeeService} from './employee/employee.service'
+import {EmployeeService} from './employee/employee.service';
 
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+
+    HomeComponent
 
   ],
   imports: [

@@ -22,7 +22,7 @@ user: User = new User();
   getAllUsers(){
     this.userService.getAllUsers().subscribe(
       user => {
-        this.user = user;
+        //this.user = user;
       },
       err => {console.log(err);
       }
