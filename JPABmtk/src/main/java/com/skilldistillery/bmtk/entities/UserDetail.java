@@ -1,12 +1,17 @@
 package com.skilldistillery.bmtk.entities;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="user_detail")
@@ -31,7 +36,9 @@ public class UserDetail {
 		@OneToOne(mappedBy="userDetail")
 		private User user;
 		
-		
+		@JsonIgnore
+		@ManyToMany(mappedBy="owners")
+		private List<Company> myCompanies;
 		
 	//Constructors
 		
@@ -182,6 +189,18 @@ public class UserDetail {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+
+
+	public List<Company> getMyCompanies() {
+		return myCompanies;
+	}
+
+
+
+	public void setMyCompanies(List<Company> myCompanies) {
+		this.myCompanies = myCompanies;
 	}
 
 
