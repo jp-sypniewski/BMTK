@@ -21,6 +21,13 @@ getAllUsers(): Observable<User[]> {
   );
 }
 
+getUsersByUsernamePassword(): Observable<User[]> {
+  return this.http.get(this.baseUrl+'userByUsernamePassword')
+  .pipe(
+  catchError(this.handleError)
+  );
+}
+
 createUser(user: User): Observable<User> {
 
   return this.http.post<User>(this.baseUrl+'createUser', user, {headers: new HttpHeaders({
