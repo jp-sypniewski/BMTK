@@ -99,13 +99,13 @@ public class Customer {
 
 
 
-	public UserDetail getuDetail() {
+	public UserDetail getUserDetail() {
 		return userDetail;
 	}
 
 
 
-	public void setuDetail(UserDetail uDetail) {
+	public void setUserDetail(UserDetail uDetail) {
 		this.userDetail = uDetail;
 	}
 

@@ -41,6 +41,10 @@ public class UserDetail {
 		@ManyToMany(mappedBy="owners")
 		private List<Company> myCompanies;
 		
+		@JsonIgnore
+		@OneToOne(mappedBy="userDetail")
+		private Customer customer;
+		
 	//Constructors
 		
 		public UserDetail() {
@@ -202,6 +206,20 @@ public class UserDetail {
 
 	public void setMyCompanies(List<Company> myCompanies) {
 		this.myCompanies = myCompanies;
+	}
+	
+	
+
+
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 
