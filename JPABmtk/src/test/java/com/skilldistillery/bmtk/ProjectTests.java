@@ -47,7 +47,7 @@ class ProjectTests {
 	@Test
 	void test() {
 		assertNotNull(proj);
-		assertEquals("Test Company", proj.getComp().getName());
+		assertEquals("Test Company", proj.getCompany().getName());
 	}
 
 }
