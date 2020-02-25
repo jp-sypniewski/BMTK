@@ -67,29 +67,6 @@ public class UserController {
 		
 	}
 	
-//	
-//	@PutMapping(value = "user/{id}/detail")
-//	public UserDetail updateUserDetail(HttpServletRequest req,
-//			HttpServletResponse res,
-//			Principal principal,
-//			@PathVariable("id") int id,
-//			@RequestBody UserDetail userDetail){
-//		try {
-//			userDetail = userSvc.updateUserDetail(id, userDetail);
-//			if (userDetail == null) {
-//				res.setStatus(404);
-//				return userDetail;
-//			}
-//			res.setStatus(200);
-//			return userDetail;
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			res.setStatus(400);
-//			return null;
-//		}
-//		
-//	}
-//	
 	
 	
 	

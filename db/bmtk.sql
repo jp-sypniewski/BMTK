@@ -68,6 +68,7 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `payment_method` VARCHAR(45) NULL,
   `user_detail_id` INT NOT NULL,
+  `active` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_customer_user_detail1_idx` (`user_detail_id` ASC),
   CONSTRAINT `fk_customer_user_detail1`
@@ -91,6 +92,7 @@ CREATE TABLE IF NOT EXISTS `company` (
   `phone` VARCHAR(45) NULL,
   `description` VARCHAR(500) NULL,
   `company_url` VARCHAR(500) NULL,
+  `active` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -105,6 +107,7 @@ CREATE TABLE IF NOT EXISTS `project` (
   `name` VARCHAR(45) NOT NULL,
   `customer_id` INT NOT NULL,
   `company_id` INT NOT NULL,
+  `active` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_project_customer1_idx` (`customer_id` ASC),
   INDEX `fk_project_company1_idx` (`company_id` ASC),
@@ -143,6 +146,7 @@ CREATE TABLE IF NOT EXISTS `task` (
   `payment_detail` VARCHAR(45) NULL,
   `price` DOUBLE NULL,
   `project_id` INT NOT NULL,
+  `active` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_task_project1_idx` (`project_id` ASC),
   CONSTRAINT `fk_task_project1`
@@ -162,6 +166,7 @@ CREATE TABLE IF NOT EXISTS `employee` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_detail_id` INT NOT NULL,
   `company_id` INT NOT NULL,
+  `active` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   INDEX `fk_employee_user_detail1_idx` (`user_detail_id` ASC),
   INDEX `fk_employee_company1_idx` (`company_id` ASC),
@@ -292,10 +297,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bmtkdb`;
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (1, 'admin', '$2a$10$3jkVrSRhKouYOYrvIhBLOeWCFOxw6a/nIyId8xRSYB42YWHWVQ8ke', 1, NULL, NULL, 1, 'admin');
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (2, 'testowner', '$2a$10$MEf8iCwCd8acksi2w6Vgw./gIFv4qXpjUfv3EwNF6AFFHPqECgi/a', 1, NULL, NULL, 2, 'user');
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (3, 'testemp', '$2a$10$jNuLJEvyoH5gNB7QkEPYveqetgbFKI..2ghUH0/kniY3hZ/QgSD0.', 1, NULL, NULL, 3, 'user');
-INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (4, 'testuser', '$2a$10$gvjch3eQpa.sPm2Z0wcG9e4CDuk0YdjUl3dKIGOpnyeM.fHYoEraO', 1, NULL, NULL, 4, 'user');
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (1, 'admin', '$2a$10$3jkVrSRhKouYOYrvIhBLOeWCFOxw6a/nIyId8xRSYB42YWHWVQ8ke', 1, NULL, NULL, 1, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (2, 'testowner', '$2a$10$MEf8iCwCd8acksi2w6Vgw./gIFv4qXpjUfv3EwNF6AFFHPqECgi/a', 1, NULL, NULL, 2, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (3, 'testemp', '$2a$10$jNuLJEvyoH5gNB7QkEPYveqetgbFKI..2ghUH0/kniY3hZ/QgSD0.', 1, NULL, NULL, 3, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (4, 'testuser', '$2a$10$gvjch3eQpa.sPm2Z0wcG9e4CDuk0YdjUl3dKIGOpnyeM.fHYoEraO', 1, NULL, NULL, 4, NULL);
 
 COMMIT;
 
@@ -305,7 +310,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bmtkdb`;
-INSERT INTO `customer` (`id`, `payment_method`, `user_detail_id`) VALUES (1, 'paypal', 4);
+INSERT INTO `customer` (`id`, `payment_method`, `user_detail_id`, `active`) VALUES (1, 'paypal', 4, DEFAULT);
 
 COMMIT;
 
@@ -315,7 +320,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bmtkdb`;
-INSERT INTO `company` (`id`, `name`, `type`, `address`, `phone`, `description`, `company_url`) VALUES (1, 'Test Company', 'Construction', '12345 test st', '5554443333', 'test description', NULL);
+INSERT INTO `company` (`id`, `name`, `type`, `address`, `phone`, `description`, `company_url`, `active`) VALUES (1, 'Test Company', 'Construction', '12345 test st', '5554443333', 'test description', NULL, DEFAULT);
 
 COMMIT;
 
@@ -325,7 +330,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bmtkdb`;
-INSERT INTO `project` (`id`, `name`, `customer_id`, `company_id`) VALUES (1, 'Test Project', 1, 1);
+INSERT INTO `project` (`id`, `name`, `customer_id`, `company_id`, `active`) VALUES (1, 'Test Project', 1, 1, DEFAULT);
 
 COMMIT;
 
@@ -335,7 +340,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bmtkdb`;
-INSERT INTO `task` (`id`, `name`, `description`, `due_date`, `paid`, `created_at`, `updated_at`, `template`, `start_date`, `complete_date`, `status`, `type`, `priority`, `payment_detail`, `price`, `project_id`) VALUES (1, 'test task', 'task description', '02-29-2020', 0, NULL, NULL, 0, NULL, NULL, 'ASSIGNED', NULL, 'high', NULL, 1000.00, 1);
+INSERT INTO `task` (`id`, `name`, `description`, `due_date`, `paid`, `created_at`, `updated_at`, `template`, `start_date`, `complete_date`, `status`, `type`, `priority`, `payment_detail`, `price`, `project_id`, `active`) VALUES (1, 'test task', 'task description', '02-29-2020', 0, NULL, NULL, NULL, NULL, NULL, 'ASSIGNED', NULL, 'high', NULL, 1000.00, 1, DEFAULT);
 
 COMMIT;
 
@@ -345,7 +350,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bmtkdb`;
-INSERT INTO `employee` (`id`, `user_detail_id`, `company_id`) VALUES (1, 3, 1);
+INSERT INTO `employee` (`id`, `user_detail_id`, `company_id`, `active`) VALUES (1, 3, 1, DEFAULT);
 
 COMMIT;
 
