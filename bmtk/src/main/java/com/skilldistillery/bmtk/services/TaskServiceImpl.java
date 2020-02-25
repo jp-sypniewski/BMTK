@@ -49,18 +49,42 @@ public class TaskServiceImpl implements TaskService {
 		if (optproj.isPresent()) {
 			if (opttask.isPresent()) {
 				Task managedTask = opttask.get();
-				managedTask.setName(task.getName());
-				managedTask.setDescription(task.getDescription());
-				managedTask.setDueDate(task.getDueDate());
-				managedTask.setPaid(task.isPaid());
-				managedTask.setTemplate(task.isTemplate());
-				managedTask.setStartDate(task.getStartDate());
-				managedTask.setCompleteDate(task.getCompleteDate());
-				managedTask.setStatus(task.getStatus());
-				managedTask.setType(task.getType());
-				managedTask.setPriority(task.getPriority());
-				managedTask.setPaymentDetail(task.getPaymentDetail());
-				managedTask.setPrice(task.getPrice());
+				if (task.getName() != null) {
+					managedTask.setName(task.getName());
+				}
+				if (task.getDescription() != null) {
+					managedTask.setDescription(task.getDescription());
+				}
+				if (task.getDueDate() != null) {
+					managedTask.setDueDate(task.getDueDate());
+				}
+				if (task.isPaid()) {
+					managedTask.setPaid(task.isPaid());
+				}
+				if (task.isTemplate()) {
+					managedTask.setTemplate(task.isTemplate());
+				}
+				if (task.getStartDate() != null) {
+					managedTask.setStartDate(task.getStartDate());
+				}
+				if (task.getCompleteDate() != null) {
+					managedTask.setCompleteDate(task.getCompleteDate());
+				}
+				if (task.getStatus() != null) {
+					managedTask.setStatus(task.getStatus());
+				}
+				if (task.getType() != null) {
+					managedTask.setType(task.getType());
+				}
+				if (task.getPriority() != null) {
+					managedTask.setPriority(task.getPriority());
+				}
+				if (task.getPaymentDetail() != null) {
+					managedTask.setPaymentDetail(task.getPaymentDetail());
+				}
+				if (task.getPrice() != null) {
+					managedTask.setPrice(task.getPrice());
+				}
 				task = taskRepo.saveAndFlush(managedTask);
 			} else {
 				task = null;
