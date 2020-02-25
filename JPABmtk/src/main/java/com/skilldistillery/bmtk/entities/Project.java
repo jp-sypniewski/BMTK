@@ -34,7 +34,7 @@ public class Project {
 		private Company company;
 		
 		
-		@OneToMany(mappedBy="proj")
+		@OneToMany(mappedBy="project")
 		List<Task> tasks;
 
 		//Constructors
