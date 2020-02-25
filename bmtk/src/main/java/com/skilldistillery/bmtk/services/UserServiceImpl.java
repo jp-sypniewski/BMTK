@@ -69,12 +69,102 @@ public class UserServiceImpl implements UserService{
 			if (user.getActive() != null ) {
 				managedUser.setActive(user.getActive());
 			}
+			
+			if (user.getUserDetail().getId() == managedUser.getUserDetail().getId()) {
+				Optional<UserDetail> optDetail = udRepo.findById(id);
+				if (optDetail.isPresent()) {
+					UserDetail managedUd = optDetail.get();
+					UserDetail ud = user.getUserDetail();
+					if (ud.getFirstName() != null) {
+						managedUd.setFirstName(ud.getFirstName());
+					}
+					if (ud.getLastName() != null) {
+						managedUd.setLastName(ud.getLastName());
+					}
+					if (ud.getEmail() != null) {
+						managedUd.setEmail(ud.getEmail());
+					}
+					if (ud.getStreet() != null) {
+						managedUd.setStreet(ud.getStreet());
+					}
+					if (ud.getCity() != null) {
+						managedUd.setCity(ud.getCity());
+					}
+					if (ud.getZipcode() != null) {
+						managedUd.setZipcode(ud.getZipcode());
+					}
+					if (ud.getCountry() != null) {
+						managedUd.setCountry(ud.getCountry());
+					}
+					if (ud.getPhone() != null) {
+						managedUd.setPhone(ud.getPhone());
+					}
+					
+					ud = udRepo.saveAndFlush(managedUd);
+				} 
+			}
+			
+			
 			user = userRepo.saveAndFlush(managedUser);
 		} else {
 			user = null;
 		}
 		return user;
 	}
+	
+	
+	
+	@Override
+	public UserDetail updateUserDetail(int id, UserDetail ud) {
+		Optional<UserDetail> optDetail = udRepo.findById(id);
+		if (optDetail.isPresent()) {
+			UserDetail managedUd = optDetail.get();
+			if (ud.getFirstName() != null) {
+				managedUd.setFirstName(ud.getFirstName());
+			}
+			if (ud.getLastName() != null) {
+				managedUd.setLastName(ud.getLastName());
+			}
+			if (ud.getEmail() != null) {
+				managedUd.setEmail(ud.getEmail());
+			}
+			if (ud.getStreet() != null) {
+				managedUd.setStreet(ud.getStreet());
+			}
+			if (ud.getCity() != null) {
+				managedUd.setCity(ud.getCity());
+			}
+			if (ud.getZipcode() != null) {
+				managedUd.setZipcode(ud.getZipcode());
+			}
+			if (ud.getCountry() != null) {
+				managedUd.setCountry(ud.getCountry());
+			}
+			if (ud.getPhone() != null) {
+				managedUd.setPhone(ud.getPhone());
+			}
+			
+			ud = udRepo.saveAndFlush(managedUd);
+		} else {
+			ud = null;
+		}
+		
+		return ud;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	@Override
 	public Boolean deleteUser(int id) {

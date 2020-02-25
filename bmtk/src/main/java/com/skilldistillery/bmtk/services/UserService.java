@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.skilldistillery.bmtk.entities.User;
+import com.skilldistillery.bmtk.entities.UserDetail;
 
 public interface UserService {
 	
@@ -16,5 +17,7 @@ public interface UserService {
 	public User updateUser(int id, User user);
 	
 	public Boolean deleteUser(int id);
+
+	UserDetail updateUserDetail(int id, UserDetail ud);
 
 }

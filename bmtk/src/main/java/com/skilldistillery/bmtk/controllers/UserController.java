@@ -2,7 +2,6 @@ package com.skilldistillery.bmtk.controllers;
 
 import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.bmtk.entities.User;
+import com.skilldistillery.bmtk.entities.UserDetail;
 import com.skilldistillery.bmtk.services.UserService;
 
 @RestController
@@ -66,6 +66,34 @@ public class UserController {
 		}
 		
 	}
+	
+//	
+//	@PutMapping(value = "user/{id}/detail")
+//	public UserDetail updateUserDetail(HttpServletRequest req,
+//			HttpServletResponse res,
+//			Principal principal,
+//			@PathVariable("id") int id,
+//			@RequestBody UserDetail userDetail){
+//		try {
+//			userDetail = userSvc.updateUserDetail(id, userDetail);
+//			if (userDetail == null) {
+//				res.setStatus(404);
+//				return userDetail;
+//			}
+//			res.setStatus(200);
+//			return userDetail;
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			res.setStatus(400);
+//			return null;
+//		}
+//		
+//	}
+//	
+	
+	
+	
+	
 	
 	@DeleteMapping(value = "user/{id}")
 	public Boolean deleteUser(@PathVariable("id") int id) {
