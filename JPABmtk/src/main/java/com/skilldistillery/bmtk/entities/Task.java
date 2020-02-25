@@ -47,11 +47,6 @@ public class Task {
 		
 		private Boolean template;
 		
-		
-		
-		
-		
-		
 		@Column(name="start_date")
 		private String startDate;
 		@Column(name="complete_date")
@@ -72,18 +67,9 @@ public class Task {
 		@JoinColumn(name="project_id")
 		private Project proj;
 		
-		
-		
-		
-		
-		
-
 		public Task() {
 			super();
 		}
-		
-		
-
 		public Task(int id, String name, String description, String dueDate, boolean paid, Date createdAt,
 				Date updatedAt, boolean template, String startDate, String completeDate, Status status,
 				String type, String priority, String paymentDetail, double price) {
