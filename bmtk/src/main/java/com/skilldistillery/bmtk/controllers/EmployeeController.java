@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.bmtk.entities.Employee;
+import com.skilldistillery.bmtk.entities.User;
+import com.skilldistillery.bmtk.services.AuthService;
 import com.skilldistillery.bmtk.services.EmployeeService;
 
 @RestController
@@ -23,30 +25,36 @@ import com.skilldistillery.bmtk.services.EmployeeService;
 public class EmployeeController {
 	
 	@Autowired
-	private EmployeeService EmployeeSvc;
+	private EmployeeService empSvc;
+	
+	@Autowired
+	private AuthService authSvc;
 
 	@GetMapping(value = "employee")
 	public List<Employee> listEmployee() {
-	return  EmployeeSvc.listAllEmployee();
+		return  empSvc.listAllEmployee();
 	}
 	
 	@GetMapping(value = "employee/{id}")
 	public Optional<Employee> listEmployeeById(Integer id) {
-	return  EmployeeSvc.listEmployeeById(id);
+		return  empSvc.listEmployeeById(id);
 	}
 	
-	@PostMapping(value = "createEmployee")
-	public Employee createEmployee(@RequestBody Employee employee){
-	return EmployeeSvc.createEmployee(employee);
+	@PostMapping(value = "companies/{cid}/employee")
+	public Employee createEmployee(@PathVariable("cid") Integer cid,
+			@RequestBody User user){
+		user = authSvc.register(user);
+		Employee employee = empSvc.createEmployee(cid, user);
+		return employee;
 	}
 	
-	@PutMapping(value = "updateEmployee/{id}")
+	@PutMapping(value = "employee/{id}")
 	public Optional<Employee> updateEmployee(@PathVariable("id") int id, @RequestBody Employee employee){
-	return EmployeeSvc.updateEmployee(id, employee);
+		return empSvc.updateEmployee(id, employee);
 	}
 	
-	@DeleteMapping(value = "deleteEmployee/{id}")
+	@DeleteMapping(value = "employee/{id}")
 	public Boolean deleteEmployee(@PathVariable("id") int id) {
-		return EmployeeSvc.deleteEmployee(id).booleanValue();
+		return empSvc.deleteEmployee(id).booleanValue();
 	}
 }
