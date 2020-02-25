@@ -11,7 +11,7 @@
 PLACEHOLDERS
 
 | Return Type | Route                 | Functionality                  |
-|-------------|-----------------------|--------------------------------|
+|-------------|---------------------------------|--------------------------------|
 | `Register` | `POST register` | Register user with detail |
 | `Authenticate` | `GET authenticate` | Authenticate existing user |
 ||||
@@ -24,3 +24,4 @@ PLACEHOLDERS
 | `Company`  |`POST api/companies` | Creates a company and an owner-company relationship |
 | `Project`  |`POST api/companies/{companyId}/projects` | Creates a project for a single company |
 | `Employee`  |`POST api/companies/{companyId}/employees` | Creates an employee for a single company |
+| `Task`  |`POST api/projects/{projectId}/tasks` | Creates a task for a project |
