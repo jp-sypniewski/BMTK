@@ -87,5 +87,37 @@ public class ProjectServiceImpl implements ProjectService {
 		
 		return project;
 	}
+	
+	
+	
+	
+	
+	@Override
+	public Project updateProject(int cid, int pid, Project project) {
+		Optional<Company> optComp = compRepo.findById(cid);
+		Optional<Project> optProj = projRepo.findById(pid);
+		if (optComp.isPresent()) {
+			if (optProj.isPresent()) {
+				Project managedProj = optProj.get();
+				if (project.getName() != null) {
+					managedProj.setName(project.getName());
+				}
+				if (project.getCompany() != null) {
+					managedProj.setCompany(project.getCompany());
+				}
+				if (project.getCustomer() != null) {
+					managedProj.setCustomer(project.getCustomer());
+				}
+				project = projRepo.saveAndFlush(managedProj);
+			} else {
+				project = null;
+			} 
+			}else {
+				project = null;
+		}
+		
+		return project;
+		
+	}
 
 }
