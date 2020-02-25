@@ -310,7 +310,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bmtkdb`;
-INSERT INTO `customer` (`id`, `payment_method`, `user_detail_id`, `active`) VALUES (1, 'paypal', 4, DEFAULT);
+INSERT INTO `customer` (`id`, `payment_method`, `user_detail_id`, `active`) VALUES (1, 'paypal', 4, 1);
 
 COMMIT;
 
@@ -320,7 +320,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bmtkdb`;
-INSERT INTO `company` (`id`, `name`, `type`, `address`, `phone`, `description`, `company_url`, `active`) VALUES (1, 'Test Company', 'Construction', '12345 test st', '5554443333', 'test description', NULL, DEFAULT);
+INSERT INTO `company` (`id`, `name`, `type`, `address`, `phone`, `description`, `company_url`, `active`) VALUES (1, 'Test Company', 'Construction', '12345 test st', '5554443333', 'test description', NULL, 1);
 
 COMMIT;
 
@@ -330,7 +330,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bmtkdb`;
-INSERT INTO `project` (`id`, `name`, `customer_id`, `company_id`, `active`) VALUES (1, 'Test Project', 1, 1, DEFAULT);
+INSERT INTO `project` (`id`, `name`, `customer_id`, `company_id`, `active`) VALUES (1, 'Test Project', 1, 1, 1);
 
 COMMIT;
 
@@ -340,7 +340,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bmtkdb`;
-INSERT INTO `task` (`id`, `name`, `description`, `due_date`, `paid`, `created_at`, `updated_at`, `template`, `start_date`, `complete_date`, `status`, `type`, `priority`, `payment_detail`, `price`, `project_id`, `active`) VALUES (1, 'test task', 'task description', '02-29-2020', 0, NULL, NULL, NULL, NULL, NULL, 'ASSIGNED', NULL, 'high', NULL, 1000.00, 1, DEFAULT);
+INSERT INTO `task` (`id`, `name`, `description`, `due_date`, `paid`, `created_at`, `updated_at`, `template`, `start_date`, `complete_date`, `status`, `type`, `priority`, `payment_detail`, `price`, `project_id`, `active`) VALUES (1, 'test task', 'task description', '02-29-2020', 0, NULL, NULL, NULL, NULL, NULL, 'ASSIGNED', NULL, 'high', NULL, 1000.00, 1, 1);
 
 COMMIT;
 
@@ -350,7 +350,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bmtkdb`;
-INSERT INTO `employee` (`id`, `user_detail_id`, `company_id`, `active`) VALUES (1, 3, 1, DEFAULT);
+INSERT INTO `employee` (`id`, `user_detail_id`, `company_id`, `active`) VALUES (1, 3, 1, 1);
 
 COMMIT;
 
