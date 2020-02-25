@@ -12,4 +12,6 @@ public interface ProjectService {
 
 	Project addProject(int id, Project project, String username);
 
+	Project updateProject(int cid, int pid, Project project);
+
 }

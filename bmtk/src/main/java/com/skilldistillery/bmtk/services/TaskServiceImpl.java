@@ -58,10 +58,10 @@ public class TaskServiceImpl implements TaskService {
 				if (task.getDueDate() != null) {
 					managedTask.setDueDate(task.getDueDate());
 				}
-				if (task.isPaid()) {
+				if (task.isPaid() != null) {
 					managedTask.setPaid(task.isPaid());
 				}
-				if (task.isTemplate()) {
+				if (task.isTemplate() != null) {
 					managedTask.setTemplate(task.isTemplate());
 				}
 				if (task.getStartDate() != null) {

@@ -51,7 +51,10 @@ public class CompanyController {
 	// get single company
 	
 	@GetMapping(value = "companies/{id}")
-	public Optional<Company> listCompanyById(Integer id) {
+	public Company listCompanyById(HttpServletRequest req,
+			HttpServletResponse res,
+			Principal principal,
+			@PathVariable("id") Integer id) {
 		return compSvc.listCompanyById(id);
 	}
 	
@@ -86,9 +89,24 @@ public class CompanyController {
 	
 	// update company
 
-	@PutMapping(value = "companies/{id}")
-	public Optional<Company> updateCompany(@PathVariable("id") int id, @RequestBody Company company) {
-		return compSvc.updateCompany(id, company);
+	@PutMapping(value = "companies/{cid}")
+	public Company updateCompany(HttpServletRequest req,
+			HttpServletResponse res,
+			Principal principal,
+			@PathVariable("cid") Integer cid, @RequestBody Company company) {
+		try {
+			company = compSvc.updateCompany(cid, company);
+			if (company == null) {
+				res.setStatus(404);
+				return company;
+			}
+			res.setStatus(200);
+			return company;
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			return null;
+		}
 	}
 	
 	// delete company (or make inactive?)
