@@ -34,9 +34,9 @@ newUserDetail = new UserDetail();
   createUser(newUserDetail: UserDetail, user: User){
     this.user = user;
     this.user.userDetail = newUserDetail;
-    this.userService.createUser(user).subscribe();
+    this.userService.createUser(this.user);
   }
-  }
+}
 
 
 
