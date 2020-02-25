@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.bmtk.entities.User;
@@ -19,6 +20,9 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	private UserDetailRepository udRepo;
+	
+	@Autowired
+	private PasswordEncoder encoder;
 
 	@Override
 	public List<User> listAllUser() {
@@ -47,21 +51,29 @@ public class UserServiceImpl implements UserService{
 		
 		return user;
 	}
+	
+	
 
 	@Override
-	public Optional<User> updateUser(int id, User user) {
-		if (userRepo.findById(id).isPresent()){
-            User existingUser = userRepo.findById(id).get();
-            existingUser.setUsername(user.getUsername());
-            existingUser.setPassword(user.getPassword());
-            existingUser.setUpdatedAt(user.getUpdatedAt());
-            existingUser.setCreatedAt(user.getCreatedAt());
-            existingUser.setActive(user.getActive());
-            userRepo.save(existingUser);
-            return userRepo.findById(id);
-        }else{
-            return null;
-        }
+	public User updateUser(int id, User user) {
+		Optional<User> optUser = userRepo.findById(id);
+		if (optUser.isPresent()) {
+			User managedUser = optUser.get();
+			if (user.getUsername() != null) {
+				managedUser.setUsername(user.getUsername());
+			}
+			if (user.getPassword() != null) {
+				String encodedPW = encoder.encode(user.getPassword());
+				managedUser.setPassword(encodedPW);
+			}
+			if (user.getActive() != null ) {
+				managedUser.setActive(user.getActive());
+			}
+			user = userRepo.saveAndFlush(managedUser);
+		} else {
+			user = null;
+		}
+		return user;
 	}
 
 	@Override

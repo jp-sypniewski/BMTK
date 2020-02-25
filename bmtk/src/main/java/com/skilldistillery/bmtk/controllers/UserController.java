@@ -1,7 +1,11 @@
 package com.skilldistillery.bmtk.controllers;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -42,8 +46,25 @@ public class UserController {
 	}
 	
 	@PutMapping(value = "user/{id}")
-	public Optional<User> updateUser(@PathVariable("id") int id, @RequestBody User user){
-		return userSvc.updateUser(id, user);
+	public User updateUser(HttpServletRequest req,
+			HttpServletResponse res,
+			Principal principal,
+			@PathVariable("id") int id,
+			@RequestBody User user){
+		try {
+			user = userSvc.updateUser(id, user);
+			if (user== null) {
+				res.setStatus(404);
+				return user;
+			}
+			res.setStatus(200);
+			return user;
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			return null;
+		}
+		
 	}
 	
 	@DeleteMapping(value = "user/{id}")
