@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,6 +50,29 @@ public class TaskController {
 			res.setStatus(400);
 			return null;
 		}
+	}
+	
+	@PutMapping("projects/{pid}/tasks/{tid}")
+	public Task updateTask(HttpServletRequest req,
+			HttpServletResponse res,
+			Principal principal,
+			@PathVariable("pid") Integer pid, 
+			@PathVariable("tid") Integer tid,
+			@RequestBody Task task) {
+		try {
+			task = taskSvc.updateTask(pid, tid, task);
+			if (task == null) {
+				res.setStatus(404);
+				return task;
+			}
+			res.setStatus(200);
+			return task;
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			return null;
+		}
+		
 	}
 
 }
