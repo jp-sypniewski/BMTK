@@ -32,6 +32,9 @@ public class TaskServiceImpl implements TaskService {
 		if (optproj.isPresent()) {
 			Project project = optproj.get();
 			task.setProject(project);
+			task.setPaid(false);
+			task.setTemplate(false);
+			task.setPrice(0.0);
 			task = taskRepo.saveAndFlush(task);
 		} else {
 			task = null;
