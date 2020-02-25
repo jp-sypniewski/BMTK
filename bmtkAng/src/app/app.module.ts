@@ -16,6 +16,8 @@ import { LoginComponent } from './components/login/login.component';
 import { LearnMoreComponent } from './components/learn-more/learn-more.component';
 import { CurrentCustomersComponent } from './components/current-customers/current-customers.component';
 
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +33,7 @@ import { CurrentCustomersComponent } from './components/current-customers/curren
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule
 
   ],
   providers: [UserService, EmployeeService],
