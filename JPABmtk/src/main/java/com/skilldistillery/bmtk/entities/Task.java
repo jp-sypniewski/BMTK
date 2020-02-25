@@ -65,7 +65,7 @@ public class Task {
 		@JsonIgnore
 		@ManyToOne
 		@JoinColumn(name="project_id")
-		private Project proj;
+		private Project project;
 		
 		public Task() {
 			super();
@@ -114,7 +114,7 @@ public class Task {
 			this.priority = priority;
 			this.paymentDetail = paymentDetail;
 			this.price = price;
-			this.proj = proj;
+			this.project = proj;
 		}
 
 
@@ -239,12 +239,12 @@ public class Task {
 			this.price = price;
 		}
 
-		public Project getProj() {
-			return proj;
+		public Project getProject() {
+			return project;
 		}
 
-		public void setProj(Project proj) {
-			this.proj = proj;
+		public void setProject(Project proj) {
+			this.project = proj;
 		}
 		
 		
