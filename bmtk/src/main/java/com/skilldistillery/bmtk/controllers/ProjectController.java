@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,6 +33,7 @@ public class ProjectController {
 			HttpServletResponse res,
 			Principal principal){
 		List<Project> projects = projSvc.getProjectsForCustomer(principal.getName());
+		System.out.println(principal);
 		return projects;
 	}
 
@@ -61,4 +63,28 @@ public class ProjectController {
 		}
 			
 	}
+	
+	@PutMapping(path="companies/{cid}/projects/{pid}")
+	public Project updateProject(HttpServletRequest req,
+			HttpServletResponse res,
+			Principal principal,
+			@PathVariable("cid") Integer cid,
+			@PathVariable("pid") Integer pid,
+			@RequestBody Project project) {
+		try {
+			project = projSvc.updateProject(cid, pid, project);
+			if (project == null) {
+				res.setStatus(404);
+				return project;
+			}
+			res.setStatus(200);
+			return project;
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			return null;
+		}
+		
+	}
+	
 }

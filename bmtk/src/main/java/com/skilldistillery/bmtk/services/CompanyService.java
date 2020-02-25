@@ -12,11 +12,11 @@ public interface CompanyService {
 	
 List<Company> listAllCompany();
 	
-Optional<Company> listCompanyById(int id);
+Company listCompanyById(int id);
 	
 public Company createCompany(Company company, String username);
 	
-public Optional<Company> updateCompany(int id, Company company);
+public Company updateCompany(int id, Company company);
 	
 public Boolean deleteCompany(int id);
 

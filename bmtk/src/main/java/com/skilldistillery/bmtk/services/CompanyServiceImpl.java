@@ -48,9 +48,15 @@ public class CompanyServiceImpl implements CompanyService {
 	}
 
 	@Override
-	public Optional<Company> listCompanyById(int id) {
+	public Company listCompanyById(int id) {
 		// TODO Auto-generated method stub
-		return compRepo.findById(id);
+		Company company = null;
+		
+		Optional<Company> optComp = compRepo.findById(id);
+		if (optComp.isPresent()) {
+			company = optComp.get();
+		}
+		return company;
 	}
 
 	@Override
@@ -72,21 +78,36 @@ public class CompanyServiceImpl implements CompanyService {
 	}
 
 	@Override
-	public Optional<Company> updateCompany(int id, Company company) {
-		if (compRepo.findById(id).isPresent()) {
-			Company existingCompany = compRepo.findById(id).get();
-			existingCompany.setName(company.getName());
-			existingCompany.setPhone(company.getPhone());
-			existingCompany.setAddress(company.getAddress());
-			existingCompany.setCompanyUrl(company.getCompanyUrl());
-			existingCompany.setDescription(company.getDescription());
-			existingCompany.setType(company.getType());
-			existingCompany.setEmployees(company.getEmployees());
-			compRepo.save(existingCompany);
-			return compRepo.findById(id);
+	public Company updateCompany(int id, Company company) {
+		Optional<Company> optComp = compRepo.findById(id);
+
+		if (optComp.isPresent()) {
+			Company managedComp = optComp.get();
+			if (company.getName() != null) {
+				managedComp.setName(company.getName());
+			}
+			if (company.getType() != null) {
+				managedComp.setType(company.getType());
+			}
+			if (company.getAddress() != null) {
+				managedComp.setAddress(company.getAddress());
+			}
+			if (company.getPhone() != null) {
+				managedComp.setPhone(company.getPhone());
+			}
+			if (company.getDescription() != null) {
+				managedComp.setDescription(company.getDescription());
+			}
+			if (company.getCompanyUrl() != null) {
+				managedComp.setCompanyUrl(company.getCompanyUrl());
+			}
+			
+			company = compRepo.saveAndFlush(managedComp);
+					
 		} else {
-			return null;
+			company = null;
 		}
+		return company;
 	}
 
 	@Override
