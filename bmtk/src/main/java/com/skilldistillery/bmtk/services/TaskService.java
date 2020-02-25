@@ -8,4 +8,8 @@ public interface TaskService {
 
 	List<Task> findTasksByEmpUsername(String username);
 
+	Task addTaskToProject(int id, Task task);
+
+	Task updateTask(int pid, int tid, Task task);
+
 }

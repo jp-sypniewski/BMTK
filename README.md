@@ -11,14 +11,17 @@
 PLACEHOLDERS
 
 | Return Type | Route                 | Functionality                  |
-|-------------|-----------------------|--------------------------------|
-| `List<Company>` |`GET api/companies`               | Gets all companies          |
-| `Company`       |`GET api/companies/{companyId}`   | Gets one company            |
-| `Company`       |`POST api/companies/{companyId}`  | Creates a new company       |
-| `Company`       |`PUT api/companies/{companyId}`   | Replaces an existing company|
-| `-`             |`DELETE api/companies/{companyId}`| Deletes an existing company |
+|-------------|---------------------------------|--------------------------------|
+| `Register` | `POST register` | Register user with detail |
+| `Authenticate` | `GET authenticate` | Authenticate existing user |
 ||||
-| `List<Project>`  |`GET api/projects`              | Gets all projects              |
-| `Project`        |`GET api/projects/{projectId}`  | Gets one project               |
-| `Project`        |`POST api/projects`             | Creates a new project          |
-| `Project`        |`PUT api/projects/{projectId}`  | Replaces an existing project   |
+| `List<Project>`  |`GET api/companies/{companyId}/projects` | Gets all projects for a single company |
+| `List<Project>`  |`GET api/projects` | Gets all projects for a single customer (with auth) |
+| `List<Task>`  |`GET api/tasks` | Gets all tasks for a single employee (with auth) |
+| `List<Company>`  |`GET api/myCompanies` | Gets all companies for a single owner (with auth) |
+| `Company`  |`GET api/companies/{companyId}` | Gets a company by ID |
+||||
+| `Company`  |`POST api/companies` | Creates a company and an owner-company relationship |
+| `Project`  |`POST api/companies/{companyId}/projects` | Creates a project for a single company |
+| `Employee`  |`POST api/companies/{companyId}/employees` | Creates an employee for a single company |
+| `Task`  |`POST api/projects/{projectId}/tasks` | Creates a task for a project |

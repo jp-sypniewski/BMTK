@@ -65,7 +65,7 @@ public class Task {
 		@JsonIgnore
 		@ManyToOne
 		@JoinColumn(name="project_id")
-		private Project proj;
+		private Project project;
 		
 		public Task() {
 			super();
@@ -114,7 +114,7 @@ public class Task {
 			this.priority = priority;
 			this.paymentDetail = paymentDetail;
 			this.price = price;
-			this.proj = proj;
+			this.project = proj;
 		}
 
 
@@ -151,11 +151,11 @@ public class Task {
 			this.dueDate = dueDate;
 		}
 
-		public boolean isPaid() {
+		public Boolean isPaid() {
 			return paid;
 		}
 
-		public void setPaid(boolean paid) {
+		public void setPaid(Boolean paid) {
 			this.paid = paid;
 		}
 
@@ -175,11 +175,11 @@ public class Task {
 			this.updatedAt = updatedAt;
 		}
 
-		public boolean isTemplate() {
+		public Boolean isTemplate() {
 			return template;
 		}
 
-		public void setTemplate(boolean template) {
+		public void setTemplate(Boolean template) {
 			this.template = template;
 		}
 
@@ -231,20 +231,20 @@ public class Task {
 			this.paymentDetail = paymentDetail;
 		}
 
-		public double getPrice() {
+		public Double getPrice() {
 			return price;
 		}
 
-		public void setPrice(double price) {
+		public void setPrice(Double price) {
 			this.price = price;
 		}
 
-		public Project getProj() {
-			return proj;
+		public Project getProject() {
+			return project;
 		}
 
-		public void setProj(Project proj) {
-			this.proj = proj;
+		public void setProject(Project proj) {
+			this.project = proj;
 		}
 		
 		
