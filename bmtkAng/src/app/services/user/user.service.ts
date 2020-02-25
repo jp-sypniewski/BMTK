@@ -29,11 +29,18 @@ getUsersByUsernamePassword(): Observable<User[]> {
   );
 }
 
-createUser(user) {
+createUser(user){
 
   console.log(JSON.stringify(user));
-   this.http.post<User>(this.baseUrl+'register', user).subscribe(user);
+
+   return this.http.post<User>(this.baseUrl+'register', user)
    //this.http.get<User>(this.baseUrl+'api/user')
+  .pipe(
+    catchError((err: any) => {
+      console.log(err);
+      return throwError('AuthService.register(): error registering user.');
+    })
+  );
 }
 
 }
