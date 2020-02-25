@@ -42,4 +42,33 @@ public class TaskServiceImpl implements TaskService {
 		return task;
 	}
 
+	@Override
+	public Task updateTask(int pid, int tid, Task task) {
+		Optional<Project> optproj = projRepo.findById(pid);
+		Optional<Task> opttask = taskRepo.findById(tid);
+		if (optproj.isPresent()) {
+			if (opttask.isPresent()) {
+				Task managedTask = opttask.get();
+				managedTask.setName(task.getName());
+				managedTask.setDescription(task.getDescription());
+				managedTask.setDueDate(task.getDueDate());
+				managedTask.setPaid(task.isPaid());
+				managedTask.setTemplate(task.isTemplate());
+				managedTask.setStartDate(task.getStartDate());
+				managedTask.setCompleteDate(task.getCompleteDate());
+				managedTask.setStatus(task.getStatus());
+				managedTask.setType(task.getType());
+				managedTask.setPriority(task.getPriority());
+				managedTask.setPaymentDetail(task.getPaymentDetail());
+				managedTask.setPrice(task.getPrice());
+				task = taskRepo.saveAndFlush(managedTask);
+			} else {
+				task = null;
+			}
+		} else {
+			task = null;
+		}
+		return task;
+	}
+	
 }

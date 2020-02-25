@@ -10,4 +10,6 @@ public interface TaskService {
 
 	Task addTaskToProject(int id, Task task);
 
+	Task updateTask(int pid, int tid, Task task);
+
 }
