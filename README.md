@@ -24,3 +24,4 @@ PLACEHOLDERS
 | `Company`  |`POST api/companies` | Creates a company and an owner-company relationship |
 | `Project`  |`POST api/companies/{companyId}/projects` | Creates a project for a single company |
 | `Employee`  |`POST api/companies/{companyId}/employees` | Creates an employee for a single company |
+| `Task`  |`POST api/projects/{projectId}/tasks` | Creates a task for a project |
