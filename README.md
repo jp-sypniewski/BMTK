@@ -11,7 +11,7 @@
 PLACEHOLDERS
 
 | Return Type | Route                 | Functionality                  |
-|-------------|-----------------------|--------------------------------|
+|-------------|---------------------------------|--------------------------------|
 | `Register` | `POST register` | Register user with detail |
 | `Authenticate` | `GET authenticate` | Authenticate existing user |
 ||||
