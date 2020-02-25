@@ -49,8 +49,11 @@ public class EmployeeController {
 	}
 	
 	@PutMapping(value = "employee/{id}")
-	public Optional<Employee> updateEmployee(@PathVariable("id") int id, @RequestBody Employee employee){
-		return empSvc.updateEmployee(id, employee);
+	public Employee updateEmployee(@PathVariable("id") int id, @RequestBody Employee employee){
+		employee = empSvc.updateEmployee(id, employee);
+		
+		
+		return employee;
 	}
 	
 	@DeleteMapping(value = "employee/{id}")
