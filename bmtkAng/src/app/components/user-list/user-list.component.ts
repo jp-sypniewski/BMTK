@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Optional } from '@angular/core';
 import { User } from '../../models/user';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user/user.service';
+import { UserDetail } from 'src/app/models/userDetail';
 
 @Component({
   selector: 'app-user-list',
@@ -12,6 +13,7 @@ import { UserService } from '../../services/user/user.service';
 export class UserListComponent implements OnInit {
 userList: User[];
 user: User = new User();
+newUserDetail = new UserDetail();
   constructor(private router: Router,
     private userService: UserService) { }
 
@@ -29,14 +31,14 @@ user: User = new User();
     );
   }
 
-  createUser(): void{
-    //this.user.username = "test";
-    var newUser: User = Object.assign({}, this.user);
-    //newUser.username = document.getElementById("username").nodeValue;
-    this.userService.createUser(newUser).subscribe(
-
-      (error: any) => console.log(error)
-      );
+  createUser(newUserDetail: UserDetail, user: User){
+    this.user = user;
+    this.user.userDetail = newUserDetail;
+    this.userService.createUser(user).subscribe();
+  }
   }
 
-}
+
+
+
+
