@@ -28,16 +28,32 @@ public class Employee {
 		@JoinColumn(name="company_id")
 		private Company comp;
 
+		private Boolean active;
+		
+		
 		public Employee() {
 			super();
 		}
 
-		public Employee(int id, UserDetail uDetail, Company comp) {
+
+		public Employee(int id, UserDetail userDetail, Company comp, Boolean active) {
 			super();
 			this.id = id;
-			this.userDetail = uDetail;
+			this.userDetail = userDetail;
 			this.comp = comp;
+			this.active = active;
 		}
+		
+
+		public Boolean getActive() {
+			return active;
+		}
+
+
+		public void setActive(Boolean active) {
+			this.active = active;
+		}
+
 
 		public int getId() {
 			return id;
@@ -65,7 +81,7 @@ public class Employee {
 
 		@Override
 		public String toString() {
-			return "Employee [id=" + id + ", uDetail=" + userDetail + ", comp=" + comp + "]";
+			return "Employee [id=" + id + ", userDetail=" + userDetail + ", comp=" + comp + ", active=" + active + "]";
 		}
 
 		@Override

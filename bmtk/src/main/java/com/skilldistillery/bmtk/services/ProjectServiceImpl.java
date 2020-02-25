@@ -108,6 +108,9 @@ public class ProjectServiceImpl implements ProjectService {
 				if (project.getCustomer() != null) {
 					managedProj.setCustomer(project.getCustomer());
 				}
+				if (project.getActive() != null) {
+					managedProj.setActive(project.getActive());
+				}
 				project = projRepo.saveAndFlush(managedProj);
 			} else {
 				project = null;

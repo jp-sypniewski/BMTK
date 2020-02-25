@@ -85,6 +85,9 @@ public class TaskServiceImpl implements TaskService {
 				if (task.getPrice() != null) {
 					managedTask.setPrice(task.getPrice());
 				}
+				if (task.getActive() != null) {
+					managedTask.setActive(task.getActive());
+				}
 				task = taskRepo.saveAndFlush(managedTask);
 			} else {
 				task = null;

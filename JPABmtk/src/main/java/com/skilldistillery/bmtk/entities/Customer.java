@@ -31,6 +31,8 @@ public class Customer {
 	@JsonIgnore
 	@OneToMany(mappedBy="customer")
 	private List<Project> projects;
+	
+	private Boolean active;
 
 	
 	
@@ -43,14 +45,16 @@ public class Customer {
 
 
 
-	public Customer(int id, String paymentMethod, UserDetail uDetail) {
+	public Customer(int id, String paymentMethod, UserDetail userDetail, List<Project> projects, Boolean active) {
 		super();
 		this.id = id;
 		this.paymentMethod = paymentMethod;
-		this.userDetail = uDetail;
+		this.userDetail = userDetail;
+		this.projects = projects;
+		this.active = active;
 	}
 
-	
+
 
 
 	public Customer(int id, String paymentMethod, UserDetail uDetail, List<Project> projects) {
@@ -59,6 +63,19 @@ public class Customer {
 		this.paymentMethod = paymentMethod;
 		this.userDetail = uDetail;
 		this.projects = projects;
+	}
+
+	
+
+
+	public Boolean getActive() {
+		return active;
+	}
+
+
+
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 
 
@@ -134,16 +151,7 @@ public class Customer {
 		Customer other = (Customer) obj;
 		if (id != other.id)
 			return false;
-		if (paymentMethod == null) {
-			if (other.paymentMethod != null)
-				return false;
-		} else if (!paymentMethod.equals(other.paymentMethod))
-			return false;
-		if (userDetail == null) {
-			if (other.userDetail != null)
-				return false;
-		} else if (!userDetail.equals(other.userDetail))
-			return false;
+
 		return true;
 	}
 
@@ -151,7 +159,8 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", paymentMethod=" + paymentMethod + ", uDetail=" + userDetail + "]";
+		return "Customer [id=" + id + ", paymentMethod=" + paymentMethod + ", userDetail=" + userDetail + ", active="
+				+ active + "]";
 	}
 
 	

@@ -60,14 +60,25 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 
 	@Override
-	public Optional<Employee> updateEmployee(int id, Employee employee) {
-		if (empRepo.findById(id).isPresent()){
-            Employee existingEmployee = empRepo.findById(id).get();
-            existingEmployee.setComp(employee.getComp());
-            existingEmployee.setUserDetail(employee.getUserDetail());
-            empRepo.save(existingEmployee);
-            return empRepo.findById(id);
-        }else{
+	public Employee updateEmployee(int id, Employee employee) {
+		Optional<Employee> optemp = empRepo.findById(id);
+		if (optemp.isPresent()){
+            Employee managedEmployee = optemp.get();
+            if (employee.getComp() != null) {
+            	managedEmployee.setComp(employee.getComp());
+            }
+            if (employee.getUserDetail() != null) {
+            	managedEmployee.setUserDetail(employee.getUserDetail());
+            }
+            if (employee.getActive() != null) {
+            	managedEmployee.setActive(employee.getActive());
+            }
+            employee = empRepo.saveAndFlush(managedEmployee);
+            
+            return employee;
+            
+            
+        } else {
             return null;
         }
 	}
