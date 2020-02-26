@@ -1,11 +1,11 @@
-import { Component, OnInit, Optional } from '@angular/core';
+import { Component, OnInit, Optional, NgModule } from '@angular/core';
 import { Company } from '../../models/company';
 import { User } from '../../models/user';
 import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../../services/user/user.service';
 import { UserDetail } from 'src/app/models/userDetail';
 import { CompanyService} from '../../services/company/company.service';
-import { CompanyCreatedComponent } from '../company-created/company-created.component';
+import { NgEventBus} from 'ng-event-bus';
 
 @Component({
   selector: 'app-company-new',
@@ -13,23 +13,34 @@ import { CompanyCreatedComponent } from '../company-created/company-created.comp
   styleUrls: ['./company-new.component.css'],
   providers: [CompanyService, UserService]
 })
+
+
 export class CompanyNewComponent implements OnInit {
+
   userList: User[];
   user: User = new User();
   newUserDetail = new UserDetail();
   companyCreated: String = new String();
   company: Company = new Company();
-  companyCreatedComponent: CompanyCreatedComponent = new CompanyCreatedComponent(this.router, this.userService, this.companyService);
-  constructor(private router: Router, private userService: UserService, private companyService: CompanyService) { }
+  //eventBus = new NgEventBus();
 
-  ngOnInit(): void {
-  }
+  constructor(private router: Router, private userService: UserService, private companyService: CompanyService, private eventBus: NgEventBus) { }
+
+  ngOnInit(): void {this.eventBus.cast('companyNew:company', this.company);}
 
   createCompany(){
     this.companyCreated = "";
-    console.log(JSON.stringify(this.company));
-    this.companyCreatedComponent.getCompany(this.company);
+    this.company.name = "new company";
+    this.company.type = "new company type";
+    this.company.address = "new company address";
+    this.company.companyUrl = "new company url";
+    this.company.description = "new company desc";
+    this.company.phone = "new company phone";
+    var tempCompany = JSON.stringify(this.company);
+    console.log(tempCompany);
+    localStorage.setItem('company', tempCompany);
 
+    //this.eventBus.cast('companyNew:company', JSON.stringify(this.company));
     this.router.navigate(['companycreated']);
 
     /*this.companyService.createCompany(this.company).subscribe(

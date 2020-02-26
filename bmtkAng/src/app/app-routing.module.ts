@@ -8,6 +8,7 @@ import { CurrentCustomersComponent } from './components/current-customers/curren
 import { CompanyNewComponent } from './components/company-new/company-new.component';
 import { CustomerNewComponent } from './components/customer-new/customer-new.component';
 import { CompanyCreatedComponent } from './components/company-created/company-created.component';
+import { NgEventBus } from 'ng-event-bus';
 
 const routes: Routes = [
   {path: 'employee', component: EmployeeListComponent},
@@ -23,7 +24,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [NgEventBus]
 })
 export class AppRoutingModule {
 

@@ -25,7 +25,7 @@ export class UserListComponent implements OnInit {
   }
 
   createUser(){
-    this.router.navigate(['companynew']);
+    this.router.navigate(['login']);
 
     /*this.userCreated = "";
     this.user.userDetail = this.newUserDetail;
