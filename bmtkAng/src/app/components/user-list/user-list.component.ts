@@ -24,18 +24,10 @@ export class UserListComponent implements OnInit {
 
   }
 
-  getAllUsers(){
-    this.userService.getAllUsers().subscribe(
-      user => {
-        //this.user = user;
-      },
-      err => {console.log(err);
-      }
-    );
-  }
-
   createUser(){
-    this.userCreated = "";
+    this.router.navigate(['companynew']);
+
+    /*this.userCreated = "";
     this.user.userDetail = this.newUserDetail;
     this.userService.createUser(this.user).subscribe(
       data => {
@@ -46,7 +38,7 @@ export class UserListComponent implements OnInit {
         console.error('RegisterComponent.register(): error registering.');
         this.userCreated = "Error User Name Already Exists";
       }
-    );
+    );*/
 
   }
 

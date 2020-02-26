@@ -7,6 +7,7 @@ import { LearnMoreComponent } from './components/learn-more/learn-more.component
 import { CurrentCustomersComponent } from './components/current-customers/current-customers.component';
 import { CompanyNewComponent } from './components/company-new/company-new.component';
 import { CustomerNewComponent } from './components/customer-new/customer-new.component';
+import { CompanyCreatedComponent } from './components/company-created/company-created.component';
 
 const routes: Routes = [
   {path: 'employee', component: EmployeeListComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
     {path: 'currentcustomer', component: CurrentCustomersComponent},
     {path: 'companynew', component: CompanyNewComponent},
     {path: 'customer', component: CustomerNewComponent},
+    {path: 'companycreated', component: CompanyCreatedComponent},
 
 ]
 

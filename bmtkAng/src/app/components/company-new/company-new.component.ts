@@ -34,7 +34,7 @@ export class CompanyNewComponent implements OnInit {
       },
       err => {
         console.error('RegisterComponent.register(): error registering.');
-        this.userCreated = "Error User Name Already Exists";
+        this.companyCreated = "Error Creating Company";
       }
     );
 

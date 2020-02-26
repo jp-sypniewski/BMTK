@@ -1,1 +1,33 @@
-<p>company-new works!</p>
+<h3>Provide Your Company Information</h3>
+
+<form id = "newCompany">
+<table>
+<tr>
+ <label for="name">company name:</label>
+ <input type="text" id="name" name="name" required [(ngModel)]="company.name"><br><br>
+</tr>
+<tr>
+ <label for="type">type:</label>
+ <input type="type" id="type" name="type" required [(ngModel)]="company.type"><br><br>
+</tr>
+<tr>
+ <label for="address">address:</label>
+ <input type="text" id="address" name="address" required [(ngModel)]="company.address"><br><br>
+</tr>
+ <label for="phone">phone:</label>
+ <input type="text" id="phone" name="phone" required [(ngModel)]="company.phone"><br><br>
+<tr>
+ <label for="description">description:</label>
+ <input type="text" id="description" name="description" required [(ngModel)]="company.description"><br><br>
+</tr>
+<tr>
+ <label for="companyUrl">company Url:</label>
+ <input type="text" id="companyUrl" name="companyUrl" required [(ngModel)]="company.companyUrl"><br><br>
+</tr>
+<tr>
+</table>
+</form>
+
+<button (click)="createCompany()">Create New Company</button>
+
+<div id = "createCompanyError">{{companyCreated}}</div>
