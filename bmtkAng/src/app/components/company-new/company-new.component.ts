@@ -1,3 +1,4 @@
+import { NgForm } from '@angular/forms';
 import { Component, OnInit, Optional } from '@angular/core';
 import { Company } from '../../models/company';
 import { User } from '../../models/user';
@@ -27,9 +28,11 @@ export class CompanyNewComponent implements OnInit {
   createCompany(){
     this.companyCreated = "";
 
+
     this.companyService.createCompany(this.company).subscribe(
       data => {
         console.log('RegisterComponent.register(): company registered.');
+        this.company = new Company();
         //this.router.navigate(['companynew']);
       },
       err => {

@@ -1,31 +1,18 @@
 <h3>Provide Your Company Information</h3>
 
-<form id = "newCompany">
-<table>
-<tr>
- <label for="name">company name:</label>
+<form>
+ <label for="name">Name:</label>
  <input type="text" id="name" name="name" required [(ngModel)]="company.name"><br><br>
-</tr>
-<tr>
- <label for="type">type:</label>
- <input type="type" id="type" name="type" required [(ngModel)]="company.type"><br><br>
-</tr>
-<tr>
- <label for="address">address:</label>
- <input type="text" id="address" name="address" required [(ngModel)]="company.address"><br><br>
-</tr>
- <label for="phone">phone:</label>
- <input type="text" id="phone" name="phone" required [(ngModel)]="company.phone"><br><br>
-<tr>
- <label for="description">description:</label>
- <input type="text" id="description" name="description" required [(ngModel)]="company.description"><br><br>
-</tr>
-<tr>
- <label for="companyUrl">company Url:</label>
- <input type="text" id="companyUrl" name="companyUrl" required [(ngModel)]="company.companyUrl"><br><br>
-</tr>
-<tr>
-</table>
+ <label for="type">Type:</label>
+ <input type="type" id="type" name="type" [(ngModel)]="company.type"><br><br>
+ <label for="address">Address:</label>
+ <input type="text" id="address" name="address" [(ngModel)]="company.address"><br><br>
+ <label for="phone">Phone:</label>
+ <input type="text" id="phone" name="phone" [(ngModel)]="company.phone"><br><br>
+ <label for="description">Description:</label>
+ <input type="text" id="description" name="description" [(ngModel)]="company.description"><br><br>
+ <label for="companyUrl">Site:</label>
+ <input type="text" id="companyUrl" name="companyUrl" [(ngModel)]="company.companyUrl"><br><br>
 </form>
 
 <button (click)="createCompany()">Create New Company</button>
