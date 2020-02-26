@@ -101,6 +101,9 @@ public class CompanyServiceImpl implements CompanyService {
 			if (company.getCompanyUrl() != null) {
 				managedComp.setCompanyUrl(company.getCompanyUrl());
 			}
+			if (company.getActive() != null) {
+				managedComp.setActive(company.getActive());
+			}
 			
 			company = compRepo.saveAndFlush(managedComp);
 					

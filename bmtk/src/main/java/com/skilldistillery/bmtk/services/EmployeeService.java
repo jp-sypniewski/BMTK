@@ -14,7 +14,7 @@ List<Employee> listAllEmployee();
 	
 	public Employee createEmployee(int id, User user);
 	
-	public Optional<Employee> updateEmployee(int id, Employee employee);
+	public Employee updateEmployee(int id, Employee employee);
 	
 	public Boolean deleteEmployee(int id);
 
