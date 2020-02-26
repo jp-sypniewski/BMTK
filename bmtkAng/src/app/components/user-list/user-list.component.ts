@@ -18,27 +18,25 @@ export class UserListComponent implements OnInit {
   userCreated: String = new String();
 
   constructor(private router: Router,
-    private userService: UserService) { }
+    private userSvc: UserService) { }
 
   ngOnInit(): void {
 
   }
 
   createUser(){
-    this.router.navigate(['companynew']);
+    // this.router.navigate(['companynew']);
 
-    /*this.userCreated = "";
     this.user.userDetail = this.newUserDetail;
-    this.userService.createUser(this.user).subscribe(
+    this.userSvc.createUser(this.user).subscribe(
       data => {
         console.log('RegisterComponent.register(): user registered.');
         this.router.navigate(['companynew']);
       },
       err => {
         console.error('RegisterComponent.register(): error registering.');
-        this.userCreated = "Error User Name Already Exists";
       }
-    );*/
+    );
 
   }
 
