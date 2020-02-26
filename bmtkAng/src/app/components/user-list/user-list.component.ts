@@ -1,8 +1,9 @@
 import { Component, OnInit, Optional } from '@angular/core';
 import { User } from '../../models/user';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../../services/user/user.service';
 import { UserDetail } from 'src/app/models/userDetail';
+import { CompanyNewComponent } from '../company-new/company-new.component';
 
 @Component({
   selector: 'app-user-list',
@@ -15,12 +16,13 @@ export class UserListComponent implements OnInit {
   userList: User[];
   user: User = new User();
   newUserDetail = new UserDetail();
+  userCreated: String;
 
   constructor(private router: Router,
     private userService: UserService) { }
 
   ngOnInit(): void {
-    this.getAllUsers();
+
   }
 
   getAllUsers(){
@@ -33,24 +35,24 @@ export class UserListComponent implements OnInit {
     );
   }
 
-<<<<<<< HEAD
-  createUser(newUserDetail: UserDetail, user: User){
-    this.user = user;
-    this.user.userDetail = newUserDetail;
-    this.userService.createUser(this.user);
-=======
   createUser(){
+
+    this.userCreated = "";
     this.user.userDetail = this.newUserDetail;
     this.userService.createUser(this.user).subscribe(
       data => {
         console.log('RegisterComponent.register(): user registered.');
+        this.userCreated = "Account Successfully Created";
+        this.router.navigate(['companynew']);
       },
       err => {
         console.error('RegisterComponent.register(): error registering.');
+        this.userCreated = "Error User Name Already Exists";
       }
     );
->>>>>>> dfa345131e59021be2c41e49241a4881b4bca6c3
+
   }
+
 }
 
 

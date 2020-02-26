@@ -15,8 +15,13 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { LearnMoreComponent } from './components/learn-more/learn-more.component';
 import { CurrentCustomersComponent } from './components/current-customers/current-customers.component';
+import { CompanyNewComponent } from './components/company-new/company-new.component';
+import { CustomerNewComponent } from './components/customer-new/customer-new.component';
 
 import { FormsModule } from '@angular/forms';
+
+
+
 
 @NgModule({
   declarations: [
@@ -26,7 +31,9 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     HomeComponent,
     LearnMoreComponent,
-    CurrentCustomersComponent
+    CurrentCustomersComponent,
+    CompanyNewComponent,
+    CustomerNewComponent
 
   ],
   imports: [
