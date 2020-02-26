@@ -17,10 +17,29 @@ export class CompanyService {
   constructor(private http: HttpClient) { }
 
   createCompany(company){
+    const credentials = this.authSvc.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Basic ${credentials}` // might have to add back x-reqeusted-with 'xmlhttprequest'
+      })
+    };
 
-    console.log(JSON.stringify(company));
+     return this.http.post<Company>(this.baseUrl+'api/companies', company, httpOptions)
 
-     return this.http.post<Company>(this.baseUrl+'api/company', company)
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+
+        return throwError('AuthService.register(): error registering company.');
+
+      })
+    );
+  }
+
+  updateCompany(company){
+
+    return this.http.put<Company>(this.baseUrl+'api/company/', company)
 
     .pipe(
       catchError((err: any) => {

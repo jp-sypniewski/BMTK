@@ -15,7 +15,8 @@ export class UserService {
   // go back and update with environment information
 
   baseUrl = 'http://localhost:8085/';
-  userListComponent: UserListComponent;
+
+
   constructor(private http: HttpClient ) { }
 
   login(username, password) {

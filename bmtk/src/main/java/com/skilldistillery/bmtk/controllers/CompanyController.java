@@ -78,9 +78,19 @@ public class CompanyController {
 			@RequestBody Company company) {
 		
 		if (principal != null) {
-			company = compSvc.createCompany(company, principal.getName());
-			res.setStatus(201);
-			return company;
+			try {
+				company = compSvc.createCompany(company, principal.getName());
+				if (company == null) {
+					res.setStatus(404);
+					return company;
+				}
+				res.setStatus(201);
+				return company;
+			} catch (Exception e) {
+				e.printStackTrace();
+				res.setStatus(400);
+				return null;
+			}
 		} else {
 			res.setStatus(401);
 			return null;
