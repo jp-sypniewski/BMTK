@@ -1,27 +1,29 @@
-<h1>BMTK Home Page</h1>
+<form>
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required [(ngModel)]="company.name"><br><br>
+  <label for="type">Type:</label>
+  <input type="type" id="type" name="type" [(ngModel)]="company.type"><br><br>
+  <label for="address">Address:</label>
+  <input type="text" id="address" name="address" [(ngModel)]="company.address"><br><br>
+  <label for="phone">Phone:</label>
+  <input type="text" id="phone" name="phone" [(ngModel)]="company.phone"><br><br>
+  <label for="description">Description:</label>
+  <input type="text" id="description" name="description" [(ngModel)]="company.description"><br><br>
+  <label for="companyUrl">Site:</label>
+  <input type="text" id="companyUrl" name="companyUrl" [(ngModel)]="company.companyUrl"><br><br>
+  <button (click)="createCompany()">Create New Company</button>
+ </form>
 
-<a [routerLink] = "'login'" routerLinkActive="active">Login to an Account</a>
-<br>
-<a [routerLink] = "'user'" routerLinkActive="active">Create New Account</a>
-<br>
-<a [routerLink] = "'learn'" routerLinkActive="active">Learn More About BMTK</a>
-<br>
-<a [routerLink] = "'currentcustomer'" routerLinkActive="active">See Companies Using BMTK</a>
-<br>
-<a [routerLink] = "'employee'" routerLinkActive="active">Create an employee</a>
-<br>
-<a [routerLink] = "'customer'" routerLinkActive="active">Create a customer</a>
-<br>
-<a [routerLink] = "'companycreated'" routerLinkActive="active">Company Created</a>
-<br>
-<a [routerLink] = "'companynew'" routerLinkActive="active">New Company</a>
-<br>
-<a [routerLink] = "'companylist'" routerLinkActive="active">Show All Companies</a>
-
-<div>
-<router-outlet></router-outlet>
-</div>
-
+ <table>
+  <thead>
+  </thead>
+  <tbody>
+    <tr *ngFor="let company of companies">
+      <td>{{company.name}}</td>
+      <td>{{company.description}}</td>
+    </tr>
+  </tbody>
+</table>
 
 
 

@@ -20,7 +20,11 @@ import { CustomerNewComponent } from './components/customer-new/customer-new.com
 import { CompanyCreatedComponent } from './components/company-created/company-created.component';
 
 import { FormsModule } from '@angular/forms';
-
+import { CompanyCreatedComponent } from './components/company-created/company-created.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { CompanyComponent } from './components/company/company.component';
+import { AccountComponent } from './components/account/account.component';
+import { CompanyListComponent } from './components/company-list/company-list.component';
 
 
 
@@ -36,7 +40,11 @@ import { FormsModule } from '@angular/forms';
     CurrentCustomersComponent,
     CompanyNewComponent,
     CustomerNewComponent,
-    CompanyCreatedComponent
+    CompanyCreatedComponent,
+    CompanyListComponent,
+    NavbarComponent,
+    CompanyComponent,
+    AccountComponent
 
   ],
   imports: [
