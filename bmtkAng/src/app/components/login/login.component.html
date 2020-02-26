@@ -1,8 +1,8 @@
 <h3>User Login</h3>
- <form id = "userLogin">
+ <form #login="ngForm">
   <label for="username">username:</label>
-  <input type="string" id="username" name="username"><br><br>
+  <input type="text" name="username" ngModel><br><br>
   <label for="password">password:</label>
-  <input type="string" id="password" name="password"><br><br>
+  <input type="text" name="password" ngModel><br><br>
+  <button type="submit" (click)="logIn(login)">Login</button>
 </form>
-<button type="submit" (click)="getUserByUserNamePassword()">Login</button>
