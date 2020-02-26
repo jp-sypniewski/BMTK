@@ -8,6 +8,7 @@ import { CurrentCustomersComponent } from './components/current-customers/curren
 import { CompanyNewComponent } from './components/company-new/company-new.component';
 import { CustomerNewComponent } from './components/customer-new/customer-new.component';
 import { CompanyCreatedComponent } from './components/company-created/company-created.component';
+import { CompanyListComponent } from './components/company-list/company-list.component';
 
 const routes: Routes = [
   {path: 'employee', component: EmployeeListComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
     {path: 'companynew', component: CompanyNewComponent},
     {path: 'customer', component: CustomerNewComponent},
     {path: 'companycreated', component: CompanyCreatedComponent},
+    {path: 'companylist', component: CompanyListComponent},
 
 ]
 

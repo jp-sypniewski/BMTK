@@ -17,6 +17,8 @@ import { LearnMoreComponent } from './components/learn-more/learn-more.component
 import { CurrentCustomersComponent } from './components/current-customers/current-customers.component';
 import { CompanyNewComponent } from './components/company-new/company-new.component';
 import { CustomerNewComponent } from './components/customer-new/customer-new.component';
+import { CompanyListComponent } from './components/company-list/company-list.component';
+
 
 import { FormsModule } from '@angular/forms';
 import { CompanyCreatedComponent } from './components/company-created/company-created.component';
@@ -35,7 +37,8 @@ import { CompanyCreatedComponent } from './components/company-created/company-cr
     CurrentCustomersComponent,
     CompanyNewComponent,
     CustomerNewComponent,
-    CompanyCreatedComponent
+    CompanyCreatedComponent,
+    CompanyListComponent
 
   ],
   imports: [

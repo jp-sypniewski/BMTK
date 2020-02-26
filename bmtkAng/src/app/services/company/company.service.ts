@@ -18,6 +18,28 @@ export class CompanyService {
   constructor(private http: HttpClient,
     private userSvc: UserService) { }
 
+
+
+  index(){
+    const credentials = this.userSvc.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Basic ${credentials}` // might have to add back x-reqeusted-with 'xmlhttprequest'
+      })
+    };
+    return this.http.get<Company[]>(this.baseUrl + 'api/companies')
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+
+        return throwError('CompanyService.index(): error getting all companies.');
+      })
+    );
+  }
+
+
+
   createCompany(company){
     console.log(company);
     const credentials = this.userSvc.getCredentials();
