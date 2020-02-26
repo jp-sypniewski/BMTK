@@ -19,6 +19,7 @@ import { CompanyNewComponent } from './components/company-new/company-new.compon
 import { CustomerNewComponent } from './components/customer-new/customer-new.component';
 
 import { FormsModule } from '@angular/forms';
+import { CompanyCreatedComponent } from './components/company-created/company-created.component';
 
 
 
@@ -33,7 +34,8 @@ import { FormsModule } from '@angular/forms';
     LearnMoreComponent,
     CurrentCustomersComponent,
     CompanyNewComponent,
-    CustomerNewComponent
+    CustomerNewComponent,
+    CompanyCreatedComponent
 
   ],
   imports: [
