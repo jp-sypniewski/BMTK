@@ -1,0 +1,48 @@
+
+<h3>Create A New BMTK User Account</h3>
+<form id = "newUser">
+<table>
+<tr>
+ <label for="username">username:</label>
+ <input type="text" id="username" name="username" required [(ngModel)]="user.username"><br><br>
+</tr>
+<tr>
+ <label for="password">password:</label>
+ <input type="password" id="password" name="password" required [(ngModel)]="user.password"><br><br>
+</tr>
+<tr>
+ <label for="firstName">first name:</label>
+ <input type="text" id="firstName" name="firstName" required [(ngModel)]="newUserDetail.firstName"><br><br>
+</tr>
+ <label for="lastName">last name:</label>
+ <input type="text" id="lastName" name="lastName" required [(ngModel)]="newUserDetail.lastName"><br><br>
+<tr>
+ <label for="email">email:</label>
+ <input type="text" id="email" name="email" required [(ngModel)]="newUserDetail.email"><br><br>
+</tr>
+<tr>
+ <label for="street">street address:</label>
+ <input type="text" id="street" name="street" required [(ngModel)]="newUserDetail.street"><br><br>
+</tr>
+<tr>
+ <label for="city">city:</label>
+ <input type="text" id="city" name="city" required [(ngModel)]="newUserDetail.city"><br><br>
+</tr>
+<tr>
+ <label for="zipcode">zipcode:</label>
+ <input type="string" id="zipcode" name="zipcode" required [(ngModel)]="newUserDetail.zipcode"><br><br>
+</tr>
+<tr>
+ <label for="country">country:</label>
+ <input type="string" id="country" name="country" required [(ngModel)]="newUserDetail.country"><br><br>
+</tr>
+<tr>
+ <label for="phone">phone:</label>
+ <input type="string" id="phone" name="phone" required [(ngModel)]="newUserDetail.phone"><br><br>
+</tr>
+</table>
+</form>
+
+<button (click)="createUser()">Create New BMTK Account</button>
+
+<div id = "createUserError">{{userCreated}}</div>
