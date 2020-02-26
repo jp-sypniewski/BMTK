@@ -11,10 +11,12 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   company: Company = new Company();
   companyCreated: string;
+  companies: Company[] = [];
 
   constructor(private router: Router, private compSvc: CompanyService) { }
 
   ngOnInit(): void {
+    this.reload();
   }
 
   createCompany(){
@@ -32,6 +34,16 @@ export class HomeComponent implements OnInit {
         this.companyCreated = "Error Creating Company";
       }
     );
+  }
 
+reload(){
+  this.compSvc.index().subscribe(
+    data => {
+      return this.companies = data;
+    },
+    err => {
+      return console.error('Observer got an error: ' + err);
+    }
+  );
 }
 }

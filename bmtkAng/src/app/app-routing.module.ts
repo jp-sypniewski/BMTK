@@ -9,6 +9,7 @@ import { CustomerNewComponent } from './components/customer-new/customer-new.com
 import { CompanyCreatedComponent } from './components/company-created/company-created.component';
 import { CompanyListComponent } from './components/company-list/company-list.component';
 import { HomeComponent } from './components/home/home.component';
+import { AccountComponent } from './components/account/account.component';
 
 const routes: Routes = [
   {path: 'employee', component: EmployeeListComponent},
@@ -20,6 +21,8 @@ const routes: Routes = [
     {path: 'companycreated', component: CompanyCreatedComponent},
     {path: 'companylist', component: CompanyListComponent},
     {path: 'home', component: HomeComponent},
+    {path: 'account', component: AccountComponent},
+
 
 
 ]
