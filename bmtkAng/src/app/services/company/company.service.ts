@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/services/user/user.service';
 import { Injectable } from '@angular/core';
 import { Company } from "../../models/company";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -14,10 +15,12 @@ export class CompanyService {
   baseUrl = 'http://localhost:8085/';
   companyNewComponent: CompanyNewComponent;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private userSvc: UserService) { }
 
   createCompany(company){
-    const credentials = this.authSvc.getCredentials();
+    console.log(company);
+    const credentials = this.userSvc.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
