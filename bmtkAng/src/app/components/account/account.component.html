@@ -1,48 +1,69 @@
+<!-- if no user logged in, create new account -->
+<div>
+  <h3>Create A New Account</h3>
+  <form>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required [(ngModel)]="newUser.username"><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required [(ngModel)]="newUser.password"><br><br>
+    <label for="firstName">First name:</label>
+    <input type="text" id="firstName" name="firstName" required [(ngModel)]="newUserDetail.firstName"><br><br>
+    <label for="lastName">Last name:</label>
+    <input type="text" id="lastName" name="lastName" [(ngModel)]="newUserDetail.lastName"><br><br>
+    <label for="email">email:</label>
+    <input type="text" id="email" name="email" required [(ngModel)]="newUserDetail.email"><br><br>
+    <label for="street">street address:</label>
+    <input type="text" id="street" name="street" [(ngModel)]="newUserDetail.street"><br><br>
+    <label for="city">city:</label>
+    <input type="text" id="city" name="city" [(ngModel)]="newUserDetail.city"><br><br>
+    <label for="zipcode">zipcode:</label>
+    <input type="text" id="zipcode" name="zipcode" [(ngModel)]="newUserDetail.zipcode"><br><br>
+    <label for="country">country:</label>
+    <input type="text" id="country" name="country" [(ngModel)]="newUserDetail.country"><br><br>
+    <label for="phone">phone:</label>
+    <input type="text" id="phone" name="phone" [(ngModel)]="newUserDetail.phone"><br><br>
+    <button (click)="createUser()">Create Account</button>
 
-<h3>Create A New BMTK User Account</h3>
-<form id = "newUser">
-<table>
-<tr>
- <label for="username">username:</label>
- <input type="text" id="username" name="username" required [(ngModel)]="user.username"><br><br>
-</tr>
-<tr>
- <label for="password">password:</label>
- <input type="password" id="password" name="password" required [(ngModel)]="user.password"><br><br>
-</tr>
-<tr>
- <label for="firstName">first name:</label>
- <input type="text" id="firstName" name="firstName" required [(ngModel)]="newUserDetail.firstName"><br><br>
-</tr>
- <label for="lastName">last name:</label>
- <input type="text" id="lastName" name="lastName" required [(ngModel)]="newUserDetail.lastName"><br><br>
-<tr>
- <label for="email">email:</label>
- <input type="text" id="email" name="email" required [(ngModel)]="newUserDetail.email"><br><br>
-</tr>
-<tr>
- <label for="street">street address:</label>
- <input type="text" id="street" name="street" required [(ngModel)]="newUserDetail.street"><br><br>
-</tr>
-<tr>
- <label for="city">city:</label>
- <input type="text" id="city" name="city" required [(ngModel)]="newUserDetail.city"><br><br>
-</tr>
-<tr>
- <label for="zipcode">zipcode:</label>
- <input type="string" id="zipcode" name="zipcode" required [(ngModel)]="newUserDetail.zipcode"><br><br>
-</tr>
-<tr>
- <label for="country">country:</label>
- <input type="string" id="country" name="country" required [(ngModel)]="newUserDetail.country"><br><br>
-</tr>
-<tr>
- <label for="phone">phone:</label>
- <input type="string" id="phone" name="phone" required [(ngModel)]="newUserDetail.phone"><br><br>
-</tr>
-</table>
-</form>
+  </form>
+  <div id = "createUserError">{{userCreated}}</div>
+</div>
 
-<button (click)="createUser()">Create New BMTK Account</button>
+<!-- if user logged in, show account information -->
+<div>
+  <!-- div for owner relationships -->
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let company of companiesOwned">
+          <td>{{company.name}}</td>
+          <td>{{company.description}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- div for employee relationships -->
+  <!-- div for customer relationships -->
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Company</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of projectsRequested">
+          <td>{{project.name}}</td>
+          <td>{{project.company.name}}</td>
+        </tr>
+      </tbody>
+    </table>
 
-<div id = "createUserError">{{userCreated}}</div>
+  </div>
+</div>
