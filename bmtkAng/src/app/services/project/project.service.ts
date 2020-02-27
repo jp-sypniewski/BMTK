@@ -47,7 +47,7 @@ export class ProjectService {
       })
     };
 
-    return this.http.put<Project>(this.baseUrl+'api/companyies/'+cid+'/projects/'+pid, project, httpOptions)
+    return this.http.put<Project>(this.baseUrl+'api/companies/'+cid+'/projects/'+pid, project, httpOptions)
 
     .pipe(
       catchError((err: any) => {
