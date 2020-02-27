@@ -284,10 +284,22 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bmtkdb`;
-INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (1, 'adminFirst', 'adminLast', 'admin@admin.com', '12345', 'denver', '80111', 'US', '5555555555');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (1, 'adminFirst', 'adminLast', 'admin@admin.com', '12345', NULL, '80111', 'US', '5555555555');
 INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (2, 'ownerFirst', 'ownerLast', 'owner@owner.com', '123456', 'denver', '80111', 'US', '5555555555');
 INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (3, 'empFirst', 'empLast', 'emp@emp.com', '1234567', 'denver', '80237', 'US', '3333333333');
 INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (4, 'userFirst', 'userLast', 'user@user.com', '123', 'denver', '80111', 'US', '2222222222');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (5, 'Mary', 'Sanders', 'marysanders@gmail.com', '5944 round rock street', 'boulder', '80301', 'US', '8546733211');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (6, 'Mark', 'Wayside', 'markwayside@gmail.com', '8711 hay street', 'dallas', '75001', 'US', '8176819021');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (7, 'Bill', 'Jacobs', 'billjacobs@gmail.com', '3498 mill street', 'denver', '80111', 'US', '2543618355');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (8, 'John', 'Pine', 'johnpine@gmail.com', ' 5341 north street', 'denver', '80111', 'US', '6537912333');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (9, 'Ann', 'Good', 'anngood@gmail.com', '7834 bell street', 'denver', '80111', 'US', '9325812312');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (10, 'Sarah', 'Walker', 'sarahwalker@gmail.com', '321 high street', 'denver', '80111', 'US', '6234117553');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (11, 'Gary', 'Newland', 'garynewland@gmail.com', '734 dryer street', 'denver', '80111', 'US', '8745557433');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (12, 'Joe', 'Keppler', 'joekeppler@gmail.com', '632 green street', 'denver', '80111', 'US', '2546719233');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (13, 'Sam', 'Miller', 'sammiller@gmail.com', '7822 hill street', 'denver', '80111', 'US', '6234778211');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (14, 'Diane', 'Weller', 'dianeweller@gmail.com', '7188 bell street', 'denver', '80111', 'US', '6123776399');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (15, 'Matt', 'Simmons', 'mattsimmons@gmail.com', '832 elm street', 'denver', '80111', 'US', '6234517288');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (16, 'Harold', 'Mole', 'haroldmole@gmail.com', '8732 copper street', 'denver', '80111', 'US', '9345612544');
 
 COMMIT;
 
@@ -301,6 +313,13 @@ INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updat
 INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (2, 'testowner', '$2a$10$MEf8iCwCd8acksi2w6Vgw./gIFv4qXpjUfv3EwNF6AFFHPqECgi/a', 1, NULL, NULL, 2, NULL);
 INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (3, 'testemp', '$2a$10$jNuLJEvyoH5gNB7QkEPYveqetgbFKI..2ghUH0/kniY3hZ/QgSD0.', 1, NULL, NULL, 3, NULL);
 INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (4, 'testuser', '$2a$10$gvjch3eQpa.sPm2Z0wcG9e4CDuk0YdjUl3dKIGOpnyeM.fHYoEraO', 1, NULL, NULL, 4, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (5, 'killbill', 'killbill', 1, NULL, NULL, 5, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (6, 'fastfurious', 'fastfuriuos', 1, NULL, NULL, 6, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (7, 'hotmary', 'hotmary', 1, NULL, NULL, 7, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (8, 'blacksun', 'blacksun', 1, NULL, NULL, 8, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (9, 'bigfish', 'bigfish', 1, NULL, NULL, 9, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (10, 'honeyboy', 'honeyboy', 1, NULL, NULL, 10, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `active`, `created_at`, `updated_at`, `user_detail_id`, `role`) VALUES (11, 'fishhead', 'fishhead', 1, NULL, NULL, 11, NULL);
 
 COMMIT;
 
@@ -310,7 +329,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bmtkdb`;
-INSERT INTO `customer` (`id`, `payment_method`, `user_detail_id`, `active`) VALUES (1, 'paypal', 4, 1);
+INSERT INTO `customer` (`id`, `payment_method`, `user_detail_id`, `active`) VALUES (1, 'paypal', 4, DEFAULT);
 
 COMMIT;
 
@@ -320,7 +339,13 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bmtkdb`;
-INSERT INTO `company` (`id`, `name`, `type`, `address`, `phone`, `description`, `company_url`, `active`) VALUES (1, 'Test Company', 'Construction', '12345 test st', '5554443333', 'test description', NULL, 1);
+INSERT INTO `company` (`id`, `name`, `type`, `address`, `phone`, `description`, `company_url`, `active`) VALUES (1, 'Test Company', 'Construction', '12345 test st', '5554443333', 'test description', NULL, DEFAULT);
+INSERT INTO `company` (`id`, `name`, `type`, `address`, `phone`, `description`, `company_url`, `active`) VALUES (2, 'Bob\'s Plumbing', 'Plumbing', '34 pipe st, Denver, CO,  80014', '8176534591', 'All residential plumbing work from new construction to remodeling to repairs. Free estimates. We supply fixtures. ', 'bobsplumbing.com', true);
+INSERT INTO `company` (`id`, `name`, `type`, `address`, `phone`, `description`, `company_url`, `active`) VALUES (3, 'Fast Action Painting', 'Painting', '571 white street, Dallas, TX, 75001', '6239456789', 'All residential painting, interior or exterior, new construction or remodeling.  Barns, houses, workshops. ', 'fastactionpainting.com', true);
+INSERT INTO `company` (`id`, `name`, `type`, `address`, `phone`, `description`, `company_url`, `active`) VALUES (4, 'County HVAC Service', 'HVAC', '9231 snow street, Alma, CO, 80420', '3256718324', 'Residential and commercial HVAC repair. We install new units. $75 estimate fee is applied towards work order. All of our work is guaranteed. ', 'countyhvac.com', true);
+INSERT INTO `company` (`id`, `name`, `type`, `address`, `phone`, `description`, `company_url`, `active`) VALUES (5, 'Long Valley Surveying', 'Surveying', '7541 west street,  Broomfield , CO 80020 ', '4578934581', 'Land surveys, property lines verified, land subdivided. We can handle all of your surveying needs. ', 'longvalleysurveying.com', true);
+INSERT INTO `company` (`id`, `name`, `type`, `address`, `phone`, `description`, `company_url`, `active`) VALUES (6, 'Hot Switch Electric', 'Electrician', '6324 cherry street, Georgetown, CO, 80444', '9514359111', 'Licensed electricians. Commercial and Residential. Repairs, Remodeling, New Construction. Call to schedule an estimate. ', 'hotswitchelectic.com', true);
+INSERT INTO `company` (`id`, `name`, `type`, `address`, `phone`, `description`, `company_url`, `active`) VALUES (7, 'Uptown Catering', 'Catering', '89324 Hill Street, Boulder, CO,  80301', '5678213733', 'Catering for events, parties, and business meetings. ', 'uptowncatering.com', true);
 
 COMMIT;
 
@@ -330,7 +355,13 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bmtkdb`;
-INSERT INTO `project` (`id`, `name`, `customer_id`, `company_id`, `active`) VALUES (1, 'Test Project', 1, 1, 1);
+INSERT INTO `project` (`id`, `name`, `customer_id`, `company_id`, `active`) VALUES (1, 'Test Project', 1, 1, DEFAULT);
+INSERT INTO `project` (`id`, `name`, `customer_id`, `company_id`, `active`) VALUES (2, 'new bathroom', 11, 2, true);
+INSERT INTO `project` (`id`, `name`, `customer_id`, `company_id`, `active`) VALUES (3, 'paint house exterior', 12, 3, true);
+INSERT INTO `project` (`id`, `name`, `customer_id`, `company_id`, `active`) VALUES (4, 'new compressor', 13, 4, true);
+INSERT INTO `project` (`id`, `name`, `customer_id`, `company_id`, `active`) VALUES (5, 'land survey', 14, 5, true);
+INSERT INTO `project` (`id`, `name`, `customer_id`, `company_id`, `active`) VALUES (6, 'breaker box in workshop', 15, 6, true);
+INSERT INTO `project` (`id`, `name`, `customer_id`, `company_id`, `active`) VALUES (7, 'birthday party', 16, 7, true);
 
 COMMIT;
 
@@ -340,7 +371,13 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bmtkdb`;
-INSERT INTO `task` (`id`, `name`, `description`, `due_date`, `paid`, `created_at`, `updated_at`, `template`, `start_date`, `complete_date`, `status`, `type`, `priority`, `payment_detail`, `price`, `project_id`, `active`) VALUES (1, 'test task', 'task description', '02-29-2020', 0, NULL, NULL, NULL, NULL, NULL, 'ASSIGNED', NULL, 'high', NULL, 1000.00, 1, 1);
+INSERT INTO `task` (`id`, `name`, `description`, `due_date`, `paid`, `created_at`, `updated_at`, `template`, `start_date`, `complete_date`, `status`, `type`, `priority`, `payment_detail`, `price`, `project_id`, `active`) VALUES (1, 'test task', 'task description', '02-29-2020', 0, NULL, NULL, NULL, NULL, NULL, 'ASSIGNED', NULL, 'high', NULL, 1000.00, 1, DEFAULT);
+INSERT INTO `task` (`id`, `name`, `description`, `due_date`, `paid`, `created_at`, `updated_at`, `template`, `start_date`, `complete_date`, `status`, `type`, `priority`, `payment_detail`, `price`, `project_id`, `active`) VALUES (2, 'bathroom remodel', 'total bathroom remodel. New toilet, sink and shower stall. Location: 654 Beverly Street Denver CO 80111', '03-05-2020', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 50000.00, 2, true);
+INSERT INTO `task` (`id`, `name`, `description`, `due_date`, `paid`, `created_at`, `updated_at`, `template`, `start_date`, `complete_date`, `status`, `type`, `priority`, `payment_detail`, `price`, `project_id`, `active`) VALUES (3, 'paint house exterior', 'Paint all of house exterior. Customer not supplying any materials. Location: 3285 Stone Street Denver CO 80111 ', '03-10-2020', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 3500.00, 3, true);
+INSERT INTO `task` (`id`, `name`, `description`, `due_date`, `paid`, `created_at`, `updated_at`, `template`, `start_date`, `complete_date`, `status`, `type`, `priority`, `payment_detail`, `price`, `project_id`, `active`) VALUES (4, 'HVAC unit new compressor', 'Trane Model 588A year 2001 needs new compressor. Location: 544 Hill Street, Denver CO. 80111', '03-01-2020', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 850.00, 4, true);
+INSERT INTO `task` (`id`, `name`, `description`, `due_date`, `paid`, `created_at`, `updated_at`, `template`, `start_date`, `complete_date`, `status`, `type`, `priority`, `payment_detail`, `price`, `project_id`, `active`) VALUES (5, 'subdiving lot', 'residental lot subdivision. 576 gaylord street. 5 acres to be divided into 7 lots. Drawings on location. ', '03-05-2020', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2500.00, 5, true);
+INSERT INTO `task` (`id`, `name`, `description`, `due_date`, `paid`, `created_at`, `updated_at`, `template`, `start_date`, `complete_date`, `status`, `type`, `priority`, `payment_detail`, `price`, `project_id`, `active`) VALUES (6, 'new breaker box', 'Workshop at 5699 elm street needs a larger breaker box so that additional relays may be installed. ', '03-08-2020', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 900.00, 6, true);
+INSERT INTO `task` (`id`, `name`, `description`, `due_date`, `paid`, `created_at`, `updated_at`, `template`, `start_date`, `complete_date`, `status`, `type`, `priority`, `payment_detail`, `price`, `project_id`, `active`) VALUES (7, 'birthday party', 'sweet 16 party. Location: 6500 Grand Plaza suite 400 Denver CO. 25 guests. American food and cake. ', '03-07-2020', 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 375.00, 7, true);
 
 COMMIT;
 
@@ -350,7 +387,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bmtkdb`;
-INSERT INTO `employee` (`id`, `user_detail_id`, `company_id`, `active`) VALUES (1, 3, 1, 1);
+INSERT INTO `employee` (`id`, `user_detail_id`, `company_id`, `active`) VALUES (1, 3, 1, DEFAULT);
 
 COMMIT;
 
@@ -371,6 +408,12 @@ COMMIT;
 START TRANSACTION;
 USE `bmtkdb`;
 INSERT INTO `owner` (`company_id`, `user_detail_id`) VALUES (1, 2);
+INSERT INTO `owner` (`company_id`, `user_detail_id`) VALUES (2, 5);
+INSERT INTO `owner` (`company_id`, `user_detail_id`) VALUES (3, 6);
+INSERT INTO `owner` (`company_id`, `user_detail_id`) VALUES (4, 7);
+INSERT INTO `owner` (`company_id`, `user_detail_id`) VALUES (5, 8);
+INSERT INTO `owner` (`company_id`, `user_detail_id`) VALUES (6, 9);
+INSERT INTO `owner` (`company_id`, `user_detail_id`) VALUES (7, 10);
 
 COMMIT;
 

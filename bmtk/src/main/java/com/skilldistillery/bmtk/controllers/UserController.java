@@ -38,10 +38,6 @@ public class UserController {
 	@PostMapping(value = "user")
 	public User createUser(@RequestBody User user){
 		user = userSvc.createUser(user);
-		
-		
-		
-
 		return user;
 	}
 	
@@ -66,11 +62,6 @@ public class UserController {
 		}
 		
 	}
-	
-	
-	
-	
-	
 	
 	@DeleteMapping(value = "user/{id}")
 	public Boolean deleteUser(@PathVariable("id") int id) {
