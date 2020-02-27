@@ -8,6 +8,8 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import {EmployeeListComponent} from './components/employee-list/employee-list.component'
 import { UserService } from './services/user/user.service';
 import {EmployeeService} from './services/employee/employee.service';
+import {ProjectService} from './services/project/project.service';
+
 
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
@@ -15,16 +17,14 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { LearnMoreComponent } from './components/learn-more/learn-more.component';
 import { CurrentCustomersComponent } from './components/current-customers/current-customers.component';
-import { CompanyNewComponent } from './components/company-new/company-new.component';
 import { CustomerNewComponent } from './components/customer-new/customer-new.component';
-import { CompanyCreatedComponent } from './components/company-created/company-created.component';
+import { CompanyListComponent } from './components/company-list/company-list.component';
+
 
 import { FormsModule } from '@angular/forms';
-import { CompanyCreatedComponent } from './components/company-created/company-created.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CompanyComponent } from './components/company/company.component';
 import { AccountComponent } from './components/account/account.component';
-import { CompanyListComponent } from './components/company-list/company-list.component';
 
 
 
@@ -38,9 +38,7 @@ import { CompanyListComponent } from './components/company-list/company-list.com
     HomeComponent,
     LearnMoreComponent,
     CurrentCustomersComponent,
-    CompanyNewComponent,
     CustomerNewComponent,
-    CompanyCreatedComponent,
     CompanyListComponent,
     NavbarComponent,
     CompanyComponent,
@@ -54,7 +52,7 @@ import { CompanyListComponent } from './components/company-list/company-list.com
     FormsModule
 
   ],
-  providers: [UserService, EmployeeService],
+  providers: [UserService, EmployeeService, ProjectService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

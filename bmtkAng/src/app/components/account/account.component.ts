@@ -1,3 +1,6 @@
+import { Project } from './../../models/project';
+import { Task } from './../../models/task';
+import { Company } from './../../models/company';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
 import { Component, OnInit } from '@angular/core';
@@ -11,32 +14,41 @@ import { UserDetail } from 'src/app/models/userDetail';
 })
 export class AccountComponent implements OnInit {
 
-  userList: User[];
-  user: User = new User();
-  newUserDetail = new UserDetail();
+  newUser: User;
+  newUserDetail: UserDetail;
   userCreated: String = new String();
+
+  currentUser: User;
+
+  companiesOwned: Company[] = [];
+  tasksToDo: Task[] = [];
+  projectsRequested: Project[] = [];
 
 
   constructor(private router: Router,
     private userSvc: UserService) { }
 
   ngOnInit(): void {
+    if (this.userSvc.checkLogin()){
+      this.currentUser = new User();
+    } else {
+      this.newUser = new User();
+      this.newUserDetail = new UserDetail();
+    }
+
   }
 
-  createUser(){
-    // this.router.navigate(['companynew']);
 
-    this.user.userDetail = this.newUserDetail;
-    this.userSvc.createUser(this.user).subscribe(
+  saveCreateUser(){
+    this.newUser.userDetail = this.newUserDetail;
+    this.userSvc.createUser(this.newUser).subscribe(
       data => {
         console.log('RegisterComponent.register(): user registered.');
-        this.router.navigate(['companynew']);
       },
       err => {
         console.error('RegisterComponent.register(): error registering.');
       }
     );
-
   }
 
 }

@@ -1,1 +1,138 @@
-<p>company works!</p>
+<h1>{{aCompany.name}}</h1>
+
+<!-- owner relationship, need qual from user -->
+<div *ngIf="projectsForCompany.length > 0">
+  <h3>Our Customer's Requests</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Customer Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let project of projectsForCompany">
+        <td (click)="showProjectDetails(project)">{{project.name}}</td>
+        <td>{{project.customer.userDetail.email}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+
+  <!-- single project view with tasks -->
+
+  <div *ngIf="selectedProject != null">
+    <h3>Selected Project: {{selectedProject.name}}</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Task Name</th>
+          <th>Task Due Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of selectedProject.tasks">
+          <td (click)="showEditTask(task)">{{task.name}}</td>
+          <td>{{task.dueDate}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <button (click)="showCreateTask()">Button to add new task</button>
+    <hr>
+  </div>
+  <!-- add/edit task? -->
+  <div *ngIf="newTask != null">
+    <form>
+      <h3 *ngIf="!editingATask">New Task Form:</h3>
+      <h3 *ngIf="editingATask">Edit Task Form:</h3>
+      <label for="name">Name:</label>
+      <input type="text" name="name" required [(ngModel)]="newTask.name"><br><br>
+      <label for="description">Description:</label>
+      <input type="type" name="description" [(ngModel)]="newTask.description"><br><br>
+      <label for="dueDate">DueDate:</label>
+      <input type="text" name="dueDate" [(ngModel)]="newTask.dueDate"><br><br>
+      <label for="paid">Paid:</label>
+      <input type="text" name="paid" [(ngModel)]="newTask.paid"><br><br>
+      <label for="startDate">Start Date:</label>
+      <input type="text" name="startDate" [(ngModel)]="newTask.startDate"><br><br>
+      <label for="completeDate">Complete Date:</label>
+      <input type="text" name="completeDate" [(ngModel)]="newTask.completeDate"><br><br>
+      <label for="status">Status:</label>
+      <input type="text" name="status" [(ngModel)]="newTask.status"><br><br>
+      <label for="type">Type:</label>
+      <input type="text" name="type" [(ngModel)]="newTask.type"><br><br>
+      <label for="priority">Priority:</label>
+      <input type="text" name="priority" [(ngModel)]="newTask.priority"><br><br>
+      <label for="paymentDetails">Payment Details:</label>
+      <input type="text" name="paymentDetails" [(ngModel)]="newTask.paymentDetails"><br><br>
+      <label for="price">Price:</label>
+      <input type="text" name="price" [(ngModel)]="newTask.price"><br><br>
+      <button *ngIf="!editingATask" (click)="saveNewTask()">Create New Task</button>
+      <button *ngIf="editingATask" (click)="saveEditTask()">Save Task</button>
+    </form>
+    <hr>
+  </div>
+
+
+</div>
+
+<!-- emp relationship, need qual from user -->
+
+<div *ngIf="empTasksToDo.length > 0">
+  <h3>Tasks To Do</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Task Name</th>
+        <th>Task Due Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of empTasksToDo">
+        <td>{{task.name}}</td>
+        <td>{{task.dueDate}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <!-- edit single task -->
+
+</div>
+
+<!-- customer relationship, need qual from user -->
+
+<div>
+  <div *ngIf="projectsRequested.length > 0">
+    <h3>Projects Requested</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Customer Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of projectsRequested">
+          <td>{{project.name}}</td>
+          <td>{{project.customer.userDetail.email}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr>
+  <div>
+    <button (click)="showRequestNewProject()">Request new project</button>
+  </div>
+  <hr>
+  <!-- request new project -->
+  <div *ngIf="newProject != null">
+    <form>
+      <h3>Request New Project:</h3>
+      <label for="name">Name:</label>
+      <input type="text" name="name" required [(ngModel)]="newProject.name"><br><br>
+      <button (click)="saveRequestNewProject()">Request Project</button>
+    </form>
+  </div>
+
+</div>
