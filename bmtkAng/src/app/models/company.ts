@@ -1,3 +1,4 @@
+import { Project } from './project';
 import { Employee } from './employee';
 
 export class Company {
@@ -9,10 +10,10 @@ export class Company {
   phone: string;
   description: string;
   companyUrl: string;
-  employees: Array<Employee>;
+  projects: Project[];
 
   constructor(id?: number, name?: string, type?: string, address?: string,
-    phone?: string, description?: string, companyUrl?: string, employees?: Array<Employee>){
+    phone?: string, description?: string, companyUrl?: string, projects?: Project[]){
     this.id = id;
     this.name = name;
     this.type = type;
@@ -20,7 +21,7 @@ export class Company {
     this.phone = phone;
     this.description = description;
     this.companyUrl = companyUrl;
-    this.employees = employees;
+    this.projects = projects;
   }
 
 }

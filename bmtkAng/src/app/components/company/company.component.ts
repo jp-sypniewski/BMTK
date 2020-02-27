@@ -1,3 +1,7 @@
+import { Router, ActivatedRoute } from '@angular/router';
+import { Company } from './../../models/company';
+import { CompanyService } from './../../services/company/company.service';
+import { UserService } from 'src/app/services/user/user.service';
 import { Task } from './../../models/task';
 import { Project } from './../../models/project';
 import { Component, OnInit } from '@angular/core';
@@ -9,10 +13,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompanyComponent implements OnInit {
 
+  aCompany: Company;
   projectsForCompany: Project[] = [];
   selectedProject: Project;
   newTask: Task;
   editingATask: Boolean;
+  id: Number;
 
 
   empTasksToDo: Task[] = [];
@@ -20,11 +26,29 @@ export class CompanyComponent implements OnInit {
   projectsRequested: Project[] = [];
   newProject: Project;
 
-  constructor() { }
+  constructor(private router: Router, private userSvc: UserService, private compSvc: CompanyService,
+    private currentRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-
-
+    if (this.currentRoute.snapshot.paramMap.get('id')){
+      let theId = Number(this.currentRoute.snapshot.paramMap.get('id'));
+      this.compSvc.getSingleCompany(theId).subscribe(
+        data => {
+          this.aCompany = data;
+          this.projectsForCompany = data.projects;
+          for (let i = 0; i < data.projects.length; i++){
+            for (let j = 0; j < data.projects[i].tasks.length; j++){
+              this.empTasksToDo.push(data.projects[i].tasks[j])
+            }
+          }
+          this.projectsRequested = data.projects;
+        },
+        err => {
+          console.error('CompanyComponent: error finding company');
+          // add redirect to company list
+        }
+      );
+    }
   }
 
   showProjectDetails(project){

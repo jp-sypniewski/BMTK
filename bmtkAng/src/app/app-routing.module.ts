@@ -1,3 +1,4 @@
+import { CompanyComponent } from './components/company/company.component';
 import { NgModule } from '@angular/core';
 import { EmployeeListComponent } from './components/employee-list/employee-list.component';
 import { UserListComponent } from './components/user-list/user-list.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
     {path: 'companylist', component: CompanyListComponent},
     {path: 'home', component: HomeComponent},
     {path: 'account', component: AccountComponent},
+    {path: 'company/:id', component: CompanyComponent},
 
 
 
