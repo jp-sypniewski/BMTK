@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     this.userSvc.login(form.value.username, form.value.password).subscribe(
       next => {
         console.log('RegisterComponent.register(): user logged in');
-        // this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('/account');
       },
       error => {
         console.error('RegisterComponent.register(): error logging in.');

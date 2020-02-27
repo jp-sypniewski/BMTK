@@ -58,4 +58,22 @@ export class ProjectService {
       })
     );
   }
+
+  getMyProjectRequests(){
+    const credentials = this.userSvc.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Basic ${credentials}` // might have to add back x-reqeusted-with 'xmlhttprequest'
+      })
+    };
+    return this.http.get<Project[]>(this.baseUrl + 'api/projects', httpOptions)
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+
+        return throwError('ProjectService.getMyProjectRequests() error getting my projects.');
+      })
+    );
+  }
 }

@@ -13,6 +13,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -44,6 +45,8 @@ public class Company {
 			inverseJoinColumns=@JoinColumn(name="user_detail_id"))
 		private List<UserDetail> owners;
 		
+		@JsonIgnore
+//		@JsonBackReference(value="projectToCompany")
 		@OneToMany(mappedBy="company")
 		private List<Project> projects;
 		

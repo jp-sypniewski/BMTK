@@ -20,4 +20,6 @@ public interface UserService {
 
 	UserDetail updateUserDetail(int id, UserDetail ud);
 
+	User getUserByPrincipal(String username);
+
 }

@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/services/user/user.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userSvc: UserService) { }
 
   ngOnInit(): void {
   }
+
+  checkForUser(){
+    return this.userSvc.checkLogin();
+  }
+
+  logout(){
+    this.userSvc.logout();
+  }
+
+
+
 
 }
