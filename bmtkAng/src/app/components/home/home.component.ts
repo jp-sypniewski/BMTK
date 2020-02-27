@@ -23,8 +23,12 @@ export class HomeComponent implements OnInit {
     this.reload();
   }
 
-  createCompany(){
+  showCreateCompany(){
     this.newCompany = new Company();
+
+  }
+
+  saveCreateCompany(){
     this.companyCreated = "";
 
 
