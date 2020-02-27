@@ -1,1 +1,82 @@
-<p>company works!</p>
+<!-- owner relationship, need qual from user -->
+<div>
+  <h3>Our Customer's Requests</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Customer Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let project of projectsForCompany">
+        <td>{{project.name}}</td>
+        <td>{{project.customer.userDetail.email}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- single project view with tasks -->
+
+  <table>
+    <thead>
+      <tr>
+        <th>Task Name</th>
+        <th>Task Due Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of selectedProject.tasks">
+        <td>{{task.name}}</td>
+        <td>{{task.dueDate}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+<!-- emp relationship, need qual from user -->
+
+<div>
+  <h3>Tasks To Do</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Task Name</th>
+        <th>Task Due Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of empTasksToDo">
+        <td>{{task.name}}</td>
+        <td>{{task.dueDate}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- edit single task -->
+
+</div>
+
+<!-- customer relationship, need qual from user -->
+
+<div>
+  <h3>Projects Requested</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Customer Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let project of projectsRequested">
+        <td>{{project.name}}</td>
+        <td>{{project.customer.userDetail.email}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- request new project -->
+
+</div>

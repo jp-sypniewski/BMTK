@@ -9,9 +9,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  company: Company = new Company();
+
+
+
+  newCompany: Company;
   companyCreated: string;
   companies: Company[] = [];
+
 
   constructor(private router: Router, private compSvc: CompanyService) { }
 
@@ -20,13 +24,14 @@ export class HomeComponent implements OnInit {
   }
 
   createCompany(){
+    this.newCompany = new Company();
     this.companyCreated = "";
 
 
-    this.compSvc.createCompany(this.company).subscribe(
+    this.compSvc.createCompany(this.newCompany).subscribe(
       data => {
         console.log('RegisterComponent.register(): company registered.');
-        this.company = new Company();
+        this.newCompany = new Company();
         //this.router.navigate(['companynew']);
       },
       err => {

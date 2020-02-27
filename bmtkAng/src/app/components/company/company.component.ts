@@ -1,3 +1,5 @@
+import { Task } from './../../models/task';
+import { Project } from './../../models/project';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,6 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./company.component.css']
 })
 export class CompanyComponent implements OnInit {
+
+  projectsForCompany: Project[] = [];
+  selectedProject: Project;
+
+
+  empTasksToDo: Task[] = [];
+
+  projectsRequested: Project[] = [];
 
   constructor() { }
 
