@@ -23,7 +23,7 @@ public class Project {
 		
 		private String name;
 		
-		@JsonIgnore
+
 		@ManyToOne
 		@JoinColumn(name="customer_id")
 		private Customer customer;
@@ -98,14 +98,6 @@ public class Project {
 
 		public void setName(String name) {
 			this.name = name;
-		}
-
-		public Customer getCust() {
-			return customer;
-		}
-
-		public void setCust(Customer cust) {
-			this.customer = cust;
 		}
 
 		public Company getCompany() {
