@@ -71,10 +71,10 @@ public class ProjectServiceImpl implements ProjectService {
 						Customer customer = new Customer();
 						customer.setUserDetail(ud);
 						customer = custRepo.saveAndFlush(customer);
-						project.setCust(customer);
+						project.setCustomer(customer);
 				
 					} else {
-						project.setCust(ud.getCustomer());
+						project.setCustomer(ud.getCustomer());
 					}
 				project = projRepo.saveAndFlush(project);
 				

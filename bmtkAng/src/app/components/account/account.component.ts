@@ -14,8 +14,8 @@ import { UserDetail } from 'src/app/models/userDetail';
 })
 export class AccountComponent implements OnInit {
 
-  newUser: User = new User();
-  newUserDetail = new UserDetail();
+  newUser: User;
+  newUserDetail: UserDetail;
   userCreated: String = new String();
 
   currentUser: User;
@@ -30,14 +30,16 @@ export class AccountComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.userSvc.checkLogin()){
-
+      this.currentUser = new User();
     } else {
-
+      this.newUser = new User();
+      this.newUserDetail = new UserDetail();
     }
 
   }
 
-  createUser(){
+
+  saveCreateUser(){
     this.newUser.userDetail = this.newUserDetail;
     this.userSvc.createUser(this.newUser).subscribe(
       data => {

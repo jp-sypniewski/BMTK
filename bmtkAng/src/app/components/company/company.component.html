@@ -1,3 +1,5 @@
+<h1>{{aCompany.name}}</h1>
+
 <!-- owner relationship, need qual from user -->
 <div *ngIf="projectsForCompany.length > 0">
   <h3>Our Customer's Requests</h3>
@@ -10,7 +12,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let project of projectsForCompany">
-        <td (click)="showProjectDetails()">{{project.name}}</td>
+        <td (click)="showProjectDetails(project)">{{project.name}}</td>
         <td>{{project.customer.userDetail.email}}</td>
       </tr>
     </tbody>
