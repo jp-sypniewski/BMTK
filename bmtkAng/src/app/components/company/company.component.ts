@@ -15,7 +15,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompanyComponent implements OnInit {
 
-  aCompany: Company;
+  aCompany: Company = new Company();
   projectsForCompany: Project[] = [];
   selectedProject: Project;
   newTask: Task;
