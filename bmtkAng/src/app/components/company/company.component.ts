@@ -1,3 +1,4 @@
+import { ProjectService } from './../../services/project/project.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Company } from './../../models/company';
 import { CompanyService } from './../../services/company/company.service';
@@ -27,28 +28,35 @@ export class CompanyComponent implements OnInit {
   newProject: Project;
 
   constructor(private router: Router, private userSvc: UserService, private compSvc: CompanyService,
-    private currentRoute: ActivatedRoute) { }
+    private currentRoute: ActivatedRoute, private projSvc: ProjectService) { }
 
   ngOnInit(): void {
     if (this.currentRoute.snapshot.paramMap.get('id')){
       let theId = Number(this.currentRoute.snapshot.paramMap.get('id'));
-      this.compSvc.getSingleCompany(theId).subscribe(
-        data => {
-          this.aCompany = data;
-          this.projectsForCompany = data.projects;
-          for (let i = 0; i < data.projects.length; i++){
-            for (let j = 0; j < data.projects[i].tasks.length; j++){
-              this.empTasksToDo.push(data.projects[i].tasks[j])
-            }
-          }
-          this.projectsRequested = data.projects;
-        },
-        err => {
-          console.error('CompanyComponent: error finding company');
-          // add redirect to company list
-        }
-      );
+      this.reload(theId);
+
+
+
     }
+  }
+
+  reload(id){
+    this.compSvc.getSingleCompany(id).subscribe(
+      data => {
+        this.aCompany = data;
+        this.projectsForCompany = data.projects;
+        for (let i = 0; i < data.projects.length; i++){
+          for (let j = 0; j < data.projects[i].tasks.length; j++){
+            this.empTasksToDo.push(data.projects[i].tasks[j])
+          }
+        }
+        this.projectsRequested = data.projects;
+      },
+      err => {
+        console.error('CompanyComponent: error finding company');
+        // add redirect to company list
+      }
+    );
   }
 
   showProjectDetails(project){
@@ -76,7 +84,16 @@ export class CompanyComponent implements OnInit {
   }
 
   saveRequestNewProject(){
-
+    this.projSvc.createProject(this.newProject, this.aCompany.id).subscribe(
+      data => {
+        this.newProject = null;
+        this.reload(this.aCompany.id);
+      },
+      err => {
+        console.error('CompanyComponent: error saving new project');
+        // add redirect to company list
+      }
+    );
   }
 
 }

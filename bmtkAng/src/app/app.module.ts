@@ -8,6 +8,8 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import {EmployeeListComponent} from './components/employee-list/employee-list.component'
 import { UserService } from './services/user/user.service';
 import {EmployeeService} from './services/employee/employee.service';
+import {ProjectService} from './services/project/project.service';
+
 
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
@@ -50,7 +52,7 @@ import { AccountComponent } from './components/account/account.component';
     FormsModule
 
   ],
-  providers: [UserService, EmployeeService],
+  providers: [UserService, EmployeeService, ProjectService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
