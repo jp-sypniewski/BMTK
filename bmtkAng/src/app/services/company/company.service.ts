@@ -4,7 +4,6 @@ import { Company } from "../../models/company";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import {catchError} from 'rxjs/operators';
-import { CompanyNewComponent } from 'src/app/components/company-new/company-new.component';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +12,6 @@ export class CompanyService {
   [x: string]: any;
 
   baseUrl = 'http://localhost:8085/';
-  companyNewComponent: CompanyNewComponent;
 
   constructor(private http: HttpClient,
     private userSvc: UserService) { }

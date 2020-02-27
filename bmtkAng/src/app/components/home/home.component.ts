@@ -35,7 +35,8 @@ export class HomeComponent implements OnInit {
     this.compSvc.createCompany(this.newCompany).subscribe(
       data => {
         console.log('RegisterComponent.register(): company registered.');
-        this.newCompany = new Company();
+        this.newCompany = null;
+        this.reload();
         //this.router.navigate(['companynew']);
       },
       err => {

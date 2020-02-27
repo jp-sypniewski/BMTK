@@ -10,7 +10,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let project of projectsForCompany">
-        <td (click)="showProjectDetails()">{{project.name}}</td>
+        <td (click)="showProjectDetails(project)">{{project.name}}</td>
         <td>{{project.customer.userDetail.email}}</td>
       </tr>
     </tbody>
