@@ -14,8 +14,8 @@ import { UserDetail } from 'src/app/models/userDetail';
 })
 export class AccountComponent implements OnInit {
 
-  newUser: User;
-  newUserDetail: UserDetail;
+  newUser: User = new User();
+  newUserDetail: UserDetail = new UserDetail();
   userCreated: String = new String();
 
   currentUser: User;
@@ -30,11 +30,21 @@ export class AccountComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.userSvc.checkLogin()){
-      this.currentUser = new User();
+      this.userSvc.getUserInfo().subscribe(
+        data => {
+          this.currentUser = data;
+        },
+        err => {
+          this.newUser = new User();
+          this.newUserDetail = new UserDetail();
+          console.error('UserComponent.init(): error getting user data with principal.');
+        }
+      );
     } else {
       this.newUser = new User();
       this.newUserDetail = new UserDetail();
     }
+
 
   }
 
