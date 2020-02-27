@@ -9,17 +9,15 @@ import {EmployeeListComponent} from './components/employee-list/employee-list.co
 import { UserService } from './services/user/user.service';
 import {EmployeeService} from './services/employee/employee.service';
 import {ProjectService} from './services/project/project.service';
-
+import { TaskService } from './services/task/task.service';
 
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
-
 import { LoginComponent } from './components/login/login.component';
 import { LearnMoreComponent } from './components/learn-more/learn-more.component';
 import { CurrentCustomersComponent } from './components/current-customers/current-customers.component';
 import { CustomerNewComponent } from './components/customer-new/customer-new.component';
 import { CompanyListComponent } from './components/company-list/company-list.component';
-
 
 import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -52,7 +50,7 @@ import { AccountComponent } from './components/account/account.component';
     FormsModule
 
   ],
-  providers: [UserService, EmployeeService, ProjectService],
+  providers: [UserService, EmployeeService, ProjectService, TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

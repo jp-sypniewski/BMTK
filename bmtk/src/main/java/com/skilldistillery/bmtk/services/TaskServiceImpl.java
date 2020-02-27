@@ -35,6 +35,7 @@ public class TaskServiceImpl implements TaskService {
 			task.setPaid(false);
 			task.setTemplate(false);
 			task.setPrice(0.0);
+			task.setActive(true);
 			task = taskRepo.saveAndFlush(task);
 		} else {
 			task = null;

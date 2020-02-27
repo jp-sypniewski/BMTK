@@ -1,3 +1,4 @@
+import { TaskService } from './../../services/task/task.service';
 import { ProjectService } from './../../services/project/project.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Company } from './../../models/company';
@@ -28,7 +29,7 @@ export class CompanyComponent implements OnInit {
   newProject: Project;
 
   constructor(private router: Router, private userSvc: UserService, private compSvc: CompanyService,
-    private currentRoute: ActivatedRoute, private projSvc: ProjectService) { }
+    private currentRoute: ActivatedRoute, private projSvc: ProjectService, private taskSvc: TaskService) { }
 
   ngOnInit(): void {
     if (this.currentRoute.snapshot.paramMap.get('id')){
@@ -45,6 +46,7 @@ export class CompanyComponent implements OnInit {
       data => {
         this.aCompany = data;
         this.projectsForCompany = data.projects;
+        this.empTasksToDo = [];
         for (let i = 0; i < data.projects.length; i++){
           for (let j = 0; j < data.projects[i].tasks.length; j++){
             this.empTasksToDo.push(data.projects[i].tasks[j])
@@ -69,6 +71,18 @@ export class CompanyComponent implements OnInit {
   }
 
   saveNewTask(){
+    this.taskSvc.createTask(this.newTask, this.selectedProject.id).subscribe(
+      data => {
+        this.newTask = null;
+        this.reload(this.aCompany.id);
+        this.selectedProject.tasks.push(data);
+      },
+      err => {
+        console.error('CompanyComponent: error saving new task');
+        // add redirect to company list
+      }
+    );
+
   }
 
   showEditTask(task){
@@ -77,6 +91,16 @@ export class CompanyComponent implements OnInit {
   }
 
   saveEditTask(){
+    this.taskSvc.updateTask(this.newTask, this.selectedProject.id, this.newTask.id).subscribe(
+      data => {
+        this.newTask = null;
+        this.reload(this.aCompany.id);
+      },
+      err => {
+        console.error('CompanyComponent: error saving task update');
+        // add redirect to company list
+      }
+    );
   }
 
   showRequestNewProject(){
