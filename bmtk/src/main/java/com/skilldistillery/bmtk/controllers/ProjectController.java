@@ -33,7 +33,6 @@ public class ProjectController {
 			HttpServletResponse res,
 			Principal principal){
 		List<Project> projects = projSvc.getProjectsForCustomer(principal.getName());
-		System.out.println(principal);
 		return projects;
 	}
 

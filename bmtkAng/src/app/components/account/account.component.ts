@@ -1,3 +1,5 @@
+import { ProjectService } from './../../services/project/project.service';
+import { CompanyService } from './../../services/company/company.service';
 import { Project } from './../../models/project';
 import { Task } from './../../models/task';
 import { Company } from './../../models/company';
@@ -26,7 +28,7 @@ export class AccountComponent implements OnInit {
 
 
   constructor(private router: Router,
-    private userSvc: UserService) { }
+    private userSvc: UserService, private compSvc: CompanyService, private projSvc: ProjectService) { }
 
   ngOnInit(): void {
     if (this.userSvc.checkLogin()){
@@ -40,6 +42,33 @@ export class AccountComponent implements OnInit {
           console.error('UserComponent.init(): error getting user data with principal.');
         }
       );
+
+      this.compSvc.getMyCompanies().subscribe(
+        data => {
+          this.companiesOwned= data;
+        },
+        err => {
+
+          console.error('UserComponent.init(): error getting user data with principal.');
+        }
+      );
+
+      this.projSvc.getMyProjectRequests().subscribe(
+        data => {
+          this.projectsRequested= data;
+        },
+        err => {
+
+          console.error('UserComponent.init(): error getting user data with principal.');
+        }
+      );
+
+
+
+
+
+
+
     } else {
       this.newUser = new User();
       this.newUserDetail = new UserDetail();
@@ -59,6 +88,10 @@ export class AccountComponent implements OnInit {
         console.error('RegisterComponent.register(): error registering.');
       }
     );
+  }
+
+  goToCompanyPage(cid){
+    this.router.navigateByUrl('/company/'+cid);
   }
 
 }

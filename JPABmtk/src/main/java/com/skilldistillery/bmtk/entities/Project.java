@@ -28,7 +28,8 @@ public class Project {
 		@JoinColumn(name="customer_id")
 		private Customer customer;
 		
-		@JsonIgnore
+//		@JsonIgnore
+//		@JsonManagedReference(value="projectToCompany")
 		@ManyToOne
 		@JoinColumn(name="company_id")
 		private Company company;

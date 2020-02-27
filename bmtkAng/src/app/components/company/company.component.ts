@@ -45,14 +45,30 @@ export class CompanyComponent implements OnInit {
     this.compSvc.getSingleCompany(id).subscribe(
       data => {
         this.aCompany = data;
-        this.projectsForCompany = data.projects;
-        this.empTasksToDo = [];
-        for (let i = 0; i < data.projects.length; i++){
-          for (let j = 0; j < data.projects[i].tasks.length; j++){
-            this.empTasksToDo.push(data.projects[i].tasks[j])
+        this.compSvc.getProjectsByCompany(data.id).subscribe(
+          data => {
+            this.projectsForCompany = data;
+            this.empTasksToDo = [];
+            for (let i = 0; i < data.length; i++){
+              for (let j = 0; j < data[i].tasks.length; j++){
+                this.empTasksToDo.push(data[i].tasks[j])
+              }
+            }
+          },
+          err => {
+            console.error('CompanyComponent: error getting projects by company');
           }
-        }
-        this.projectsRequested = data.projects;
+        );
+
+        this.compSvc.getProjectsByCompany(data.id).subscribe(
+          data => {
+            this.projectsRequested = data;
+          },
+          err => {
+            console.error('CompanyComponent: error getting projects by company');
+          }
+        );
+
       },
       err => {
         console.error('CompanyComponent: error finding company');
