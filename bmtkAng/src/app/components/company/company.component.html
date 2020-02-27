@@ -17,11 +17,13 @@
       </tr>
     </tbody>
   </table>
+  <hr>
 
   <!-- single project view with tasks -->
 
   <div *ngIf="selectedProject != null">
-    <h3>{{selectedProject.name}}</h3>
+    <h3>Selected Project: {{selectedProject.name}}</h3>
+
     <table>
       <thead>
         <tr>
@@ -37,11 +39,12 @@
       </tbody>
     </table>
     <button (click)="showCreateTask()">Button to add new task</button>
+    <hr>
   </div>
   <!-- add/edit task? -->
   <div *ngIf="newTask != null">
     <form>
-      <h3 *ngIf="editingATask">New Task Form:</h3>
+      <h3 *ngIf="!editingATask">New Task Form:</h3>
       <h3 *ngIf="editingATask">Edit Task Form:</h3>
       <label for="name">Name:</label>
       <input type="text" name="name" required [(ngModel)]="newTask.name"><br><br>
@@ -65,9 +68,10 @@
       <input type="text" name="paymentDetails" [(ngModel)]="newTask.paymentDetails"><br><br>
       <label for="price">Price:</label>
       <input type="text" name="price" [(ngModel)]="newTask.price"><br><br>
-      <button *ngIf="editingATask" (click)="saveNewTask()">Create New Task</button>
+      <button *ngIf="!editingATask" (click)="saveNewTask()">Create New Task</button>
       <button *ngIf="editingATask" (click)="saveEditTask()">Save Task</button>
     </form>
+    <hr>
   </div>
 
 
@@ -91,7 +95,7 @@
       </tr>
     </tbody>
   </table>
-
+  <hr>
   <!-- edit single task -->
 
 </div>
@@ -116,11 +120,11 @@
       </tbody>
     </table>
   </div>
-
+  <hr>
   <div>
     <button (click)="showRequestNewProject()">Request new project</button>
   </div>
-
+  <hr>
   <!-- request new project -->
   <div *ngIf="newProject != null">
     <form>

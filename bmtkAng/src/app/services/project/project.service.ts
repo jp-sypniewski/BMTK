@@ -1,3 +1,4 @@
+import { Project } from './../../models/project';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserService } from '../user/user.service';
@@ -16,36 +17,43 @@ export class ProjectService {
   constructor(private http: HttpClient,
     private userSvc: UserService) { }
 
-  createProject(project){
+  createProject(project, cid){
     const credentials = this.userSvc.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Basic ${credentials}` // might have to add back x-reqeusted-with 'xmlhttprequest'
+        'Authorization': `Basic ${credentials}`
       })
     };
 
-     return this.http.post<Company>(this.baseUrl+'api/companies', project, httpOptions)
+     return this.http.post<Project>(this.baseUrl+'api/companies/'+cid+'/projects', project, httpOptions)
 
     .pipe(
       catchError((err: any) => {
         console.log(err);
 
-        return throwError('AuthService.register(): error registering company.');
+        return throwError('ProductService.createProject has encountered an error');
 
       })
     );
   }
 
-  updateProject(project){
+  updateProject(project, cid, pid){
+    const credentials = this.userSvc.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Basic ${credentials}`
+      })
+    };
 
-    return this.http.put<Company>(this.baseUrl+'api/company/', project)
+    return this.http.put<Project>(this.baseUrl+'api/companyies/'+cid+'/projects/'+pid, project, httpOptions)
 
     .pipe(
       catchError((err: any) => {
         console.log(err);
 
-        return throwError('AuthService.register(): error registering company.');
+        return throwError('ProductService.updateProject has encountered an error');
 
       })
     );

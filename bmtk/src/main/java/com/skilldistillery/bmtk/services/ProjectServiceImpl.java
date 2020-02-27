@@ -66,10 +66,12 @@ public class ProjectServiceImpl implements ProjectService {
 			if (optCompany.isPresent()) {
 				Company company = optCompany.get();
 				project.setCompany(company);
+				project.setActive(true);
 				
 					if (ud.getCustomer() == null) {
 						Customer customer = new Customer();
 						customer.setUserDetail(ud);
+						customer.setActive(true);
 						customer = custRepo.saveAndFlush(customer);
 						project.setCustomer(customer);
 				
