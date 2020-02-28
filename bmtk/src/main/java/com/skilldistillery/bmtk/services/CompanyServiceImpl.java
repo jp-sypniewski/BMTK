@@ -123,5 +123,32 @@ public class CompanyServiceImpl implements CompanyService {
 			return false;
 		}
 	}
+	
+	@Override
+	public Boolean isCompanyOwner(int id, String username) {
+		Boolean isOwner = false;
+		
+		System.out.println("**********");
+		System.out.println("IN IS COMPANY OWNER IN COMP SERVICE LAYER");
+		System.out.println("**********");
+		
+		Optional<Company> compopt = compRepo.findById(id);
+		if (compopt.isPresent()) {
+			Company company = compopt.get();
+			for (UserDetail owner : company.getOwners()) {
+				if (owner.getUser().getUsername().equals(username)) {
+					
+					System.out.println("**********");
+					System.out.println(owner.getUser().getUsername());
+					System.out.println("**********");
+					
+					isOwner = true;
+					break;
+				}
+			}
+		}
+		
+		return isOwner;
+	}
 
 }

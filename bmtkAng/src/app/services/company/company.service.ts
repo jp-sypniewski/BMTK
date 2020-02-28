@@ -114,15 +114,28 @@ export class CompanyService {
   }
 
   updateCompany(company){
-
     return this.http.put<Company>(this.baseUrl+'api/company/', company)
-
     .pipe(
       catchError((err: any) => {
         console.log(err);
-
         return throwError('AuthService.register(): error registering company.');
+      })
+    );
+  }
 
+  isOwner(id){
+    const credentials = this.userSvc.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Basic ${credentials}` // might have to add back x-reqeusted-with 'xmlhttprequest'
+      })
+    };
+    return this.http.get<Boolean>(this.baseUrl+'api/companies/'+id+'/owner', httpOptions)
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('CompanyService.isOwner(): error checking owner.');
       })
     );
   }
