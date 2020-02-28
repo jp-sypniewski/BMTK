@@ -64,45 +64,61 @@ export class CompanyComponent implements OnInit {
   }
 
   reload(id){
-    this.compSvc.getSingleCompany(id).subscribe(
-      data => {
-        this.aCompany = data;
-        this.compSvc.getProjectsByCompany(data.id).subscribe(
-          data => {
-            this.projectsForCompany = data;
-            this.empTasksToDo = [];
-            for (let i = 0; i < data.length; i++){
-              for (let j = 0; j < data[i].tasks.length; j++){
-                this.empTasksToDo.push(data[i].tasks[j])
+    if (this.userSvc.checkLogin()){
+
+      this.compSvc.getSingleCompany(id).subscribe(
+        data => {
+          this.aCompany = data;
+          this.compSvc.getProjectsByCompany(data.id).subscribe(
+            data => {
+              // an isOwner bool check
+              this.projectsForCompany = data;
+
+              this.empTasksToDo = [];
+              for (let i = 0; i < data.length; i++){
+                for (let j = 0; j < data[i].tasks.length; j++){
+                  this.empTasksToDo.push(data[i].tasks[j])
+                }
               }
+            },
+            err => {
+              console.error('CompanyComponent: error getting projects by company');
             }
-          },
-          err => {
-            console.error('CompanyComponent: error getting projects by company');
-          }
-        );
+          );
 
-        this.compSvc.getProjectsByCompany(data.id).subscribe(
-          data => {
-            this.projectsRequested = [];
-            for (let i = 0; i < data.length; i++){
-              if (data[i].customer.userDetail.id === this.currentUser.userDetail.id){
-                this.projectsRequested.push(data[i]);
+          this.compSvc.getProjectsByCompany(data.id).subscribe(
+            data => {
+              this.projectsRequested = [];
+              for (let i = 0; i < data.length; i++){
+                if (data[i].customer.userDetail.id === this.currentUser.userDetail.id){
+                  this.projectsRequested.push(data[i]);
+                }
               }
+
+            },
+            err => {
+              console.error('CompanyComponent: error getting projects by company');
             }
+          );
 
-          },
-          err => {
-            console.error('CompanyComponent: error getting projects by company');
-          }
-        );
+        },
+        err => {
+          console.error('CompanyComponent: error finding company');
+          // add redirect to company list
+        }
+      );
+    } else {
+      this.compSvc.getSingleCompany(id).subscribe(
+        data => {
+          this.aCompany = data;
+        },
+        err => {
+          console.error('CompanyComponent: error finding company');
+          // add redirect to company list
+        }
+      );
+    }
 
-      },
-      err => {
-        console.error('CompanyComponent: error finding company');
-        // add redirect to company list
-      }
-    );
   }
 
   showProjectDetails(project){
@@ -148,7 +164,12 @@ export class CompanyComponent implements OnInit {
   }
 
   showRequestNewProject(){
-    this.newProject = new Project();
+    if (this.userSvc.checkLogin()){
+      this.newProject = new Project();
+    } else {
+      this.router.navigateByUrl('/login');
+
+    }
   }
 
   saveRequestNewProject(){
