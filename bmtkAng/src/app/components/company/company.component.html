@@ -1,5 +1,11 @@
 <h1>{{aCompany.name}}</h1>
 <h3>{{aCompany.description}}</h3>
+<hr>
+<h5>Type: {{aCompany.type}}</h5>
+<h5>Address: {{aCompany.address}}</h5>
+<h5>Phone: {{aCompany.phone}}</h5>
+<hr><hr>
+
 
 <!-- owner relationship, need qual from user -->
 <div *ngIf="projectsForCompany.length > 0">

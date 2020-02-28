@@ -1,3 +1,4 @@
+import { CompanyNameSearchPipe } from './../../pipes/company-name-search.pipe';
 import { CompanyService } from './../../services/company/company.service';
 import { Company } from './../../models/company';
 import { Component, OnInit } from '@angular/core';
@@ -13,8 +14,10 @@ export class HomeComponent implements OnInit {
   newCompany: Company;
   companyCreated: string;
   companies: Company[] = [];
+  searchTerm: string = "";
+  isSearching: Boolean = false;
 
-  constructor(private router: Router, private compSvc: CompanyService) { }
+  constructor(private router: Router, private compSvc: CompanyService, private companyNameSearch: CompanyNameSearchPipe) { }
 
   ngOnInit(): void {
     this.reload();
@@ -51,6 +54,15 @@ reload(){
 
 goToCompanyPage(cid){
   this.router.navigateByUrl('/company/'+cid);
+}
+
+searchByCompanyName(){
+  this.isSearching = true;
+}
+
+showAll(){
+  this.isSearching = false;
+  this.searchTerm = "";
 }
 
 }
