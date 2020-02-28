@@ -30,6 +30,13 @@
 
 <!-- if user logged in, show account information -->
 <div *ngIf="currentUser != null">
+  <!-- div for account info -->
+  <div>
+    <h3>Name: {{currentUser.userDetail.firstName}} {{currentUser.userDetail.lastName}} </h3>
+
+
+
+  </div>
   <!-- div for owner relationships -->
   <div>
     <table>
@@ -41,7 +48,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let company of companiesOwned">
-          <td>{{company.name}}</td>
+          <td (click)="goToCompanyPage(company.id)">{{company.name}}</td>
           <td>{{company.description}}</td>
         </tr>
       </tbody>

@@ -30,10 +30,19 @@ public class UserController {
 	private UserService userSvc;
 	
 	
-	@GetMapping(value = "user")
-	public List<User> listUser() {
-		return  userSvc.listAllUser();
+//	@GetMapping(value = "user")
+//	public List<User> listUser() {
+//		return  userSvc.listAllUser();
+//	}
+	
+	@GetMapping(value="user")
+	public User getUser(HttpServletRequest req,
+			HttpServletResponse res,
+			Principal principal) {
+		User user = userSvc.getUserByPrincipal(principal.getName());
+		return user;
 	}
+	
 	
 	@PostMapping(value = "user")
 	public User createUser(@RequestBody User user){

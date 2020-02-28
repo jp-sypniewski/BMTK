@@ -35,6 +35,16 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return userRepo.findById(id);
 	}
+	
+	@Override
+	public User getUserByPrincipal(String username) {
+		List<User> users = userRepo.findByUsername(username);
+		User user = null;
+		if (users.size() > 0) {
+			user = users.get(0);
+		}
+		return user;
+	}
 
 	@Override
 	public User createUser(User user) {

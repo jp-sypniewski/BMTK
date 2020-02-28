@@ -56,4 +56,9 @@ reload(){
     }
   );
 }
+
+goToCompanyPage(cid){
+  this.router.navigateByUrl('/company/'+cid);
+}
+
 }

@@ -1,3 +1,4 @@
+import { Project } from './../../models/project';
 import { UserService } from 'src/app/services/user/user.service';
 import { Injectable } from '@angular/core';
 import { Company } from "../../models/company";
@@ -54,7 +55,41 @@ export class CompanyService {
     );
   }
 
+  getMyCompanies(){
+    const credentials = this.userSvc.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Basic ${credentials}` // might have to add back x-reqeusted-with 'xmlhttprequest'
+      })
+    };
+    return this.http.get<Company[]>(this.baseUrl + 'api/myCompanies', httpOptions)
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
 
+        return throwError('CompanyService.getMyCompanies(): error getting all companies.');
+      })
+    );
+  }
+
+  getProjectsByCompany(cid){
+    const credentials = this.userSvc.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Basic ${credentials}` // might have to add back x-reqeusted-with 'xmlhttprequest'
+      })
+    };
+    return this.http.get<Project[]>(this.baseUrl + 'api/companies/'+cid+'/projects', httpOptions)
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+
+        return throwError('CompanyService.getProjectsByCompany(): error getting all projects for a company.');
+      })
+    );
+  }
 
   createCompany(company){
     console.log(company);
