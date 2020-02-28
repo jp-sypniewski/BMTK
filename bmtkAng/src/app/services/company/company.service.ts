@@ -123,18 +123,12 @@ export class CompanyService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-<<<<<<< HEAD
-        'Authorization': `Basic ${credentials}` // might have to add back x-reqeusted-with 'xmlhttprequest'
+        'Authorization': `Basic ${credentials}`
       })
     };
     return this.http.put<Company>(this.baseUrl+'api/companies/'+company.id, company, httpOptions)
 
-=======
-        'Authorization': `Basic ${credentials}`
-      })
-    };
-    return this.http.put<Company>(this.baseUrl+'api/company/', company, httpOptions)
->>>>>>> 8389bf09fdf474da4d63d94f8bf9e3434c8f6b18
+
     .pipe(
       catchError((err: any) => {
         console.log(err);
