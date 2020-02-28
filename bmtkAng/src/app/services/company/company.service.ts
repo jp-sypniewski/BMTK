@@ -114,8 +114,14 @@ export class CompanyService {
   }
 
   updateCompany(company){
-
-    return this.http.put<Company>(this.baseUrl+'api/company/', company)
+    const credentials = this.userSvc.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Basic ${credentials}` // might have to add back x-reqeusted-with 'xmlhttprequest'
+      })
+    };
+    return this.http.put<Company>(this.baseUrl+'api/companies/'+company.id, company, httpOptions)
 
     .pipe(
       catchError((err: any) => {

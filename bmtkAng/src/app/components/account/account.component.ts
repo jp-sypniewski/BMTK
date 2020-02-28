@@ -19,13 +19,15 @@ export class AccountComponent implements OnInit {
   newUser: User = new User();
   newUserDetail: UserDetail = new UserDetail();
   userCreated: String = new String();
+  userTable: boolean = false;
+  companyTable: boolean = false;
+  editCompany: Company = new Company();
 
   currentUser: User;
 
   companiesOwned: Company[] = [];
   tasksToDo: Task[] = [];
   projectsRequested: Project[] = [];
-
 
   constructor(private router: Router,
     private userSvc: UserService, private compSvc: CompanyService, private projSvc: ProjectService) { }
@@ -56,6 +58,7 @@ export class AccountComponent implements OnInit {
       this.projSvc.getMyProjectRequests().subscribe(
         data => {
           this.projectsRequested= data;
+          console.log()
         },
         err => {
 
@@ -63,20 +66,12 @@ export class AccountComponent implements OnInit {
         }
       );
 
-
-
-
-
-
-
     } else {
       this.newUser = new User();
       this.newUserDetail = new UserDetail();
     }
 
-
   }
-
 
   saveCreateUser(){
     this.newUser.userDetail = this.newUserDetail;
@@ -92,6 +87,38 @@ export class AccountComponent implements OnInit {
 
   goToCompanyPage(cid){
     this.router.navigateByUrl('/company/'+cid);
+  }
+
+  displayUserInfo(){
+    this.userTable = true;
+  }
+
+  displayCompanyInfo(cid){
+    this.companyTable = true;
+    this.compSvc.getSingleCompany(cid).subscribe(
+      data => {
+        this.editCompany = data;
+          err => {
+            console.error('CompanyComponent: error getting company by id');
+          }
+        }
+        );
+
+  }
+
+  editUserInfo(){}
+
+  editCompanyInfo(){
+    this.compSvc.updateCompany(this.editCompany).subscribe(
+      data => {
+        this.editCompany = null;
+        this.companyTable = false;
+        this.router.navigateByUrl('/account');
+        },
+        err => {
+          console.error('CompanyComponent: error editing company');
+        }
+        );
   }
 
 }

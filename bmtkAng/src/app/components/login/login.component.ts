@@ -20,8 +20,6 @@ export class LoginComponent implements OnInit {
   }
 
   logIn(form: NgForm){
-
-
     this.userSvc.login(form.value.username, form.value.password).subscribe(
       next => {
         console.log('RegisterComponent.register(): user logged in');

@@ -11,11 +11,9 @@ import { UserListComponent } from 'src/app/components/user-list/user-list.compon
 export class UserService {
   [x: string]: any;
 
-
   // go back and update with environment information
 
   baseUrl = 'http://localhost:8085/';
-
 
   constructor(private http: HttpClient ) { }
 

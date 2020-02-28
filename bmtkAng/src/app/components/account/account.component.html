@@ -23,7 +23,6 @@
     <label for="phone">phone:</label>
     <input type="text" id="phone" name="phone" [(ngModel)]="newUserDetail.phone"><br><br>
     <button (click)="saveCreateUser()">Create Account</button>
-
   </form>
   <div id = "createUserError">{{userCreated}}</div>
 </div>
@@ -34,34 +33,31 @@
   <div>
     <h3>Name: {{currentUser.userDetail.firstName}} {{currentUser.userDetail.lastName}} </h3>
 
-
-
   </div>
   <!-- div for owner relationships -->
   <div>
-    <table>
+    <table class = "table-hover" width = 1000px>
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Description</th>
+          <th>Company Name</th>
+          <th>Company Description</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let company of companiesOwned">
           <td (click)="goToCompanyPage(company.id)">{{company.name}}</td>
           <td>{{company.description}}</td>
+          <td><button type="button" class="btn btn-primary" (click)="displayCompanyInfo(company.id)">Edit Company Information</button></td>
         </tr>
       </tbody>
     </table>
   </div>
-  <!-- div for employee relationships -->
-  <!-- div for customer relationships -->
   <div>
-    <table>
+    <table class = "table-hover" width = 1000px>
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Company</th>
+          <th>Project Name</th>
+          <th>Project Company</th>
         </tr>
       </thead>
       <tbody>
@@ -71,8 +67,50 @@
         </tr>
       </tbody>
     </table>
-
   </div>
-
+  <button type="button" class="btn btn-primary" (click)="displayUserInfo()">Edit Account Information</button>
   <!-- show user information -->
+</div>
+
+<div *ngIf="userTable == true">
+  <form>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" placeholder="{{currentUser.username}}" required [(ngModel)]="currentUser.username"><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="{{currentUser.password}}" required [(ngModel)]="currentUser.password"><br><br>
+    <label for="firstName">First name:</label>
+    <input type="text" id="firstName" name="firstName" placeholder="{{currentUser.userDetail.firstName}}" required [(ngModel)]="currentUser.userDetail.firstName"><br><br>
+    <label for="lastName">Last name:</label>
+    <input type="text" id="lastName" name="lastName" placeholder="{{currentUser.userDetail.lastName}}" required [(ngModel)]="currentUser.userDetail.lastName"><br><br>
+    <label for="email">email:</label>
+    <input type="text" id="email" name="email" placeholder="{{currentUser.userDetail.email}}" required [(ngModel)]="currentUser.userDetail.email"><br><br>
+    <label for="street">street address:</label>
+    <input type="text" id="street" name="street" placeholder="{{currentUser.userDetail.street}}" required [(ngModel)]="currentUser.userDetail.street"><br><br>
+    <label for="city">city:</label>
+    <input type="text" id="city" name="city" placeholder="{{currentUser.userDetail.city}}" required [(ngModel)]="currentUser.userDetail.city"><br><br>
+    <label for="zipcode">zipcode:</label>
+    <input type="text" id="zipcode" name="zipcode" placeholder="{{currentUser.userDetail.zipcode}}" [(ngModel)]="currentUser.userDetail.zipcode"><br><br>
+    <label for="country">country:</label>
+    <input type="text" id="country" name="country" placeholder="{{currentUser.userDetail.country}}"[(ngModel)]="currentUser.userDetail.country"><br><br>
+    <label for="phone">phone:</label>
+    <input type="text" id="phone" name="phone" placeholder="{{currentUser.userDetail.phone}}"[(ngModel)]="currentUser.userDetail.phone"><br><br>
+    <button (click)="editUserInfo()">Edit User Account</button>
+  </form>
+</div>
+<div *ngIf="companyTable == true">
+  <form>
+    <label for="companyname">Companyname:</label>
+    <input size = "50" type="text" id="companyname" name="companyname" placeholder="{{editCompany.name}}" required [(ngModel)]="editCompany.name"><br><br>
+    <label for="companydescription">Company Description:</label>
+    <input size = "100" type="companydescription" id="companydescription" name="companydescription" placeholder="{{editCompany.description}}" required [(ngModel)]="editCompany.description"><br><br>
+    <label for="companytype">Company Type:</label>
+    <input type="text" id="companytype" name="companytype" placeholder="{{editCompany.type}}" required [(ngModel)]="editCompany.type"><br><br>
+    <label for="companyaddress">Company Address:</label>
+    <input size = "50" type="text" id="companyaddress" name="companyaddress" placeholder="{{editCompany.address}}" required [(ngModel)]="editCompany.address"><br><br>
+    <label for="companyphone">Company Phone:</label>
+    <input type="text" id="companyphone" name="companyphone" placeholder="{{editCompany.phone}}" required [(ngModel)]="editCompany.phone"><br><br>
+    <label for="companyurl">Company URL:</label>
+    <input type="text" id="companyurl" name="companyurl" placeholder="{{editCompany.companyUrl}}" required [(ngModel)]="editCompany.companyUrl"><br><br>
+    <button (click)="editCompanyInfo()">Edit Company Information</button>
+  </form>
 </div>
