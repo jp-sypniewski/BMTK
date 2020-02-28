@@ -24,4 +24,6 @@ List<Company> listMyCompanies(String username);
 
 Set<Customer> getMyCustomers(int id);
 
+Boolean isCompanyOwner(int id, String username);
+
 }

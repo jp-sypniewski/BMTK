@@ -26,6 +26,7 @@ export class CompanyComponent implements OnInit {
   newTask: Task;
   editingATask: Boolean;
   id: Number;
+  isOwner: Boolean = false;
 
 
   empTasksToDo: Task[] = [];
@@ -67,39 +68,57 @@ export class CompanyComponent implements OnInit {
     if (this.userSvc.checkLogin()){
 
       this.compSvc.getSingleCompany(id).subscribe(
-        data => {
-          this.aCompany = data;
-          this.compSvc.getProjectsByCompany(data.id).subscribe(
-            data => {
+        compData => {
+          this.aCompany = compData;
+          this.compSvc.getProjectsByCompany(compData.id).subscribe(
+            projData => {
+              console.log("right before the owner check");
               // an isOwner bool check
-              this.projectsForCompany = data;
+
+              this.compSvc.isOwner(this.aCompany.id).subscribe(
+                isOwnerCheck => {
+                  if (isOwnerCheck){
+                    this.projectsForCompany = projData;
+                  }
+                },
+                err => {
+                  console.log("error checking for owner");
+                }
+              );
+
 
               this.empTasksToDo = [];
-              for (let i = 0; i < data.length; i++){
-                for (let j = 0; j < data[i].tasks.length; j++){
-                  this.empTasksToDo.push(data[i].tasks[j])
+              for (let i = 0; i < projData.length; i++){
+                for (let j = 0; j < projData[i].tasks.length; j++){
+                  this.empTasksToDo.push(projData[i].tasks[j])
                 }
               }
-            },
-            err => {
-              console.error('CompanyComponent: error getting projects by company');
-            }
-          );
-
-          this.compSvc.getProjectsByCompany(data.id).subscribe(
-            data => {
               this.projectsRequested = [];
-              for (let i = 0; i < data.length; i++){
-                if (data[i].customer.userDetail.id === this.currentUser.userDetail.id){
-                  this.projectsRequested.push(data[i]);
+              for (let i = 0; i < projData.length; i++){
+                if (projData[i].customer.userDetail.id === this.currentUser.userDetail.id){
+                  this.projectsRequested.push(projData[i]);
                 }
               }
-
             },
             err => {
               console.error('CompanyComponent: error getting projects by company');
             }
           );
+
+          // this.compSvc.getProjectsByCompany(compData.id).subscribe(
+          //   projData => {
+          //     this.projectsRequested = [];
+          //     for (let i = 0; i < projData.length; i++){
+          //       if (projData[i].customer.userDetail.id === this.currentUser.userDetail.id){
+          //         this.projectsRequested.push(projData[i]);
+          //       }
+          //     }
+
+          //   },
+          //   err => {
+          //     console.error('CompanyComponent: error getting projects by company');
+          //   }
+          // );
 
         },
         err => {

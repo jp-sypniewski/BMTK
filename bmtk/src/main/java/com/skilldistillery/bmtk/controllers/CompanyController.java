@@ -58,6 +58,30 @@ public class CompanyController {
 		return compSvc.listCompanyById(id);
 	}
 	
+	@GetMapping(value="companies/{id}/owner")
+	public Boolean checkCompanyOwner(HttpServletRequest req,
+			HttpServletResponse res,
+			Principal principal,
+			@PathVariable("id") Integer id) {
+		Boolean isOwner = false;
+			try {
+				isOwner = compSvc.isCompanyOwner(id, principal.getName());
+				if (isOwner) {
+					res.setStatus(200);
+					return isOwner;
+				} else {
+					res.setStatus(200);
+					return isOwner;
+				}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				res.setStatus(400);
+				return isOwner;
+			}
+
+	}
+	
 	@GetMapping(value="companies/{id}/customers")
 	public Set<Customer> getCustomersForACompany(HttpServletRequest req,
 			HttpServletResponse res,
