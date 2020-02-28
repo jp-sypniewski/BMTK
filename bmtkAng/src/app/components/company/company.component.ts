@@ -24,6 +24,7 @@ export class CompanyComponent implements OnInit {
   aCompany: Company = new Company();
   projectsForCompany: Project[] = [];
   selectedProject: Project;
+  editingProject: Boolean = false;
   newTask: Task;
   editingATask: Boolean;
 
@@ -205,6 +206,21 @@ export class CompanyComponent implements OnInit {
         console.error('CompanyComponent: error saving task update');
       }
     );
+  }
+
+  showEditProject(project){
+    this.editingProject = true;
+  }
+
+  saveEditProject(){
+    this.projSvc.updateProject(this.selectedProject, this.aCompany.id, this.selectedProject.id).subscribe(
+      data => {
+        this.reload(this.aCompany.id);
+      },
+      err => {
+        console.error('CompanyComponent: error saving project update');
+      }
+    )
   }
 
 }

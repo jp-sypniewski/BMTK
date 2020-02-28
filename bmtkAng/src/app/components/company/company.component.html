@@ -20,11 +20,27 @@
   </table>
   <hr>
 
+  <!-- show edit project -->
+
+  <div *ngIf="editingProject">
+    <form>
+      <h3>Edit {{selectedProject.name}}:</h3>
+      <label for="name">Name:</label>
+      <input type="text" name="name" required [(ngModel)]="selectedProject.name"><br>
+      <label for="active">Active:</label>
+      <input type="checkbox" name="active" required [(ngModel)]="selectedProject.active"><br>
+      <button (click)="saveEditProject()">Save Edits for {{selectedProject.name}}</button>
+    </form>
+    <hr>
+  </div>
+
   <!-- single project view with tasks -->
 
-  <div *ngIf="selectedProject != null">
+  <div *ngIf="selectedProject != null && !editingProject">
     <h3>Selected Project: {{selectedProject.name}}</h3>
 
+    <button (click)="showEditProject(selectedProject)">Edit {{selectedProject.name}}</button>
+    <h3>{{selectedProject.name}} Tasks</h3>
     <table>
       <thead>
         <tr>
