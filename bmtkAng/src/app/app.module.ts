@@ -24,7 +24,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { CompanyComponent } from './components/company/company.component';
 import { AccountComponent } from './components/account/account.component';
 
-
+import { DragScrollModule } from 'ngx-drag-scroll';
 
 
 @NgModule({
@@ -47,7 +47,8 @@ import { AccountComponent } from './components/account/account.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    DragScrollModule,
 
   ],
   providers: [UserService, EmployeeService, ProjectService, TaskService],

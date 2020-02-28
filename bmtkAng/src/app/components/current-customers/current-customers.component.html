@@ -1,1 +1,15 @@
-<h3> We love BMTK</h3>
+<div id = "head">
+<h1>We Love BMTK</h1>
+</div>
+<div>
+<drag-scroll #nav>
+  <img drag-scroll-item src="../../../assets/images/uptown.png" width="300" height="300"/>
+  <img drag-scroll-item src="../../../assets/images/hotswitch.png" width="300" height="300"/>
+  <img drag-scroll-item src="../../../assets/images/longvalley.png" width="300" height="300"/>
+  <img drag-scroll-item src="../../../assets/images/countyhvac.png" width="300" height="300"/>
+  <img drag-scroll-item src="../../../assets/images/fastpaint.png" width="300" height="300">
+  <img drag-scroll-item src="../../../assets/images/bobsplumbing.png" width="300" height="300">
+</drag-scroll>
+<button type="button" class="btn btn-primary" (click)="moveLeft()">Left</button>
+<button type="button" class="btn btn-primary" (click)="moveRight()">Right</button>
+</div>

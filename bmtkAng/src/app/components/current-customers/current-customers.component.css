@@ -1,0 +1,14 @@
+button{
+    height:50px;
+    width:100px;
+    margin: 5px;
+    position:relative;
+    top:100%;
+    left:50%;
+}
+#head{
+  text-align: center;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+
+}
+
