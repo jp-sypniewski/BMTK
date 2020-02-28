@@ -15,11 +15,13 @@ export class Task {
   priority: string;
   paymentDetails: string;
   price: Float64Array;
+  active: Boolean;
 
   constructor(id?: number, name?: string, description?: string, dueDate?: Date,
     paid?: boolean, createdAt?: Date, updatedAt?: Date, template?: boolean,
     startDate?: Date, completeDate?: Date, status?: string, type?: string,
-    priority?: string, paymentDetails?: string, price?: Float64Array){
+    priority?: string, paymentDetails?: string, price?: Float64Array,
+    active?: Boolean){
 
       this.id = id;
       this.name = name;
@@ -36,6 +38,7 @@ export class Task {
       this.priority = priority;
       this.paymentDetails = paymentDetails;
       this.price = price;
+      this.active = active;
   }
 
 

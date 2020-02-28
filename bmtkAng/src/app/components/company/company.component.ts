@@ -1,3 +1,4 @@
+import { TaskIsActivePipe } from './../../pipes/task-is-active.pipe';
 import { IsCustomerPipe } from './../../pipes/is-customer.pipe';
 import { User } from 'src/app/models/user';
 import { TaskService } from './../../services/task/task.service';
@@ -38,7 +39,7 @@ export class CompanyComponent implements OnInit {
 
   constructor(private router: Router, private userSvc: UserService, private compSvc: CompanyService,
     private currentRoute: ActivatedRoute, private projSvc: ProjectService, private taskSvc: TaskService,
-    private isCustomer: IsCustomerPipe) { }
+    private isCustomer: IsCustomerPipe, private taskIsActive: TaskIsActivePipe) { }
 
   ngOnInit(): void {
     if (this.currentRoute.snapshot.paramMap.get('id')){
@@ -138,7 +139,12 @@ export class CompanyComponent implements OnInit {
       data => {
         this.newTask = null;
         this.reload(this.aCompany.id);
-        this.selectedProject.tasks.push(data);
+        for (let i = 0; i < this.aCompany.projects.length; i++){
+          if (this.selectedProject.id === this.aCompany.projects[i].id){
+            this.selectedProject = this.aCompany.projects[i];
+          }
+        }
+        // this.selectedProject.tasks.push(data);
       },
       err => {
         console.error('CompanyComponent: error saving new task');
@@ -184,6 +190,19 @@ export class CompanyComponent implements OnInit {
       },
       err => {
         console.error('CompanyComponent: error saving new project');
+      }
+    );
+  }
+
+  disableTask(task){
+    task.active = false;
+    this.taskSvc.updateTask(task, this.selectedProject.id, task.id).subscribe(
+      data => {
+        this.newTask = null;
+        this.reload(this.aCompany.id);
+      },
+      err => {
+        console.error('CompanyComponent: error saving task update');
       }
     );
   }
