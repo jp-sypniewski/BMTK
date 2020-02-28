@@ -18,13 +18,14 @@ export class CompanyService {
     private userSvc: UserService) { }
 
 
-
+  // get all companies, used in home component
+  // credentials created in method, not added
   index(){
     const credentials = this.userSvc.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Basic ${credentials}` // might have to add back x-reqeusted-with 'xmlhttprequest'
+        'Authorization': `Basic ${credentials}`
       })
     };
     return this.http.get<Company[]>(this.baseUrl + 'api/companies')
@@ -37,98 +38,127 @@ export class CompanyService {
     );
   }
 
+  // get one company, used in company component
+  // credentials created in method, not added
   getSingleCompany(id){
     const credentials = this.userSvc.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Basic ${credentials}` // might have to add back x-reqeusted-with 'xmlhttprequest'
+        'Authorization': `Basic ${credentials}`
       })
     };
     return this.http.get<Company>(this.baseUrl + 'api/companies/' + id)
     .pipe(
       catchError((err: any) => {
         console.log(err);
-
-        return throwError('CompanyService.index(): error getting all companies.');
+        return throwError('CompanyService.getSingleCompany(id): error getting one company.');
       })
     );
   }
 
+  // gets the companies for an owner
+  // credentials passed to method
   getMyCompanies(){
     const credentials = this.userSvc.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Basic ${credentials}` // might have to add back x-reqeusted-with 'xmlhttprequest'
+        'Authorization': `Basic ${credentials}`
       })
     };
     return this.http.get<Company[]>(this.baseUrl + 'api/myCompanies', httpOptions)
     .pipe(
       catchError((err: any) => {
         console.log(err);
-
         return throwError('CompanyService.getMyCompanies(): error getting all companies.');
       })
     );
   }
 
+  // gets projects for a company
+  // credentials passed to method (req?)
   getProjectsByCompany(cid){
     const credentials = this.userSvc.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Basic ${credentials}` // might have to add back x-reqeusted-with 'xmlhttprequest'
+        'Authorization': `Basic ${credentials}`
       })
     };
     return this.http.get<Project[]>(this.baseUrl + 'api/companies/'+cid+'/projects', httpOptions)
     .pipe(
       catchError((err: any) => {
         console.log(err);
-
         return throwError('CompanyService.getProjectsByCompany(): error getting all projects for a company.');
       })
     );
   }
 
+  // creates a company, requires company input
+  // credentials passed to method (req to tie owner to company)
   createCompany(company){
-    console.log(company);
     const credentials = this.userSvc.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Basic ${credentials}` // might have to add back x-reqeusted-with 'xmlhttprequest'
+        'Authorization': `Basic ${credentials}`
       })
     };
-
      return this.http.post<Company>(this.baseUrl+'api/companies', company, httpOptions)
-
     .pipe(
       catchError((err: any) => {
         console.log(err);
 
-        return throwError('AuthService.register(): error registering company.');
+        return throwError('CompanyService.createCompany(): error registering company.');
 
       })
     );
   }
 
+  // updates a company, requires company input
+  // credentials passed to method (creds must already be tied to company for update to occur)
   updateCompany(company){
     const credentials = this.userSvc.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
+<<<<<<< HEAD
         'Authorization': `Basic ${credentials}` // might have to add back x-reqeusted-with 'xmlhttprequest'
       })
     };
     return this.http.put<Company>(this.baseUrl+'api/companies/'+company.id, company, httpOptions)
 
+=======
+        'Authorization': `Basic ${credentials}`
+      })
+    };
+    return this.http.put<Company>(this.baseUrl+'api/company/', company, httpOptions)
+>>>>>>> 8389bf09fdf474da4d63d94f8bf9e3434c8f6b18
     .pipe(
       catchError((err: any) => {
         console.log(err);
+        return throwError('CompanyService.updateCompany(): error updating company.');
+      })
+    );
+  }
 
-        return throwError('AuthService.register(): error registering company.');
-
+  // returns boolean if the user in creds is the owner of a company
+  // id passed is company id
+  // credentials passed to method
+  isOwner(id){
+    const credentials = this.userSvc.getCredentials();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Basic ${credentials}`
+      })
+    };
+    return this.http.get<Boolean>(this.baseUrl+'api/companies/'+id+'/owner', httpOptions)
+    .pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('CompanyService.isOwner(): error confirming owner.');
       })
     );
   }

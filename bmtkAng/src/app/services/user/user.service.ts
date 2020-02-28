@@ -17,19 +17,17 @@ export class UserService {
 
   constructor(private http: HttpClient ) { }
 
-  login(username, password) {
-    // Make credentials
-    const credentials = this.generateBasicAuthCredentials(username, password);
 
-    console.log(credentials);
-    // Send credentials as Authorization header (this is spring security convention for basic auth)
+  // takes strings for username, pw, creates credentials and verifies
+  // upon success, creds are saved locally
+  login(username, password) {
+    const credentials = this.generateBasicAuthCredentials(username, password);
     const httpOptions = {
       headers: new HttpHeaders({
          'Authorization': `Basic ${credentials}`,
          'X-Requested-With': 'XMLHttpRequest'
        })
     };
-           // create request to authenticate credentials
    return this.http
    .get(this.baseUrl + 'authenticate', httpOptions)
    .pipe(
@@ -39,48 +37,49 @@ export class UserService {
      }),
      catchError((err: any) => {
        console.log(err);
-       return throwError('AuthService.login(): Error logging in.');
+       return throwError('UserService.login(): Error logging in.');
      })
    );
   }
 
+  // passes in user creds, returns user object (with user detail)
+  // used on account, company pages to display/compare user information
+  // does not include password in returned json
   getUserInfo(){
     const credentials = this.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'X-Requested-With': 'XMLHttpRequest',
-        'Authorization': `Basic ${credentials}` // might have to add back x-reqeusted-with 'xmlhttprequest'
+        'Authorization': `Basic ${credentials}`
       })
     };
     return this.http.get<User>(this.baseUrl + 'api/user', httpOptions)
     .pipe(
       catchError((err: any) => {
         console.log(err);
-
         return throwError('UserService.getUserInfo(): error getting user info.');
       })
     );
   }
 
+// takes a user object and passes to db, can fail if username already taken
 createUser(user){
-
    return this.http.post<User>(this.baseUrl+'register', user)
   .pipe(
     catchError((err: any) => {
       console.log(err);
-
-      return throwError('AuthService.register(): error registering user.');
-
+      return throwError('UserService.createUser(): error registering user.');
     })
   );
 }
 
+// removes local creds
 logout() {
   localStorage.removeItem('credentials');
-
  }
 
+// checks for local creds
 checkLogin() {
   if (localStorage.getItem('credentials')) {
     return true;
@@ -88,11 +87,12 @@ checkLogin() {
   return false;
  }
 
+ // generates creds (Basic)
 generateBasicAuthCredentials(username, password) {
   return btoa(`${username}:${password}`);
-
  }
 
+ // returns creds to be used in other api calls
 getCredentials() {
   return localStorage.getItem('credentials');
  }
