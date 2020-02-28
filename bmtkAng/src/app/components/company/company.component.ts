@@ -1,3 +1,5 @@
+import { IsCustomerPipe } from './../../pipes/is-customer.pipe';
+import { User } from 'src/app/models/user';
 import { TaskService } from './../../services/task/task.service';
 import { ProjectService } from './../../services/project/project.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -7,6 +9,7 @@ import { UserService } from 'src/app/services/user/user.service';
 import { Task } from './../../models/task';
 import { Project } from './../../models/project';
 import { Component, OnInit } from '@angular/core';
+import { UserDetail } from 'src/app/models/userDetail';
 
 @Component({
   selector: 'app-company',
@@ -14,6 +17,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./company.component.css']
 })
 export class CompanyComponent implements OnInit {
+
+  currentUser: User;
 
   aCompany: Company = new Company();
   projectsForCompany: Project[] = [];
@@ -29,14 +34,31 @@ export class CompanyComponent implements OnInit {
   newProject: Project;
 
   constructor(private router: Router, private userSvc: UserService, private compSvc: CompanyService,
-    private currentRoute: ActivatedRoute, private projSvc: ProjectService, private taskSvc: TaskService) { }
+    private currentRoute: ActivatedRoute, private projSvc: ProjectService, private taskSvc: TaskService,
+    private isCustomer: IsCustomerPipe) { }
 
   ngOnInit(): void {
     if (this.currentRoute.snapshot.paramMap.get('id')){
       let theId = Number(this.currentRoute.snapshot.paramMap.get('id'));
+
+      if (this.userSvc.checkLogin()){
+        this.userSvc.getUserInfo().subscribe(
+          data => {
+            this.currentUser = data;
+          },
+          err => {
+            this.currentUser = new User();
+            this.currentUser.userDetail = new UserDetail();
+            this.currentUser.userDetail.id = 0;
+            console.error('UserComponent.init(): error getting user data with principal.');
+          }
+        );
+      } else {
+        this.currentUser = new User();
+        this.currentUser.userDetail = new UserDetail();
+        this.currentUser.userDetail.id = 0;
+      }
       this.reload(theId);
-
-
 
     }
   }
@@ -62,7 +84,13 @@ export class CompanyComponent implements OnInit {
 
         this.compSvc.getProjectsByCompany(data.id).subscribe(
           data => {
-            this.projectsRequested = data;
+            this.projectsRequested = [];
+            for (let i = 0; i < data.length; i++){
+              if (data[i].customer.userDetail.id === this.currentUser.userDetail.id){
+                this.projectsRequested.push(data[i]);
+              }
+            }
+
           },
           err => {
             console.error('CompanyComponent: error getting projects by company');

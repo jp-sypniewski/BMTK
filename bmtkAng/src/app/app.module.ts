@@ -1,3 +1,4 @@
+import { IsCustomerPipe } from './pipes/is-customer.pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -40,7 +41,8 @@ import { DragScrollModule } from 'ngx-drag-scroll';
     CompanyListComponent,
     NavbarComponent,
     CompanyComponent,
-    AccountComponent
+    AccountComponent,
+    IsCustomerPipe
 
   ],
   imports: [
@@ -51,7 +53,7 @@ import { DragScrollModule } from 'ngx-drag-scroll';
     DragScrollModule,
 
   ],
-  providers: [UserService, EmployeeService, ProjectService, TaskService],
+  providers: [UserService, EmployeeService, ProjectService, TaskService, IsCustomerPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

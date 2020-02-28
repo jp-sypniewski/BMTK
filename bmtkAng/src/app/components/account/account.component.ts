@@ -1,3 +1,4 @@
+import { IsCustomerPipe } from './../../pipes/is-customer.pipe';
 import { ProjectService } from './../../services/project/project.service';
 import { CompanyService } from './../../services/company/company.service';
 import { Project } from './../../models/project';
