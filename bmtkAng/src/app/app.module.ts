@@ -1,3 +1,5 @@
+import { CompanyNameSearchPipe } from './pipes/company-name-search.pipe';
+import { TaskIsActivePipe } from './pipes/task-is-active.pipe';
 import { IsCustomerPipe } from './pipes/is-customer.pipe';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -42,7 +44,9 @@ import { DragScrollModule } from 'ngx-drag-scroll';
     NavbarComponent,
     CompanyComponent,
     AccountComponent,
-    IsCustomerPipe
+    IsCustomerPipe,
+    TaskIsActivePipe,
+    CompanyNameSearchPipe
 
   ],
   imports: [
@@ -53,7 +57,8 @@ import { DragScrollModule } from 'ngx-drag-scroll';
     DragScrollModule,
 
   ],
-  providers: [UserService, EmployeeService, ProjectService, TaskService, IsCustomerPipe],
+  providers: [UserService, EmployeeService, ProjectService, TaskService, IsCustomerPipe, TaskIsActivePipe,
+    CompanyNameSearchPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

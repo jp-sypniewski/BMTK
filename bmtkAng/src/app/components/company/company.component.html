@@ -1,5 +1,11 @@
 <h1>{{aCompany.name}}</h1>
 <h3>{{aCompany.description}}</h3>
+<hr>
+<h5>Type: {{aCompany.type}}</h5>
+<h5>Address: {{aCompany.address}}</h5>
+<h5>Phone: {{aCompany.phone}}</h5>
+<hr><hr>
+
 
 <!-- owner relationship, need qual from user -->
 <div *ngIf="projectsForCompany.length > 0">
@@ -20,26 +26,44 @@
   </table>
   <hr>
 
+  <!-- show edit project -->
+
+  <div *ngIf="editingProject">
+    <form>
+      <h3>Edit {{selectedProject.name}}:</h3>
+      <label for="name">Name:</label>
+      <input type="text" name="name" required [(ngModel)]="selectedProject.name"><br>
+      <label for="active">Active:</label>
+      <input type="checkbox" name="active" required [(ngModel)]="selectedProject.active"><br>
+      <button (click)="saveEditProject()">Save Edits for {{selectedProject.name}}</button>
+    </form>
+    <hr>
+  </div>
+
   <!-- single project view with tasks -->
 
-  <div *ngIf="selectedProject != null">
+  <div *ngIf="selectedProject != null && !editingProject">
     <h3>Selected Project: {{selectedProject.name}}</h3>
 
+    <button (click)="showEditProject(selectedProject)">Edit {{selectedProject.name}}</button>
+    <h3>{{selectedProject.name}} Tasks</h3>
     <table>
       <thead>
         <tr>
           <th>Task Name</th>
           <th>Task Due Date</th>
+          <th>Delete Task</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let task of selectedProject.tasks">
+        <tr *ngFor="let task of selectedProject.tasks | taskIsActive: true">
           <td (click)="showEditTask(task)">{{task.name}}</td>
           <td>{{task.dueDate}}</td>
+          <td><button (click)="disableTask(task)">Delete {{task.name}}</button></td>
         </tr>
       </tbody>
     </table>
-    <button (click)="showCreateTask()">Button to add new task</button>
+    <button (click)="showCreateTask()">Add new task to {{selectedProject.name}}</button>
     <hr>
   </div>
   <!-- add/edit task? -->
@@ -48,27 +72,32 @@
       <h3 *ngIf="!editingATask">New Task Form:</h3>
       <h3 *ngIf="editingATask">Edit Task Form:</h3>
       <label for="name">Name:</label>
-      <input type="text" name="name" required [(ngModel)]="newTask.name"><br><br>
+      <input type="text" name="name" required [(ngModel)]="newTask.name"><br>
       <label for="description">Description:</label>
-      <input type="type" name="description" [(ngModel)]="newTask.description"><br><br>
+      <input type="type" name="description" [(ngModel)]="newTask.description"><br>
       <label for="dueDate">DueDate:</label>
-      <input type="text" name="dueDate" [(ngModel)]="newTask.dueDate"><br><br>
+      <input type="date" name="dueDate" [(ngModel)]="newTask.dueDate"><br>
       <label for="paid">Paid:</label>
-      <input type="text" name="paid" [(ngModel)]="newTask.paid"><br><br>
+      <input type="checkbox" name="paid" [(ngModel)]="newTask.paid"><br>
       <label for="startDate">Start Date:</label>
-      <input type="text" name="startDate" [(ngModel)]="newTask.startDate"><br><br>
+      <input type="date" name="startDate" [(ngModel)]="newTask.startDate"><br>
       <label for="completeDate">Complete Date:</label>
-      <input type="text" name="completeDate" [(ngModel)]="newTask.completeDate"><br><br>
+      <input type="date" name="completeDate" [(ngModel)]="newTask.completeDate"><br>
       <label for="status">Status:</label>
-      <input type="text" name="status" [(ngModel)]="newTask.status"><br><br>
+      <select name="status" [(ngModel)]="newTask.status">
+        <option value="NOTASSIGNED">Not Assigned</option>
+        <option value="ASSIGNED">Assigned</option>
+        <option value="INPROGRESS">In Progress</option>
+        <option value="COMPLETE">Complete</option>
+      </select><br>
       <label for="type">Type:</label>
-      <input type="text" name="type" [(ngModel)]="newTask.type"><br><br>
+      <input type="text" name="type" [(ngModel)]="newTask.type"><br>
       <label for="priority">Priority:</label>
-      <input type="text" name="priority" [(ngModel)]="newTask.priority"><br><br>
+      <input type="text" name="priority" [(ngModel)]="newTask.priority"><br>
       <label for="paymentDetails">Payment Details:</label>
-      <input type="text" name="paymentDetails" [(ngModel)]="newTask.paymentDetails"><br><br>
+      <input type="text" name="paymentDetails" [(ngModel)]="newTask.paymentDetails"><br>
       <label for="price">Price:</label>
-      <input type="text" name="price" [(ngModel)]="newTask.price"><br><br>
+      <input type="number" step="0.01" name="price" [(ngModel)]="newTask.price"><br>
       <button *ngIf="!editingATask" (click)="saveNewTask()">Create New Task</button>
       <button *ngIf="editingATask" (click)="saveEditTask()">Save Task</button>
     </form>

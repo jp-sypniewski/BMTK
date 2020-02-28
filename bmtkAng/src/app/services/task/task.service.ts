@@ -16,6 +16,7 @@ export class TaskService {
   constructor(private http: HttpClient,
     private userSvc: UserService) { }
 
+    // creates a task, takes in project id to tie task to project
     createTask(task, pid){
       const credentials = this.userSvc.getCredentials();
       const httpOptions = {
@@ -24,19 +25,16 @@ export class TaskService {
           'Authorization': `Basic ${credentials}`
         })
       };
-
        return this.http.post<Task>(this.baseUrl+'api/projects/'+pid+'/tasks', task, httpOptions)
-
       .pipe(
         catchError((err: any) => {
           console.log(err);
-
-          return throwError('TaskService.createTask has encountered an error');
-
+          return throwError('TaskService.createTask(): error creating task.');
         })
       );
     }
 
+    // updates a task, takes in project id and task id to confirm correct task is being updated
     updateTask(task, pid, tid){
       const credentials = this.userSvc.getCredentials();
       const httpOptions = {
@@ -45,15 +43,11 @@ export class TaskService {
           'Authorization': `Basic ${credentials}`
         })
       };
-
       return this.http.put<Task>(this.baseUrl+'api/projects/'+pid+'/tasks/'+tid, task, httpOptions)
-
       .pipe(
         catchError((err: any) => {
           console.log(err);
-
-          return throwError('TaskService.updateTask has encountered an error');
-
+          return throwError('TaskService.updateTask(): error updating task.');
         })
       );
     }

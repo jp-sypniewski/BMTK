@@ -1,3 +1,4 @@
+import { CompanyNameSearchPipe } from './../../pipes/company-name-search.pipe';
 import { CompanyService } from './../../services/company/company.service';
 import { Company } from './../../models/company';
 import { Component, OnInit } from '@angular/core';
@@ -10,14 +11,13 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-
-
   newCompany: Company;
   companyCreated: string;
   companies: Company[] = [];
+  searchTerm: string = "";
+  isSearching: Boolean = false;
 
-
-  constructor(private router: Router, private compSvc: CompanyService) { }
+  constructor(private router: Router, private compSvc: CompanyService, private companyNameSearch: CompanyNameSearchPipe) { }
 
   ngOnInit(): void {
     this.reload();
@@ -25,22 +25,17 @@ export class HomeComponent implements OnInit {
 
   showCreateCompany(){
     this.newCompany = new Company();
-
   }
 
   saveCreateCompany(){
     this.companyCreated = "";
-
-
     this.compSvc.createCompany(this.newCompany).subscribe(
       data => {
-        console.log('RegisterComponent.register(): company registered.');
         this.newCompany = null;
-        this.reload();
-        //this.router.navigate(['companynew']);
+        this.goToCompanyPage(data.id);
       },
       err => {
-        console.error('RegisterComponent.register(): error registering.');
+        console.error('HomeComponent.register(): error registering.');
         this.companyCreated = "Error Creating Company";
       }
     );
@@ -52,13 +47,22 @@ reload(){
       return this.companies = data;
     },
     err => {
-      return console.error('Observer got an error: ' + err);
+      return console.error('HomeComponent: Error reloading companies list.');
     }
   );
 }
 
 goToCompanyPage(cid){
   this.router.navigateByUrl('/company/'+cid);
+}
+
+searchByCompanyName(){
+  this.isSearching = true;
+}
+
+showAll(){
+  this.isSearching = false;
+  this.searchTerm = "";
 }
 
 }
