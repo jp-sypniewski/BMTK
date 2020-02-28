@@ -10,12 +10,9 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-
-
   newCompany: Company;
   companyCreated: string;
   companies: Company[] = [];
-
 
   constructor(private router: Router, private compSvc: CompanyService) { }
 
@@ -25,22 +22,17 @@ export class HomeComponent implements OnInit {
 
   showCreateCompany(){
     this.newCompany = new Company();
-
   }
 
   saveCreateCompany(){
     this.companyCreated = "";
-
-
     this.compSvc.createCompany(this.newCompany).subscribe(
       data => {
-        console.log('RegisterComponent.register(): company registered.');
         this.newCompany = null;
-        this.reload();
-        //this.router.navigate(['companynew']);
+        this.goToCompanyPage(data.id);
       },
       err => {
-        console.error('RegisterComponent.register(): error registering.');
+        console.error('HomeComponent.register(): error registering.');
         this.companyCreated = "Error Creating Company";
       }
     );
@@ -52,7 +44,7 @@ reload(){
       return this.companies = data;
     },
     err => {
-      return console.error('Observer got an error: ' + err);
+      return console.error('HomeComponent: Error reloading companies list.');
     }
   );
 }

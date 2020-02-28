@@ -25,6 +25,8 @@ export class CompanyComponent implements OnInit {
   selectedProject: Project;
   newTask: Task;
   editingATask: Boolean;
+
+
   id: Number;
   isOwner: Boolean = false;
 
@@ -66,15 +68,13 @@ export class CompanyComponent implements OnInit {
 
   reload(id){
     if (this.userSvc.checkLogin()){
-
+      // if a user is signed in, will display appropriate company data
       this.compSvc.getSingleCompany(id).subscribe(
         compData => {
           this.aCompany = compData;
           this.compSvc.getProjectsByCompany(compData.id).subscribe(
             projData => {
-              console.log("right before the owner check");
-              // an isOwner bool check
-
+              // assigns projects into array to display if the user is the owner
               this.compSvc.isOwner(this.aCompany.id).subscribe(
                 isOwnerCheck => {
                   if (isOwnerCheck){
@@ -82,17 +82,17 @@ export class CompanyComponent implements OnInit {
                   }
                 },
                 err => {
-                  console.log("error checking for owner");
+                  console.log("CompanyComponent: error checking for owner");
                 }
               );
-
-
+              // assigns tasks into array to display (for employee, ????)
               this.empTasksToDo = [];
               for (let i = 0; i < projData.length; i++){
                 for (let j = 0; j < projData[i].tasks.length; j++){
                   this.empTasksToDo.push(projData[i].tasks[j])
                 }
               }
+              // assigns projects into array to display if the user is the customer for a given company project
               this.projectsRequested = [];
               for (let i = 0; i < projData.length; i++){
                 if (projData[i].customer.userDetail.id === this.currentUser.userDetail.id){
@@ -104,26 +104,9 @@ export class CompanyComponent implements OnInit {
               console.error('CompanyComponent: error getting projects by company');
             }
           );
-
-          // this.compSvc.getProjectsByCompany(compData.id).subscribe(
-          //   projData => {
-          //     this.projectsRequested = [];
-          //     for (let i = 0; i < projData.length; i++){
-          //       if (projData[i].customer.userDetail.id === this.currentUser.userDetail.id){
-          //         this.projectsRequested.push(projData[i]);
-          //       }
-          //     }
-
-          //   },
-          //   err => {
-          //     console.error('CompanyComponent: error getting projects by company');
-          //   }
-          // );
-
         },
         err => {
           console.error('CompanyComponent: error finding company');
-          // add redirect to company list
         }
       );
     } else {
@@ -133,21 +116,22 @@ export class CompanyComponent implements OnInit {
         },
         err => {
           console.error('CompanyComponent: error finding company');
-          // add redirect to company list
         }
       );
     }
-
   }
+
 
   showProjectDetails(project){
     this.selectedProject = project;
   }
 
+
   showCreateTask(){
     this.newTask = new Task();
     this.editingATask = false;
   }
+
 
   saveNewTask(){
     this.taskSvc.createTask(this.newTask, this.selectedProject.id).subscribe(
@@ -158,16 +142,16 @@ export class CompanyComponent implements OnInit {
       },
       err => {
         console.error('CompanyComponent: error saving new task');
-        // add redirect to company list
       }
     );
-
   }
+
 
   showEditTask(task){
     this.newTask = task;
     this.editingATask = true;
   }
+
 
   saveEditTask(){
     this.taskSvc.updateTask(this.newTask, this.selectedProject.id, this.newTask.id).subscribe(
@@ -177,19 +161,20 @@ export class CompanyComponent implements OnInit {
       },
       err => {
         console.error('CompanyComponent: error saving task update');
-        // add redirect to company list
       }
     );
   }
 
+  // shows the form to request a new project as a customer
+  // will redirect to login if there is not a logged in user
   showRequestNewProject(){
     if (this.userSvc.checkLogin()){
       this.newProject = new Project();
     } else {
       this.router.navigateByUrl('/login');
-
     }
   }
+
 
   saveRequestNewProject(){
     this.projSvc.createProject(this.newProject, this.aCompany.id).subscribe(
@@ -199,7 +184,6 @@ export class CompanyComponent implements OnInit {
       },
       err => {
         console.error('CompanyComponent: error saving new project');
-        // add redirect to company list
       }
     );
   }
