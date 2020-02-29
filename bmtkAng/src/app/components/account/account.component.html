@@ -64,6 +64,7 @@
         <tr *ngFor="let project of projectsRequested">
           <td>{{project.name}}</td>
           <td>{{project.company.name}}</td>
+          <td><button type="button" class="btn btn-primary" (click)="displayProjectInfo(project)">Edit Project Information</button></td>
         </tr>
       </tbody>
     </table>
@@ -94,12 +95,12 @@
     <input type="text" id="country" name="country" placeholder="{{currentUser.userDetail.country}}"[(ngModel)]="currentUser.userDetail.country"><br><br>
     <label for="phone">phone:</label>
     <input type="text" id="phone" name="phone" placeholder="{{currentUser.userDetail.phone}}"[(ngModel)]="currentUser.userDetail.phone"><br><br>
-    <button (click)="editUserInfo()">Edit User Account</button>
+    <button type="button" class="btn btn-primary" (click)="editUserInfo()">Save User Account</button>
   </form>
 </div>
 <div *ngIf="companyTable == true">
   <form>
-    <label for="companyname">Companyname:</label>
+    <label for="companyname">Company Name:</label>
     <input size = "50" type="text" id="companyname" name="companyname" placeholder="{{editCompany.name}}" required [(ngModel)]="editCompany.name"><br><br>
     <label for="companydescription">Company Description:</label>
     <input size = "100" type="companydescription" id="companydescription" name="companydescription" placeholder="{{editCompany.description}}" required [(ngModel)]="editCompany.description"><br><br>
@@ -111,6 +112,17 @@
     <input type="text" id="companyphone" name="companyphone" placeholder="{{editCompany.phone}}" required [(ngModel)]="editCompany.phone"><br><br>
     <label for="companyurl">Company URL:</label>
     <input type="text" id="companyurl" name="companyurl" placeholder="{{editCompany.companyUrl}}" required [(ngModel)]="editCompany.companyUrl"><br><br>
-    <button (click)="editCompanyInfo()">Edit Company Information</button>
+    <label for="companyactive">Company Active:</label>
+    <input  type="checkbox" id="companyactive" name="companyactive"  required [(ngModel)]="editCompany.active"><br><br>
+    <button type="button" class="btn btn-primary" (click)="editCompanyInfo()">Save Company Information</button>
+  </form>
+</div>
+<div *ngIf="projectTable == true">
+  <form>
+    <label for="projectname">Project Name:</label>
+    <input size = "50" type="text" id="projectname" name="projectname"  required [(ngModel)]="editProject.name"><br><br>
+    <label for="projectactive">Project Active:</label>
+    <input  type="checkbox" id="projectactive" name="projectactive"  required [(ngModel)]="editProject.active"><br><br>
+    <button type="button" class="btn btn-primary" (click)="saveProjectInfo()">Save Project Information</button>
   </form>
 </div>

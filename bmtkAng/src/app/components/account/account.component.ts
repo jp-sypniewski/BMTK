@@ -1,4 +1,3 @@
-import { IsCustomerPipe } from './../../pipes/is-customer.pipe';
 import { ProjectService } from './../../services/project/project.service';
 import { CompanyService } from './../../services/company/company.service';
 import { Project } from './../../models/project';
@@ -22,6 +21,8 @@ export class AccountComponent implements OnInit {
   userCreated: String = new String();
   userTable: boolean = false;
   companyTable: boolean = false;
+  projectTable: boolean = false;
+  editProject: Project = new Project();
   editCompany: Company = new Company();
 
   currentUser: User;
@@ -34,45 +35,51 @@ export class AccountComponent implements OnInit {
     private userSvc: UserService, private compSvc: CompanyService, private projSvc: ProjectService) { }
 
   ngOnInit(): void {
-    if (this.userSvc.checkLogin()){
-      this.userSvc.getUserInfo().subscribe(
-        data => {
-          this.currentUser = data;
-        },
-        err => {
-          this.newUser = new User();
-          this.newUserDetail = new UserDetail();
-          console.error('UserComponent.init(): error getting user data with principal.');
-        }
-      );
-
-      this.compSvc.getMyCompanies().subscribe(
-        data => {
-          this.companiesOwned= data;
-        },
-        err => {
-
-          console.error('UserComponent.init(): error getting user data with principal.');
-        }
-      );
-
-      this.projSvc.getMyProjectRequests().subscribe(
-        data => {
-          this.projectsRequested= data;
-          console.log()
-        },
-        err => {
-
-          console.error('UserComponent.init(): error getting user data with principal.');
-        }
-      );
-
-    } else {
-      this.newUser = new User();
-      this.newUserDetail = new UserDetail();
-    }
-
+    this.reload();
   }
+
+reload(){
+  if (this.userSvc.checkLogin()){
+    this.userSvc.getUserInfo().subscribe(
+      data => {
+        this.currentUser = data;
+      },
+      err => {
+        this.newUser = new User();
+        this.newUserDetail = new UserDetail();
+        console.error('UserComponent.init(): error getting user data with principal.');
+      }
+    );
+
+    this.compSvc.getMyCompanies().subscribe(
+      data => {
+        this.companiesOwned= data;
+      },
+      err => {
+
+        console.error('UserComponent.init(): error getting user data with principal.');
+      }
+    );
+
+    this.projSvc.getMyProjectRequests().subscribe(
+      data => {
+        this.projectsRequested= data;
+        console.log()
+      },
+      err => {
+
+        console.error('UserComponent.init(): error getting user data with principal.');
+      }
+    );
+
+  } else {
+    this.newUser = new User();
+    this.newUserDetail = new UserDetail();
+  }
+
+}
+
+
 
   saveCreateUser(){
     this.newUser.userDetail = this.newUserDetail;
@@ -114,11 +121,38 @@ export class AccountComponent implements OnInit {
       data => {
         this.editCompany = null;
         this.companyTable = false;
-        this.router.navigateByUrl('/account');
+        this.reload();
         },
         err => {
           console.error('CompanyComponent: error editing company');
         }
+        );
+  }
+
+  displayProjectInfo(project){
+    this.projectTable = true;
+    this.editProject = project;
+    /*this.projSvc.getSingleProject(pid).subscribe(
+      data => {
+        this.editCompany = data;
+          err => {
+            console.error('CompanyComponent: error getting company by id');
+          }
+        }
+        );*/
+  }
+
+  saveProjectInfo(){
+    this.projSvc.updateProject(this.editProject, this.editProject.company.id, this.editProject.id).subscribe(
+      data => {
+        this.editProject = null;
+        this.projectTable = false;
+        this.reload();
+      },
+          err => {
+            console.error('ProjectComponent: error getting updating project');
+          }
+
         );
   }
 
