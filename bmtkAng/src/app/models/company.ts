@@ -11,9 +11,11 @@ export class Company {
   description: string;
   companyUrl: string;
   projects: Project[];
+  active: boolean;
 
   constructor(id?: number, name?: string, type?: string, address?: string,
-    phone?: string, description?: string, companyUrl?: string, projects?: Project[]){
+    phone?: string, description?: string, companyUrl?: string, projects?: Project[],
+    active?: boolean){
     this.id = id;
     this.name = name;
     this.type = type;
@@ -22,6 +24,7 @@ export class Company {
     this.description = description;
     this.companyUrl = companyUrl;
     this.projects = projects;
+    this.active = active;
   }
 
 }
