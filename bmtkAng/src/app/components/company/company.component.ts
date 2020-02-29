@@ -24,9 +24,13 @@ export class CompanyComponent implements OnInit {
   aCompany: Company = new Company();
   projectsForCompany: Project[] = [];
   selectedProject: Project;
-  editingProject: Boolean = false;
+  editingProject: Project;
   newTask: Task;
   editingATask: Boolean;
+
+  selectedProjectId: Number = 0;
+  needToPreselectProject: boolean = false;
+
 
 
   id: Number;
@@ -87,6 +91,18 @@ export class CompanyComponent implements OnInit {
                   console.log("CompanyComponent: error checking for owner");
                 }
               );
+              // check for a preselected project and load it
+              if (this.needToPreselectProject){
+                for (let i = 0; i < projData.length; i++){
+                  if (this.selectedProjectId == projData[i].id){
+                    this.selectedProject = projData[i];
+                    this.needToPreselectProject = false;
+                    this.selectedProjectId = 0;
+                    break;
+                  }
+                }
+              }
+
               // assigns tasks into array to display (for employee, ????)
               this.empTasksToDo = [];
               for (let i = 0; i < projData.length; i++){
@@ -138,14 +154,10 @@ export class CompanyComponent implements OnInit {
   saveNewTask(){
     this.taskSvc.createTask(this.newTask, this.selectedProject.id).subscribe(
       data => {
+        this.needToPreselectProject = true;
+        this.selectedProjectId = this.selectedProject.id;
         this.newTask = null;
         this.reload(this.aCompany.id);
-        for (let i = 0; i < this.aCompany.projects.length; i++){
-          if (this.selectedProject.id === this.aCompany.projects[i].id){
-            this.selectedProject = this.aCompany.projects[i];
-          }
-        }
-        // this.selectedProject.tasks.push(data);
       },
       err => {
         console.error('CompanyComponent: error saving new task');
@@ -163,6 +175,8 @@ export class CompanyComponent implements OnInit {
   saveEditTask(){
     this.taskSvc.updateTask(this.newTask, this.selectedProject.id, this.newTask.id).subscribe(
       data => {
+        this.needToPreselectProject = true;
+        this.selectedProjectId = this.selectedProject.id;
         this.newTask = null;
         this.reload(this.aCompany.id);
       },
@@ -199,6 +213,8 @@ export class CompanyComponent implements OnInit {
     task.active = false;
     this.taskSvc.updateTask(task, this.selectedProject.id, task.id).subscribe(
       data => {
+        this.needToPreselectProject = true;
+        this.selectedProjectId = this.selectedProject.id;
         this.newTask = null;
         this.reload(this.aCompany.id);
       },
@@ -209,12 +225,15 @@ export class CompanyComponent implements OnInit {
   }
 
   showEditProject(project){
-    this.editingProject = true;
+    this.editingProject = Object.assign({}, this.selectedProject);;
   }
 
   saveEditProject(){
-    this.projSvc.updateProject(this.selectedProject, this.aCompany.id, this.selectedProject.id).subscribe(
+    this.projSvc.updateProject(this.editingProject, this.aCompany.id, this.selectedProject.id).subscribe(
       data => {
+        this.needToPreselectProject = true;
+        this.selectedProjectId = this.selectedProject.id;
+        this.editingProject = null;
         this.reload(this.aCompany.id);
       },
       err => {
