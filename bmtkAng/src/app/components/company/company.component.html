@@ -32,9 +32,9 @@
     <form>
       <h3>Edit {{selectedProject.name}}:</h3>
       <label for="name">Name:</label>
-      <input type="text" name="name" required [(ngModel)]="selectedProject.name"><br>
+      <input type="text" name="name" required [(ngModel)]="editingProject.name"><br>
       <label for="active">Active:</label>
-      <input type="checkbox" name="active" required [(ngModel)]="selectedProject.active"><br>
+      <input type="checkbox" name="active" required [(ngModel)]="editingProject.active"><br>
       <button (click)="saveEditProject()">Save Edits for {{selectedProject.name}}</button>
     </form>
     <hr>
