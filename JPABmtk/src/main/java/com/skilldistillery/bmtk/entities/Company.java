@@ -50,6 +50,10 @@ public class Company {
 		@OneToMany(mappedBy="company")
 		private List<Project> projects;
 		
+		@JsonIgnore
+		@OneToMany(mappedBy="company")
+		private List<InventoryItem> inventoryItems;
+		
 		
 		//Constructors
 		
@@ -185,6 +189,20 @@ public class Company {
 
 		public void setProjects(List<Project> projects) {
 			this.projects = projects;
+		}
+
+		
+
+
+		public List<InventoryItem> getInventoryItems() {
+			return inventoryItems;
+		}
+
+
+
+
+		public void setInventoryItems(List<InventoryItem> inventoryItems) {
+			this.inventoryItems = inventoryItems;
 		}
 
 

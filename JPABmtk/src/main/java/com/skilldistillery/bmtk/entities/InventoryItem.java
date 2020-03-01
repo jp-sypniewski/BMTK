@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +21,10 @@ public class InventoryItem {
 		private String name;
 		private Integer quantity;
 		private Double value;
+		
+		@ManyToOne
+		@JoinColumn(name="company_id")
+		private Company company;
 		
 		
 		public InventoryItem() {
@@ -58,6 +64,15 @@ public class InventoryItem {
 		}
 		public void setValue(Double value) {
 			this.value = value;
+		}
+		
+		
+		
+		public Company getCompany() {
+			return company;
+		}
+		public void setCompany(Company company) {
+			this.company = company;
 		}
 		@Override
 		public int hashCode() {
