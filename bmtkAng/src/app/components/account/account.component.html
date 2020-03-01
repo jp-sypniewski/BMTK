@@ -102,21 +102,21 @@
       <!-- <label for="username">Username:</label>
       <input type="text" name="username" required [(ngModel)]="currentUser.username"><br> -->
       <label for="firstName">First name:</label>
-      <input type="text" name="firstName" required [(ngModel)]="currentUser.userDetail.firstName"><br>
+      <input type="text" name="firstName" required [(ngModel)]="editUser.userDetail.firstName"><br>
       <label for="lastName">Last name:</label>
-      <input type="text" name="lastName" [(ngModel)]="currentUser.userDetail.lastName"><br>
+      <input type="text" name="lastName" [(ngModel)]="editUser.userDetail.lastName"><br>
       <label for="email">Email:</label>
-      <input type="text" name="email" required [(ngModel)]="currentUser.userDetail.email"><br>
+      <input type="text" name="email" required [(ngModel)]="editUser.userDetail.email"><br>
       <label for="street">Street address:</label>
-      <input type="text" name="street" [(ngModel)]="currentUser.userDetail.street"><br>
+      <input type="text" name="street" [(ngModel)]="editUser.userDetail.street"><br>
       <label for="city">City:</label>
-      <input type="text" name="city" [(ngModel)]="currentUser.userDetail.city"><br>
+      <input type="text" name="city" [(ngModel)]="editUser.userDetail.city"><br>
       <label for="zipcode">Zipcode:</label>
-      <input type="text" name="zipcode" [(ngModel)]="currentUser.userDetail.zipcode"><br>
+      <input type="text" name="zipcode" [(ngModel)]="editUser.userDetail.zipcode"><br>
       <label for="country">Country:</label>
-      <input type="text" name="country" [(ngModel)]="currentUser.userDetail.country"><br>
+      <input type="text" name="country" [(ngModel)]="editUser.userDetail.country"><br>
       <label for="phone">Phone:</label>
-      <input type="text" name="phone" [(ngModel)]="currentUser.userDetail.phone"><br>
+      <input type="text" name="phone" [(ngModel)]="editUser.userDetail.phone"><br>
       <button type="button" class="btn btn-primary" (click)="saveEditUser()">Save User Info</button>
       <button type="button" (click)="cancelAllEditForms()">Cancel</button>
     </form>

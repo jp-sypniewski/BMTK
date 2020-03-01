@@ -83,7 +83,7 @@ updateUser(user){
       'Authorization': `Basic ${credentials}`
     })
   };
-  return this.http.put<User>(this.baseUrl+'api/user/'+user.user.id, user, httpOptions)
+  return this.http.put<User>(this.baseUrl+'api/user/'+user.id, user, httpOptions)
   .pipe(
     catchError((err: any) => {
       console.log(err);

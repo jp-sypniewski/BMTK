@@ -95,12 +95,13 @@ export class AccountComponent implements OnInit {
   }
 
   showEditUser(){
+    this.cancelAllEditForms();
     this.nullHeaderMessage();
     this.editUser = Object.assign({}, this.currentUser);
   }
 
   saveEditUser(){
-    this.userSvc.updateUser(this.currentUser).subscribe(
+    this.userSvc.updateUser(this.editUser).subscribe(
       data => {
         this.headerMessage = "User: " + data.username + " updated!";
         this.editUser = null;
@@ -113,6 +114,7 @@ export class AccountComponent implements OnInit {
   }
 
   showEditCompany(company){
+    this.cancelAllEditForms();
     this.nullHeaderMessage();
     this.editCompany = Object.assign({}, company);
   }
@@ -132,6 +134,7 @@ export class AccountComponent implements OnInit {
 
 
   showEditProject(project){
+    this.cancelAllEditForms();
     this.nullHeaderMessage();
     this.editProject = Object.assign({}, project);
   }
