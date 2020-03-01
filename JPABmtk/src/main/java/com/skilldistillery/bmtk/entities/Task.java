@@ -2,6 +2,7 @@ package com.skilldistillery.bmtk.entities;
 
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -69,6 +71,10 @@ public class Task {
 		@ManyToOne
 		@JoinColumn(name="project_id")
 		private Project project;
+		
+		@JsonIgnore
+		@ManyToMany(mappedBy="tasks")
+		private List<Employee> employees;
 		
 		public Task() {
 			super();
@@ -254,6 +260,15 @@ public class Task {
 		public void setProject(Project proj) {
 			this.project = proj;
 		}
+		
+		
+		public List<Employee> getEmployees() {
+			return employees;
+		}
+		public void setEmployees(List<Employee> employees) {
+			this.employees = employees;
+		}
+
 		@Override
 		public String toString() {
 			return "Task [id=" + id + ", name=" + name + ", description=" + description + ", dueDate=" + dueDate
