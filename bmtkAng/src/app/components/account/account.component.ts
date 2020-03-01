@@ -22,14 +22,11 @@ export class AccountComponent implements OnInit {
 
   currentUser: User;
 
+  headerMessage: string = null;
 
   editUser: User = null;
-  userTable: boolean = false;
-  projectTable: boolean = false;
   editProject: Project = null;
   editCompany: Company = null;
-
-
 
   companiesOwned: Company[] = [];
   tasksToDo: Task[] = [];
@@ -98,13 +95,15 @@ export class AccountComponent implements OnInit {
   }
 
   showEditUser(){
-    this.userTable = true;
+    this.nullHeaderMessage();
+    this.editUser = Object.assign({}, this.currentUser);
   }
 
-  editUserInfo(){
+  saveEditUser(){
     this.userSvc.updateUser(this.currentUser).subscribe(
       data => {
-        this.userTable = false;
+        this.headerMessage = "User: " + data.username + " updated!";
+        this.editUser = null;
         this.reload();
       },
       err => {
@@ -114,12 +113,14 @@ export class AccountComponent implements OnInit {
   }
 
   showEditCompany(company){
+    this.nullHeaderMessage();
     this.editCompany = Object.assign({}, company);
   }
 
   saveEditCompany(){
     this.compSvc.updateCompany(this.editCompany).subscribe(
       data => {
+        this.headerMessage = "Company: " + data.name + " updated!";
         this.editCompany = null;
         this.reload();
       },
@@ -131,24 +132,35 @@ export class AccountComponent implements OnInit {
 
 
   showEditProject(project){
+    this.nullHeaderMessage();
     this.editProject = Object.assign({}, project);
   }
 
   saveEditProject(){
     this.projSvc.updateProject(this.editProject, this.editProject.company.id, this.editProject.id).subscribe(
       data => {
+        this.headerMessage = "Project: " + data.name + " updated!";
         this.editProject = null;
         this.reload();
       },
       err => {
         console.error('ProjectComponent: error getting updating project');
       }
-
     );
+  }
+
+  cancelAllEditForms(){
+    this.editUser = null;
+    this.editCompany = null;
+    this.editProject = null;
   }
 
   redirToSignIn(){
     this.router.navigateByUrl('/login');
+  }
+
+  nullHeaderMessage(){
+    this.headerMessage = null;
   }
 
 }

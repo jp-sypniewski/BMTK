@@ -35,6 +35,9 @@
 <div *ngIf="currentUser != null">
 
   <!-- div for toplevel messaging -->
+  <div *ngIf="headerMessage != null">
+    <h3>{{headerMessage}}</h3>
+  </div>
 
   <!-- div for account info -->
   <div>
@@ -94,7 +97,7 @@
   </div>
 
   <!-- div for edit user info -->
-  <div *ngIf="userTable == true">
+  <div *ngIf="editUser != null">
     <form>
       <!-- <label for="username">Username:</label>
       <input type="text" name="username" required [(ngModel)]="currentUser.username"><br> -->
@@ -114,7 +117,8 @@
       <input type="text" name="country" [(ngModel)]="currentUser.userDetail.country"><br>
       <label for="phone">Phone:</label>
       <input type="text" name="phone" [(ngModel)]="currentUser.userDetail.phone"><br>
-      <button type="button" class="btn btn-primary" (click)="editUserInfo()">Save User Info</button>
+      <button type="button" class="btn btn-primary" (click)="saveEditUser()">Save User Info</button>
+      <button type="button" (click)="cancelAllEditForms()">Cancel</button>
     </form>
   </div>
 
@@ -136,6 +140,7 @@
       <label for="active">Company Active:</label>
       <input type="checkbox" name="active"  required [(ngModel)]="editCompany.active"><br>
       <button type="button" class="btn btn-primary" (click)="saveEditCompany()">Save Company Information</button>
+      <button type="button" (click)="cancelAllEditForms()">Cancel</button>
     </form>
   </div>
 
@@ -147,6 +152,7 @@
       <label for="projectactive">Project Active:</label>
       <input  type="checkbox" id="projectactive" name="projectactive"  required [(ngModel)]="editProject.active"><br>
       <button type="button" class="btn btn-primary" (click)="saveEditProject()">Save Project Information</button>
+      <button type="button" (click)="cancelAllEditForms()">Cancel</button>
     </form>
   </div>
 <!-- end user info div -->
