@@ -47,5 +47,10 @@ class InventoryItemTests {
 		assertNotNull(item);
 		assertEquals("test item", item.getName());
 	}
+	
+	@Test
+	void testingCompany() {
+		assertEquals("Test Company", item.getCompany().getName());
+	}
 
 }
