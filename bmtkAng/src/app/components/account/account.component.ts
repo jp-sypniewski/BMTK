@@ -1,3 +1,4 @@
+import { TaskService } from './../../services/task/task.service';
 import { ProjectService } from './../../services/project/project.service';
 import { CompanyService } from './../../services/company/company.service';
 import { Project } from './../../models/project';
@@ -33,7 +34,10 @@ export class AccountComponent implements OnInit {
   projectsRequested: Project[] = [];
 
   constructor(private router: Router,
-    private userSvc: UserService, private compSvc: CompanyService, private projSvc: ProjectService) { }
+    private userSvc: UserService,
+    private compSvc: CompanyService,
+    private projSvc: ProjectService,
+    private taskSvc: TaskService) { }
 
   ngOnInit(): void {
     this.reload();
@@ -48,25 +52,34 @@ export class AccountComponent implements OnInit {
         err => {
           this.newUser = new User();
           this.newUserDetail = new UserDetail();
-          console.error('UserComponent.init(): error getting user data with principal.');
+          console.error('UserComponent.reload(): error getting user data with principal.');
         }
       );
 
       this.compSvc.getMyCompanies().subscribe(
         data => {
-          this.companiesOwned= data;
+          this.companiesOwned = data;
         },
         err => {
-          console.error('UserComponent.init(): error getting user owner company data.');
+          console.error('UserComponent.reload(): error getting user owner company data.');
+        }
+      );
+
+      this.taskSvc.getTasksByEmpUsername().subscribe(
+        data => {
+          this.tasksToDo = data;
+        },
+        err => {
+          console.error('UserComponent.reload(): error getting user owner company data.');
         }
       );
 
       this.projSvc.getMyProjectRequests().subscribe(
         data => {
-          this.projectsRequested= data;
+          this.projectsRequested = data;
         },
         err => {
-          console.error('UserComponent.init(): error getting user customer project data.');
+          console.error('UserComponent.reload(): error getting user customer project data.');
         }
       );
 

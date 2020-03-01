@@ -53,7 +53,7 @@
   </div>
 
   <!-- div for owner relationships -->
-  <div>
+  <div *ngIf="companiesOwned.length > 0">
     <h3>My Companies</h3>
     <table class="table table-bordered table-hover">
       <thead>
@@ -74,8 +74,30 @@
     <hr>
   </div>
 
+  <!-- div for employee relationships -->
+  <div *ngIf="tasksToDo.length > 0">
+    <h3>My Tasks</h3>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Task Name</th>
+          <th>Task Due Date</th>
+          <th>Edit Task</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr *ngFor="let task of tasksToDo">
+         <td>{{task.name}}</td>
+         <td>{{task.dueDate}}</td>
+         <td><button>Edit {{task.name}} Information</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+  </div>
+
   <!-- div for customer relationships -->
-  <div>
+  <div *ngIf="projectsRequested.length > 0">
     <h3>My Project Requests</h3>
     <table class="table table-bordered table-hover">
       <thead>
