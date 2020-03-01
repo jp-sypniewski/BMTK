@@ -14,17 +14,17 @@
     <input type="text" id="firstName" name="firstName" required [(ngModel)]="newUserDetail.firstName"><br><br>
     <label for="lastName">Last name:</label>
     <input type="text" id="lastName" name="lastName" [(ngModel)]="newUserDetail.lastName"><br><br>
-    <label for="email">email:</label>
+    <label for="email">Email:</label>
     <input type="text" id="email" name="email" required [(ngModel)]="newUserDetail.email"><br><br>
-    <label for="street">street address:</label>
+    <label for="street">Street address:</label>
     <input type="text" id="street" name="street" [(ngModel)]="newUserDetail.street"><br><br>
-    <label for="city">city:</label>
+    <label for="city">City:</label>
     <input type="text" id="city" name="city" [(ngModel)]="newUserDetail.city"><br><br>
-    <label for="zipcode">zipcode:</label>
+    <label for="zipcode">Zipcode:</label>
     <input type="text" id="zipcode" name="zipcode" [(ngModel)]="newUserDetail.zipcode"><br><br>
-    <label for="country">country:</label>
+    <label for="country">Country:</label>
     <input type="text" id="country" name="country" [(ngModel)]="newUserDetail.country"><br><br>
-    <label for="phone">phone:</label>
+    <label for="phone">Phone:</label>
     <input type="text" id="phone" name="phone" [(ngModel)]="newUserDetail.phone"><br><br>
     <button (click)="saveCreateUser()">Create Account</button>
   </form>
@@ -33,98 +33,121 @@
 
 <!-- if user logged in, show account information -->
 <div *ngIf="currentUser != null">
+
+  <!-- div for toplevel messaging -->
+
   <!-- div for account info -->
   <div>
-    <h3>Name: {{currentUser.userDetail.firstName}} {{currentUser.userDetail.lastName}} </h3>
-
+    <h3>User: {{currentUser.username}}</h3>
+    <p>
+      Name: {{currentUser.userDetail.firstName}} {{currentUser.userDetail.lastName}}<br>
+      Email: {{currentUser.userDetail.email}}<br>
+      Street: {{currentUser.userDetail.street}}<br>
+      City: {{currentUser.userDetail.city}} Zip: {{currentUser.userDetail.zipcode}}
+    </p>
+    <button type="button" (click)="showEditUser()">Edit Account Information</button>
+    <hr>
   </div>
+
   <!-- div for owner relationships -->
   <div>
-    <table class = "table-hover" width = 1000px>
+    <h3>My Companies</h3>
+    <table class="table table-bordered table-hover">
       <thead>
         <tr>
           <th>Company Name</th>
           <th>Company Description</th>
+          <th>Edit Company</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let company of companiesOwned">
           <td (click)="goToCompanyPage(company.id)">{{company.name}}</td>
           <td>{{company.description}}</td>
-          <td><button type="button" class="btn btn-primary" (click)="displayCompanyInfo(company.id)">Edit Company Information</button></td>
+          <td><button (click)="showEditCompany(company)">Edit {{company.name}} Information</button></td>
         </tr>
       </tbody>
     </table>
+    <hr>
   </div>
+
+  <!-- div for customer relationships -->
   <div>
-    <table class = "table-hover" width = 1000px>
+    <h3>My Project Requests</h3>
+    <table class="table table-bordered table-hover">
       <thead>
         <tr>
           <th>Project Name</th>
           <th>Project Company</th>
+          <th>Edit Project</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let project of projectsRequested">
           <td>{{project.name}}</td>
           <td>{{project.company.name}}</td>
-          <td><button type="button" class="btn btn-primary" (click)="displayProjectInfo(project)">Edit Project Information</button></td>
+          <td><button (click)="showEditProject(project)">Edit {{project.name}} Information</button></td>
         </tr>
       </tbody>
     </table>
+    <hr>
   </div>
-  <button type="button" class="btn btn-primary" (click)="displayUserInfo()">Edit Account Information</button>
-  <!-- show user information -->
-</div>
 
-<div *ngIf="userTable == true">
-  <form>
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required [(ngModel)]="currentUser.username"><br>
-    <label for="firstName">First name:</label>
-    <input type="text" id="firstName" name="firstName" required [(ngModel)]="currentUser.userDetail.firstName"><br>
-    <label for="lastName">Last name:</label>
-    <input type="text" id="lastName" name="lastName" [(ngModel)]="currentUser.userDetail.lastName"><br>
-    <label for="email">Email:</label>
-    <input type="text" id="email" name="email" required [(ngModel)]="currentUser.userDetail.email"><br>
-    <label for="street">street address:</label>
-    <input type="text" id="street" name="street"  [(ngModel)]="currentUser.userDetail.street"><br>
-    <label for="city">city:</label>
-    <input type="text" id="city" name="city"  [(ngModel)]="currentUser.userDetail.city"><br>
-    <label for="zipcode">zipcode:</label>
-    <input type="text" id="zipcode" name="zipcode" [(ngModel)]="currentUser.userDetail.zipcode"><br>
-    <label for="country">country:</label>
-    <input type="text" id="country" name="country" [(ngModel)]="currentUser.userDetail.country"><br>
-    <label for="phone">phone:</label>
-    <input type="text" id="phone" name="phone" [(ngModel)]="currentUser.userDetail.phone"><br>
-    <button type="button" class="btn btn-primary" (click)="editUserInfo()">Save User Account</button>
-  </form>
-</div>
-<div *ngIf="companyTable == true">
-  <form>
-    <label for="companyname">Company Name:</label>
-    <input size = "50" type="text" id="companyname" name="companyname" placeholder="{{editCompany.name}}" required [(ngModel)]="editCompany.name"><br><br>
-    <label for="companydescription">Company Description:</label>
-    <input size = "100" type="companydescription" id="companydescription" name="companydescription" placeholder="{{editCompany.description}}" required [(ngModel)]="editCompany.description"><br><br>
-    <label for="companytype">Company Type:</label>
-    <input type="text" id="companytype" name="companytype" placeholder="{{editCompany.type}}" required [(ngModel)]="editCompany.type"><br><br>
-    <label for="companyaddress">Company Address:</label>
-    <input size = "50" type="text" id="companyaddress" name="companyaddress" placeholder="{{editCompany.address}}" required [(ngModel)]="editCompany.address"><br><br>
-    <label for="companyphone">Company Phone:</label>
-    <input type="text" id="companyphone" name="companyphone" placeholder="{{editCompany.phone}}" required [(ngModel)]="editCompany.phone"><br><br>
-    <label for="companyurl">Company URL:</label>
-    <input type="text" id="companyurl" name="companyurl" placeholder="{{editCompany.companyUrl}}" required [(ngModel)]="editCompany.companyUrl"><br><br>
-    <label for="companyactive">Company Active:</label>
-    <input  type="checkbox" id="companyactive" name="companyactive"  required [(ngModel)]="editCompany.active"><br><br>
-    <button type="button" class="btn btn-primary" (click)="editCompanyInfo()">Save Company Information</button>
-  </form>
-</div>
-<div *ngIf="projectTable == true">
-  <form>
-    <label for="projectname">Project Name:</label>
-    <input size = "50" type="text" id="projectname" name="projectname"  required [(ngModel)]="editProject.name"><br><br>
-    <label for="projectactive">Project Active:</label>
-    <input  type="checkbox" id="projectactive" name="projectactive"  required [(ngModel)]="editProject.active"><br><br>
-    <button type="button" class="btn btn-primary" (click)="saveProjectInfo()">Save Project Information</button>
-  </form>
+  <!-- div for edit user info -->
+  <div *ngIf="userTable == true">
+    <form>
+      <!-- <label for="username">Username:</label>
+      <input type="text" name="username" required [(ngModel)]="currentUser.username"><br> -->
+      <label for="firstName">First name:</label>
+      <input type="text" name="firstName" required [(ngModel)]="currentUser.userDetail.firstName"><br>
+      <label for="lastName">Last name:</label>
+      <input type="text" name="lastName" [(ngModel)]="currentUser.userDetail.lastName"><br>
+      <label for="email">Email:</label>
+      <input type="text" name="email" required [(ngModel)]="currentUser.userDetail.email"><br>
+      <label for="street">Street address:</label>
+      <input type="text" name="street" [(ngModel)]="currentUser.userDetail.street"><br>
+      <label for="city">City:</label>
+      <input type="text" name="city" [(ngModel)]="currentUser.userDetail.city"><br>
+      <label for="zipcode">Zipcode:</label>
+      <input type="text" name="zipcode" [(ngModel)]="currentUser.userDetail.zipcode"><br>
+      <label for="country">Country:</label>
+      <input type="text" name="country" [(ngModel)]="currentUser.userDetail.country"><br>
+      <label for="phone">Phone:</label>
+      <input type="text" name="phone" [(ngModel)]="currentUser.userDetail.phone"><br>
+      <button type="button" class="btn btn-primary" (click)="editUserInfo()">Save User Info</button>
+    </form>
+  </div>
+
+  <!-- div for edit company info -->
+  <div *ngIf="editCompany != null">
+    <form>
+      <label for="name">Company Name:</label>
+      <input size = "50" type="text" id="companyname" name="name" required [(ngModel)]="editCompany.name"><br>
+      <label for="description">Company Description:</label>
+      <input size = "100" type="text" name="description" required [(ngModel)]="editCompany.description"><br>
+      <label for="type">Company Type:</label>
+      <input type="text" name="type"  [(ngModel)]="editCompany.type"><br>
+      <label for="address">Company Address:</label>
+      <input size = "50" type="text" name="address" [(ngModel)]="editCompany.address"><br>
+      <label for="phone">Company Phone:</label>
+      <input type="text" name="phone" [(ngModel)]="editCompany.phone"><br>
+      <label for="companyurl">Company URL:</label>
+      <input type="text" name="companyurl" [(ngModel)]="editCompany.companyUrl"><br>
+      <label for="active">Company Active:</label>
+      <input type="checkbox" name="active"  required [(ngModel)]="editCompany.active"><br>
+      <button type="button" class="btn btn-primary" (click)="saveEditCompany()">Save Company Information</button>
+    </form>
+  </div>
+
+  <!-- div for edit project info -->
+  <div *ngIf="editProject != null">
+    <form>
+      <label for="projectname">Project Name:</label>
+      <input size = "50" type="text" id="projectname" name="projectname"  required [(ngModel)]="editProject.name"><br>
+      <label for="projectactive">Project Active:</label>
+      <input  type="checkbox" id="projectactive" name="projectactive"  required [(ngModel)]="editProject.active"><br>
+      <button type="button" class="btn btn-primary" (click)="saveEditProject()">Save Project Information</button>
+    </form>
+  </div>
+<!-- end user info div -->
 </div>

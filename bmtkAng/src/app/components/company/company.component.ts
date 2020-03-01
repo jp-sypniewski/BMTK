@@ -225,7 +225,7 @@ export class CompanyComponent implements OnInit {
   }
 
   showEditProject(project){
-    this.editingProject = Object.assign({}, this.selectedProject);;
+    this.editingProject = Object.assign({}, this.selectedProject);
   }
 
   saveEditProject(){

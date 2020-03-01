@@ -19,13 +19,17 @@ export class AccountComponent implements OnInit {
   newUser: User = new User();
   newUserDetail: UserDetail = new UserDetail();
   userCreated: String = new String();
-  userTable: boolean = false;
-  companyTable: boolean = false;
-  projectTable: boolean = false;
-  editProject: Project = new Project();
-  editCompany: Company = new Company();
 
   currentUser: User;
+
+
+  editUser: User = null;
+  userTable: boolean = false;
+  projectTable: boolean = false;
+  editProject: Project = null;
+  editCompany: Company = null;
+
+
 
   companiesOwned: Company[] = [];
   tasksToDo: Task[] = [];
@@ -38,46 +42,42 @@ export class AccountComponent implements OnInit {
     this.reload();
   }
 
-reload(){
-  if (this.userSvc.checkLogin()){
-    this.userSvc.getUserInfo().subscribe(
-      data => {
-        this.currentUser = data;
-      },
-      err => {
-        this.newUser = new User();
-        this.newUserDetail = new UserDetail();
-        console.error('UserComponent.init(): error getting user data with principal.');
-      }
-    );
+  reload(){
+    if (this.userSvc.checkLogin()){
+      this.userSvc.getUserInfo().subscribe(
+        data => {
+          this.currentUser = data;
+        },
+        err => {
+          this.newUser = new User();
+          this.newUserDetail = new UserDetail();
+          console.error('UserComponent.init(): error getting user data with principal.');
+        }
+      );
 
-    this.compSvc.getMyCompanies().subscribe(
-      data => {
-        this.companiesOwned= data;
-      },
-      err => {
+      this.compSvc.getMyCompanies().subscribe(
+        data => {
+          this.companiesOwned= data;
+        },
+        err => {
+          console.error('UserComponent.init(): error getting user owner company data.');
+        }
+      );
 
-        console.error('UserComponent.init(): error getting user data with principal.');
-      }
-    );
+      this.projSvc.getMyProjectRequests().subscribe(
+        data => {
+          this.projectsRequested= data;
+        },
+        err => {
+          console.error('UserComponent.init(): error getting user customer project data.');
+        }
+      );
 
-    this.projSvc.getMyProjectRequests().subscribe(
-      data => {
-        this.projectsRequested= data;
-        console.log()
-      },
-      err => {
-
-        console.error('UserComponent.init(): error getting user data with principal.');
-      }
-    );
-
-  } else {
-    this.newUser = new User();
-    this.newUserDetail = new UserDetail();
+    } else {
+      this.newUser = new User();
+      this.newUserDetail = new UserDetail();
+    }
   }
-
-}
 
 
 
@@ -97,21 +97,8 @@ reload(){
     this.router.navigateByUrl('/company/'+cid);
   }
 
-  displayUserInfo(){
+  showEditUser(){
     this.userTable = true;
-  }
-
-  displayCompanyInfo(cid){
-    this.companyTable = true;
-    this.compSvc.getSingleCompany(cid).subscribe(
-      data => {
-        this.editCompany = data;
-          err => {
-            console.error('CompanyComponent: error getting company by id');
-          }
-        }
-        );
-
   }
 
   editUserInfo(){
@@ -126,11 +113,14 @@ reload(){
     );
   }
 
-  editCompanyInfo(){
+  showEditCompany(company){
+    this.editCompany = Object.assign({}, company);
+  }
+
+  saveEditCompany(){
     this.compSvc.updateCompany(this.editCompany).subscribe(
       data => {
         this.editCompany = null;
-        this.companyTable = false;
         this.reload();
       },
       err => {
@@ -139,16 +129,15 @@ reload(){
     );
   }
 
-  displayProjectInfo(project){
-    this.projectTable = true;
-    this.editProject = project;
+
+  showEditProject(project){
+    this.editProject = Object.assign({}, project);
   }
 
-  saveProjectInfo(){
+  saveEditProject(){
     this.projSvc.updateProject(this.editProject, this.editProject.company.id, this.editProject.id).subscribe(
       data => {
         this.editProject = null;
-        this.projectTable = false;
         this.reload();
       },
       err => {
