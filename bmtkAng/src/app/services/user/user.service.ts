@@ -74,6 +74,24 @@ createUser(user){
   );
 }
 
+updateUser(user){
+  const credentials = this.getCredentials();
+  const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
+      'Authorization': `Basic ${credentials}`
+    })
+  };
+  return this.http.put<User>(this.baseUrl+'api/user/'+user.user.id, user, httpOptions)
+  .pipe(
+    catchError((err: any) => {
+      console.log(err);
+      return throwError('UserService.createUser(): error registering user.');
+    })
+  );
+}
+
 // removes local creds
 logout() {
   localStorage.removeItem('credentials');

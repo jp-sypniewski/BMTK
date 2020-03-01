@@ -114,7 +114,17 @@ reload(){
 
   }
 
-  editUserInfo(){}
+  editUserInfo(){
+    this.userSvc.updateUser(this.currentUser).subscribe(
+      data => {
+        this.userTable = false;
+        this.reload();
+      },
+      err => {
+        console.error('CompanyComponent: error updating user');
+      }
+    );
+  }
 
   editCompanyInfo(){
     this.compSvc.updateCompany(this.editCompany).subscribe(
@@ -122,24 +132,16 @@ reload(){
         this.editCompany = null;
         this.companyTable = false;
         this.reload();
-        },
-        err => {
-          console.error('CompanyComponent: error editing company');
-        }
-        );
+      },
+      err => {
+        console.error('CompanyComponent: error editing company');
+      }
+    );
   }
 
   displayProjectInfo(project){
     this.projectTable = true;
     this.editProject = project;
-    /*this.projSvc.getSingleProject(pid).subscribe(
-      data => {
-        this.editCompany = data;
-          err => {
-            console.error('CompanyComponent: error getting company by id');
-          }
-        }
-        );*/
   }
 
   saveProjectInfo(){
@@ -149,11 +151,11 @@ reload(){
         this.projectTable = false;
         this.reload();
       },
-          err => {
-            console.error('ProjectComponent: error getting updating project');
-          }
+      err => {
+        console.error('ProjectComponent: error getting updating project');
+      }
 
-        );
+    );
   }
 
   redirToSignIn(){
