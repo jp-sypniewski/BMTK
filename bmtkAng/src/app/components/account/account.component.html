@@ -1,5 +1,9 @@
 <!-- if no user logged in, create new account -->
 <div *ngIf="currentUser == null">
+  <button (click)="redirToSignIn()">Sign In</button>
+  <br>
+  <hr>
+  <br>
   <h3>Create A New Account</h3>
   <form>
     <label for="username">Username:</label>

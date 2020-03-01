@@ -156,4 +156,8 @@ reload(){
         );
   }
 
+  redirToSignIn(){
+    this.router.navigateByUrl('/login');
+  }
+
 }
