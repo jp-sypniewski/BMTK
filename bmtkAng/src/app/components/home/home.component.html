@@ -1,25 +1,33 @@
 <!-- show to any user upon reaching this page, hide when user attempts to add company -->
 <div *ngIf="newCompany == null && !isSearching">
+  <form>
+    <label for="namesearch">Search by company name:</label>
+    <input type="text" name="namesearch" [(ngModel)]="searchTerm">
+    <button (click)="searchByCompanyName()">Search</button>
+  </form><br>
   <table>
     <thead>
       <tr>
         <th>Name</th>
+        <th>Type</th>
+        <th>City</th>
+        <th>State</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let company of companies">
-        <td (click)="goToCompanyPage(company.id)">{{company.name}}</td>
+        <td width="15%" (click)="goToCompanyPage(company.id)">{{company.name}}</td>
+        <td width="15%">{{company.type}}</td>
+        <td width="10%">{{company.city}}</td>
+        <td width="10%">{{company.state}}</td>
         <td>{{company.description}}</td>
+
       </tr>
     </tbody>
   </table>
-  <form>
-    <label for="namesearch">Search by company name:</label>
-    <input type="text" name="namesearch" [(ngModel)]="searchTerm"><br>
-    <button (click)="searchByCompanyName()">Search</button>
-  </form><br>
-  <button (click)="showCreateCompany()">button that will change something to show add company form</button>
+  <br>
+  <button (click)="showCreateCompany()">Add New Company</button>
 </div>
 
 <!-- show search terms -->
@@ -29,18 +37,27 @@
     <thead>
       <tr>
         <th>Name</th>
+        <th>Type</th>
+        <th>City</th>
+        <th>State</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let company of companies | companyNameSearch: searchTerm">
-        <td (click)="goToCompanyPage(company.id)">{{company.name}}</td>
-        <td>{{company.description}}</td>
-      </tr>
-    </tbody>
-  </table>
-  <button (click)="showAll()">Show All</button><br>
-  <button (click)="showCreateCompany()">button that will change something to show add company form</button>
+      <tbody>
+        <tr *ngFor="let company of companies | companyNameSearch: searchTerm">
+          <td width="15%" (click)="goToCompanyPage(company.id)">{{company.name}}</td>
+          <td width="15%">{{company.type}}</td>
+
+          <td width="10%">{{company.city}}</td>
+          <td width="10%">{{company.state}}</td>
+          <td>{{company.description}}</td>
+        </tr>
+       </tbody>
+ </table>
+    <br>
+    <button (click)="showAll()">Show All</button><br>
+    <button (click)="showCreateCompany()">button that will change something to show add company form</button>
 </div>
 
 <!-- show once user attempt to add company -->
@@ -66,6 +83,7 @@
     <label for="companyUrl">Site:</label>
     <input type="text" id="companyUrl" name="companyUrl" [(ngModel)]="newCompany.companyUrl"><br><br>
     <button (click)="saveCreateCompany()">Create New Company</button>
+    <button (click)="cancelCreate()">Cancel</button>
   </form>
 
   <div id = "createCompanyError">{{companyCreated}}</div>
