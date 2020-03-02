@@ -34,6 +34,7 @@ export class CompanyComponent implements OnInit {
   selectedProject: Project;
   editingProject: Project;
   newTask: Task;
+  selectedEmployee: number;
   editingATask: Boolean;
 
   selectedProjectId: Number = 0;
@@ -170,11 +171,19 @@ export class CompanyComponent implements OnInit {
 
   showCreateTask(){
     this.newTask = new Task();
+    this.newTask.employees = [];
+    this.selectedEmployee = 0;
     this.editingATask = false;
   }
 
 
   saveNewTask(){
+    for (let i = 0; i < this.aCompany.employees.length; i++){
+      if (this.selectedEmployee == this.aCompany.employees[i].id){
+        let anEmployee = Object.assign({}, this.aCompany.employees[i])
+        this.newTask.employees.push(anEmployee);
+      }
+    }
     this.taskSvc.createTask(this.newTask, this.selectedProject.id).subscribe(
       data => {
         this.needToPreselectProject = true;
@@ -191,11 +200,19 @@ export class CompanyComponent implements OnInit {
 
   showEditTask(task){
     this.newTask = task;
+    this.selectedEmployee = task.employees[0].id;
     this.editingATask = true;
   }
 
 
   saveEditTask(){
+    this.newTask.employees = [];
+    for (let i = 0; i < this.aCompany.employees.length; i++){
+      if (this.selectedEmployee == this.aCompany.employees[i].id){
+        let anEmployee = Object.assign({}, this.aCompany.employees[i])
+        this.newTask.employees.push(anEmployee);
+      }
+    }
     this.taskSvc.updateTask(this.newTask, this.selectedProject.id, this.newTask.id).subscribe(
       data => {
         this.needToPreselectProject = true;

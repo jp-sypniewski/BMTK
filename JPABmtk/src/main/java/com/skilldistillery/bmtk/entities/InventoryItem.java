@@ -79,9 +79,6 @@ public class InventoryItem {
 			final int prime = 31;
 			int result = 1;
 			result = prime * result + id;
-			result = prime * result + ((name == null) ? 0 : name.hashCode());
-			result = prime * result + ((quantity == null) ? 0 : quantity.hashCode());
-			result = prime * result + ((value == null) ? 0 : value.hashCode());
 			return result;
 		}
 		@Override
@@ -95,23 +92,9 @@ public class InventoryItem {
 			InventoryItem other = (InventoryItem) obj;
 			if (id != other.id)
 				return false;
-			if (name == null) {
-				if (other.name != null)
-					return false;
-			} else if (!name.equals(other.name))
-				return false;
-			if (quantity == null) {
-				if (other.quantity != null)
-					return false;
-			} else if (!quantity.equals(other.quantity))
-				return false;
-			if (value == null) {
-				if (other.value != null)
-					return false;
-			} else if (!value.equals(other.value))
-				return false;
 			return true;
 		}
+		
 		
 		
 	

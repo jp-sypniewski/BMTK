@@ -36,10 +36,7 @@ public class Employee {
 		private Boolean active;
 		
 		@JsonIgnore
-		@ManyToMany(cascade= {CascadeType.PERSIST, CascadeType.REMOVE})
-		@JoinTable(name="employee_has_task",
-			joinColumns=@JoinColumn(name="employee_id"),
-			inverseJoinColumns=@JoinColumn(name="task_id"))
+		@ManyToMany(mappedBy="employees")
 		private List<Task> tasks;
 		
 		
@@ -106,15 +103,15 @@ public class Employee {
 			return "Employee [id=" + id + ", userDetail=" + userDetail + ", comp=" + comp + ", active=" + active + "]";
 		}
 
+
 		@Override
 		public int hashCode() {
 			final int prime = 31;
 			int result = 1;
-			result = prime * result + ((comp == null) ? 0 : comp.hashCode());
 			result = prime * result + id;
-			result = prime * result + ((userDetail == null) ? 0 : userDetail.hashCode());
 			return result;
 		}
+
 
 		@Override
 		public boolean equals(Object obj) {
@@ -125,20 +122,12 @@ public class Employee {
 			if (getClass() != obj.getClass())
 				return false;
 			Employee other = (Employee) obj;
-			if (comp == null) {
-				if (other.comp != null)
-					return false;
-			} else if (!comp.equals(other.comp))
-				return false;
 			if (id != other.id)
-				return false;
-			if (userDetail == null) {
-				if (other.userDetail != null)
-					return false;
-			} else if (!userDetail.equals(other.userDetail))
 				return false;
 			return true;
 		}
+
+		
 		
 		
 

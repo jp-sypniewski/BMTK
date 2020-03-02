@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -13,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -75,7 +77,10 @@ public class Task {
 		@JoinColumn(name="project_id")
 		private Project project;
 		
-		@ManyToMany(mappedBy="tasks")
+		@ManyToMany(cascade= {CascadeType.REMOVE})
+		@JoinTable(name="employee_has_task",
+			joinColumns=@JoinColumn(name="task_id"),
+			inverseJoinColumns=@JoinColumn(name="employee_id"))
 		private List<Employee> employees;
 		
 		public Task() {
@@ -283,23 +288,7 @@ public class Task {
 		public int hashCode() {
 			final int prime = 31;
 			int result = 1;
-			result = prime * result + ((active == null) ? 0 : active.hashCode());
-			result = prime * result + ((completeDate == null) ? 0 : completeDate.hashCode());
-			result = prime * result + ((createdAt == null) ? 0 : createdAt.hashCode());
-			result = prime * result + ((description == null) ? 0 : description.hashCode());
-			result = prime * result + ((dueDate == null) ? 0 : dueDate.hashCode());
 			result = prime * result + id;
-			result = prime * result + ((name == null) ? 0 : name.hashCode());
-			result = prime * result + ((paid == null) ? 0 : paid.hashCode());
-			result = prime * result + ((paymentDetail == null) ? 0 : paymentDetail.hashCode());
-			result = prime * result + ((price == null) ? 0 : price.hashCode());
-			result = prime * result + ((priority == null) ? 0 : priority.hashCode());
-			result = prime * result + ((project == null) ? 0 : project.hashCode());
-			result = prime * result + ((startDate == null) ? 0 : startDate.hashCode());
-			result = prime * result + ((status == null) ? 0 : status.hashCode());
-			result = prime * result + ((template == null) ? 0 : template.hashCode());
-			result = prime * result + ((type == null) ? 0 : type.hashCode());
-			result = prime * result + ((updatedAt == null) ? 0 : updatedAt.hashCode());
 			return result;
 		}
 		@Override
@@ -311,87 +300,12 @@ public class Task {
 			if (getClass() != obj.getClass())
 				return false;
 			Task other = (Task) obj;
-			if (active == null) {
-				if (other.active != null)
-					return false;
-			} else if (!active.equals(other.active))
-				return false;
-			if (completeDate == null) {
-				if (other.completeDate != null)
-					return false;
-			} else if (!completeDate.equals(other.completeDate))
-				return false;
-			if (createdAt == null) {
-				if (other.createdAt != null)
-					return false;
-			} else if (!createdAt.equals(other.createdAt))
-				return false;
-			if (description == null) {
-				if (other.description != null)
-					return false;
-			} else if (!description.equals(other.description))
-				return false;
-			if (dueDate == null) {
-				if (other.dueDate != null)
-					return false;
-			} else if (!dueDate.equals(other.dueDate))
-				return false;
 			if (id != other.id)
-				return false;
-			if (name == null) {
-				if (other.name != null)
-					return false;
-			} else if (!name.equals(other.name))
-				return false;
-			if (paid == null) {
-				if (other.paid != null)
-					return false;
-			} else if (!paid.equals(other.paid))
-				return false;
-			if (paymentDetail == null) {
-				if (other.paymentDetail != null)
-					return false;
-			} else if (!paymentDetail.equals(other.paymentDetail))
-				return false;
-			if (price == null) {
-				if (other.price != null)
-					return false;
-			} else if (!price.equals(other.price))
-				return false;
-			if (priority == null) {
-				if (other.priority != null)
-					return false;
-			} else if (!priority.equals(other.priority))
-				return false;
-			if (project == null) {
-				if (other.project != null)
-					return false;
-			} else if (!project.equals(other.project))
-				return false;
-			if (startDate == null) {
-				if (other.startDate != null)
-					return false;
-			} else if (!startDate.equals(other.startDate))
-				return false;
-			if (status != other.status)
-				return false;
-			if (template == null) {
-				if (other.template != null)
-					return false;
-			} else if (!template.equals(other.template))
-				return false;
-			if (type == null) {
-				if (other.type != null)
-					return false;
-			} else if (!type.equals(other.type))
-				return false;
-			if (updatedAt == null) {
-				if (other.updatedAt != null)
-					return false;
-			} else if (!updatedAt.equals(other.updatedAt))
 				return false;
 			return true;
 		}
+		
+		
 		
 		
 		

@@ -1,13 +1,16 @@
 package com.skilldistillery.bmtk.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.bmtk.entities.Employee;
 import com.skilldistillery.bmtk.entities.Project;
 import com.skilldistillery.bmtk.entities.Task;
+import com.skilldistillery.bmtk.repositories.EmployeeRepository;
 import com.skilldistillery.bmtk.repositories.ProjectRepository;
 import com.skilldistillery.bmtk.repositories.TaskRepository;
 
@@ -19,6 +22,9 @@ public class TaskServiceImpl implements TaskService {
 	
 	@Autowired
 	private ProjectRepository projRepo;
+	
+	@Autowired
+	private EmployeeRepository empRepo;
 	
 	@Override
 	public List<Task> findTasksByEmpUsername(String username){
@@ -88,6 +94,9 @@ public class TaskServiceImpl implements TaskService {
 				}
 				if (task.getActive() != null) {
 					managedTask.setActive(task.getActive());
+				}
+				if (task.getEmployees().size() != 0) {
+					managedTask.setEmployees(task.getEmployees());
 				}
 				task = taskRepo.saveAndFlush(managedTask);
 			} else {
