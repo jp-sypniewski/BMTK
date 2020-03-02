@@ -27,7 +27,7 @@
     <label for="country">Country:</label>
     <input type="text" id="country" name="country" [(ngModel)]="newUserDetail.country"><br><br>
     <label for="phone">Phone:</label>
-    <input type="text" id="phone" name="phone" [(ngModel)]="newUserDetail.phone"><br><br>
+    <input type="tel" pattern="[0-9]{10}" id="phone" name="phone" [(ngModel)]="newUserDetail.phone"><br><br>
     <button (click)="saveCreateUser()">Create Account</button>
   </form>
   <div id = "createUserError">{{userCreated}}</div>
@@ -168,7 +168,7 @@
       <label for="zip">Company Zip:</label>
       <input type="text" name="zip" [(ngModel)]="editCompany.zip"><br>
       <label for="phone">Company Phone:</label>
-      <input type="text" name="phone" [(ngModel)]="editCompany.phone"><br>
+      <input type="tel" pattern="[0-9]{10}" name="phone" [(ngModel)]="editCompany.phone"><br>
       <label for="companyurl">Company URL:</label>
       <input type="text" name="companyurl" [(ngModel)]="editCompany.companyUrl"><br>
       <label for="active">Company Active:</label>

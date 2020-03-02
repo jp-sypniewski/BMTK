@@ -3,6 +3,9 @@ package com.skilldistillery.bmtk.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,10 +44,22 @@ public class EmployeeController {
 	}
 	
 	@PostMapping(value = "companies/{cid}/employee")
-	public Employee createEmployee(@PathVariable("cid") Integer cid,
+	public Employee createEmployee(HttpServletRequest req,
+			HttpServletResponse res,
+			@PathVariable("cid") Integer cid,
 			@RequestBody User user){
-		Employee employee = empSvc.createEmployee(cid, user);
-		return employee;
+		try {
+			Employee employee = empSvc.createEmployee(cid, user);
+			if (employee == null) {
+				res.setStatus(404);
+				return employee;
+			}
+			res.setStatus(201);
+			return employee;
+		} catch (Exception e) {
+			res.setStatus(400);
+			return null;
+		}
 	}
 	
 	@PutMapping(value = "employee/{id}")
