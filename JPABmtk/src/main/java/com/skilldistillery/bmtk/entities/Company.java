@@ -68,7 +68,7 @@ public class Company {
 		
 
 		public Company(int id, String name, String type, String address, String phone, String description,
-				String companyUrl, Boolean active) {
+				String companyUrl, Boolean active, String city, String state, String zip) {
 			super();
 			this.id = id;
 			this.name = name;
@@ -78,6 +78,9 @@ public class Company {
 			this.description = description;
 			this.companyUrl = companyUrl;
 			this.active = active;
+			this.city = city;
+			this.state = state;
+			this.zip = zip;
 		}
 
 		public Company(int id, String name, String type, String address, String city, String state, String zip, String phone, String description,

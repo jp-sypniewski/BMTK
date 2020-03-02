@@ -21,6 +21,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.reload();
+
+
   }
 
   showCreateCompany(){
@@ -44,6 +46,8 @@ export class HomeComponent implements OnInit {
 reload(){
   this.compSvc.index().subscribe(
     data => {
+      console.log(data);
+
       return this.companies = data;
     },
     err => {
@@ -63,6 +67,11 @@ searchByCompanyName(){
 showAll(){
   this.isSearching = false;
   this.searchTerm = "";
+}
+
+cancelCreate() {
+  this.newCompany = null;
+  this.isSearching = false;
 }
 
 }
