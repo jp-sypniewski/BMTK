@@ -136,6 +136,7 @@
               <i>{{emp.userDetail.email}}</i>
               <br>
             </span>
+
           </td>
           <td><button (click)="disableTask(task)">Delete {{task.name}}</button></td>
         </tr>
@@ -167,12 +168,26 @@
         <option value="COMPLETE">Complete</option>
       </select><br>
       <!-- no idea if this will work...need to test with multiple employees and add multiselect? -->
+      <!-- <span *ngIf="aCompany.employees.length > 0">
+        <form>
+          <span *ngFor="let employee of selectingEmployees">
+            <label for="{{employee.userDetail.email}}">{{employee.userDetail.firstName}} {{employee.userDetail.lastName}}</label>
+            <input type="checkbox" name={{employee.userDetail.email}}>
+          </span>
+        </form>
+      </span> -->
+      <!-- not working below, fix attempt above -->
       <span *ngIf="aCompany.employees.length > 0">
         <label for="employees">Assigned Employees:</label>
-        <select name="employees" [(ngModel)]="newTask.employees">
-            <option *ngFor="let employee of aCompany.employees" value="{{employee}}">{{employee.userDetail.firstName}} {{employee.userDetail.lastName}}</option>
+        <select name="employees" [(ngModel)]="selectedEmployee">
+            <option *ngFor="let employee of aCompany.employees" value="{{employee.id}}">{{employee.userDetail.firstName}} {{employee.userDetail.lastName}}</option>
         </select><br>
       </span>
+      <!-- <span *ngIf="aCompany.employees.length > 0">
+        <label for="employees">Assigned Employees:</label>
+        <select name="employees" ngOptions="employee.userDetail.email for employee in aCompany.employees" [(ngModel)]="newTask.employee">
+        </select><br>
+      </span> -->
       <!-- end of the (probably) bad idea -->
       <label for="type">Type:</label>
       <input type="text" name="type" [(ngModel)]="newTask.type"><br>

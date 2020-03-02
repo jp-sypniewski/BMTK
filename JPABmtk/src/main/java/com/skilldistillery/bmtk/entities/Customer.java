@@ -128,13 +128,15 @@ public class Customer {
 
 
 
+	
+
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id;
-		result = prime * result + ((paymentMethod == null) ? 0 : paymentMethod.hashCode());
-		result = prime * result + ((userDetail == null) ? 0 : userDetail.hashCode());
 		return result;
 	}
 
@@ -151,7 +153,6 @@ public class Customer {
 		Customer other = (Customer) obj;
 		if (id != other.id)
 			return false;
-
 		return true;
 	}
 
