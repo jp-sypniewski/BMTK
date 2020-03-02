@@ -93,6 +93,15 @@ public class CompanyServiceImpl implements CompanyService {
 			if (company.getAddress() != null) {
 				managedComp.setAddress(company.getAddress());
 			}
+			if (company.getCity() != null) {
+				managedComp.setCity(company.getCity());
+			}
+			if (company.getState() != null) {
+				managedComp.setState(company.getState());
+			}
+			if (company.getZip() != null) {
+				managedComp.setZip(company.getZip());
+			}
 			if (company.getPhone() != null) {
 				managedComp.setPhone(company.getPhone());
 			}

@@ -100,6 +100,9 @@ public class UserServiceImpl implements UserService{
 					if (ud.getCity() != null) {
 						managedUd.setCity(ud.getCity());
 					}
+					if (ud.getState() != null) {
+						managedUd.setState(ud.getState());
+					}
 					if (ud.getZipcode() != null) {
 						managedUd.setZipcode(ud.getZipcode());
 					}
