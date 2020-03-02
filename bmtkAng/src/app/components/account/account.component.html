@@ -110,7 +110,7 @@
       <tbody>
         <tr *ngFor="let project of projectsRequested">
           <td>{{project.name}}</td>
-          <td>{{project.company.name}}</td>
+          <td (click)="goToCompanyPage(project.company.id)">{{project.company.name}}</td>
           <td><button (click)="showEditProject(project)">Edit {{project.name}} Information</button></td>
         </tr>
       </tbody>
