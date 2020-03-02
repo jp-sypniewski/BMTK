@@ -119,8 +119,6 @@
       <input type="type" name="description" [(ngModel)]="newTask.description"><br>
       <label for="dueDate">DueDate:</label>
       <input type="date" name="dueDate" [(ngModel)]="newTask.dueDate"><br>
-      <label for="paid">Paid:</label>
-      <input type="checkbox" name="paid" [(ngModel)]="newTask.paid"><br>
       <label for="startDate">Start Date:</label>
       <input type="date" name="startDate" [(ngModel)]="newTask.startDate"><br>
       <label for="completeDate">Complete Date:</label>
@@ -148,6 +146,8 @@
       <input type="text" name="paymentDetails" [(ngModel)]="newTask.paymentDetails"><br>
       <label for="price">Price:</label>
       <input type="number" step="0.01" name="price" [(ngModel)]="newTask.price"><br>
+      <label for="paid">Paid:</label>
+      <input type="checkbox" name="paid" [(ngModel)]="newTask.paid"><br>
       <button *ngIf="!editingATask" (click)="saveNewTask()">Create New Task</button>
       <button *ngIf="editingATask" (click)="saveEditTask()">Save Task</button>
     </form>
