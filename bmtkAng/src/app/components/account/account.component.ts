@@ -29,6 +29,11 @@ export class AccountComponent implements OnInit {
   editProject: Project = null;
   editCompany: Company = null;
 
+  changingPassword: boolean;
+  currentPassword: string;
+  newPassword: string;
+  repeatPassword: string;
+
   companiesOwned: Company[] = [];
   tasksToDo: Task[] = [];
   projectsRequested: Project[] = [];
@@ -110,10 +115,36 @@ export class AccountComponent implements OnInit {
   showEditUser(){
     this.cancelAllEditForms();
     this.nullHeaderMessage();
+    this.changingPassword = false;
+    this.editUser = Object.assign({}, this.currentUser);
+  }
+
+  showEditPassword(){
+    this.cancelAllEditForms();
+    this.nullHeaderMessage();
+    this.changingPassword = true;
+    this.currentPassword = "";
+    this.newPassword = "";
+    this.repeatPassword = ""
     this.editUser = Object.assign({}, this.currentUser);
   }
 
   saveEditUser(){
+    this.userSvc.updateUser(this.editUser).subscribe(
+      data => {
+        this.headerMessage = "User: " + data.username + " updated!";
+        this.editUser = null;
+        this.reload();
+      },
+      err => {
+        console.error('CompanyComponent: error updating user');
+      }
+    );
+  }
+
+  saveEditUserNewPassword(){
+
+
     this.userSvc.updateUser(this.editUser).subscribe(
       data => {
         this.headerMessage = "User: " + data.username + " updated!";
