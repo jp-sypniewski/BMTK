@@ -2,6 +2,7 @@ package com.skilldistillery.bmtk.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -44,6 +45,13 @@ public class UserServiceImpl implements UserService{
 			user = users.get(0);
 		}
 		return user;
+	}
+	
+	@Override
+	public Set<User> findByEmail(String searchTerm){
+		searchTerm = "%" + searchTerm + "%";
+		Set<User> users = userRepo.findUsersByEmail(searchTerm);
+		return users;
 	}
 
 	@Override
@@ -99,6 +107,9 @@ public class UserServiceImpl implements UserService{
 					}
 					if (ud.getCity() != null) {
 						managedUd.setCity(ud.getCity());
+					}
+					if (ud.getState() != null) {
+						managedUd.setState(ud.getState());
 					}
 					if (ud.getZipcode() != null) {
 						managedUd.setZipcode(ud.getZipcode());

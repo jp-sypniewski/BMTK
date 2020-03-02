@@ -2,7 +2,8 @@
 <h3>{{aCompany.description}}</h3>
 <hr>
 <h5>Type: {{aCompany.type}}</h5>
-<h5>Address: {{aCompany.address}}</h5>
+<h5>Street Address: {{aCompany.address}}</h5>
+<h5>City State Zip: {{aCompany.city}} {{aCompany.state}} {{aCompany.zip}}</h5>
 <h5>Phone: {{aCompany.phone}}</h5>
 <hr><hr>
 
@@ -29,14 +30,49 @@
       </tbody>
     </table>
     <!-- TODO Fix add employee -->
-    <button>Add Employee</button>
+    <button (click)="addingEmployee = true">Add Employee</button>
   </div>
   <div *ngIf="aCompany.employees.length == 0">
     <h3>No Employees!</h3>
     <!-- TODO Fix add employee -->
-    <button>Add Employee</button>
+    <button (click)="addingEmployee = true">Add Employee</button>
   </div>
-  <button (click)="showEmployees = false">Hide Employees</button>
+  <div *ngIf="!addingEmployee">
+    <button (click)="showEmployees = false">Hide Employees</button>
+  </div>
+  <div *ngIf="addingEmployee">
+    <form>
+      <h3>Search By Email:</h3>
+      <label for="email">Email:</label>
+      <input type="text" name="email" required [(ngModel)]="emailSearch"><br><br>
+      <button (click)="performSearch()">Search</button>
+    </form>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Name</th>
+          <th>Add User as Employee</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of usersFound">
+          <td>{{user.userDetail.email}}</td>
+          <td>{{user.userDetail.firstName}} {{user.userDetail.lastName}}</td>
+          <td>
+            <span *ngIf="userIsAlreadyEmp(user.userDetail.id)">
+              Current Employee
+            </span>
+            <span *ngIf="!userIsAlreadyEmp(user.userDetail.id)">
+              <button (click)="registerEmployee(user)">Add as Employee</button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+  </div>
 </div>
 <div *ngIf="!showEmployees">
   <button (click)="showEmployees = true">Show Employees</button>
@@ -209,6 +245,8 @@
       <h3>Request New Project:</h3>
       <label for="name">Name:</label>
       <input type="text" name="name" required [(ngModel)]="newProject.name"><br><br>
+      <label for="description">Description:</label>
+      <input type="text" name="name" required [(ngModel)]="newProject.description"><br><br>
       <button (click)="saveRequestNewProject()">Request Project</button>
     </form>
   </div>

@@ -23,6 +23,8 @@ public class Project {
 		
 		private String name;
 		
+		private String description;
+		
 
 		@ManyToOne
 		@JoinColumn(name="customer_id")
@@ -56,10 +58,11 @@ public class Project {
 		}
 
 
-		public Project(int id, String name, Customer customer, Company company, List<Task> tasks, Boolean active) {
+		public Project(int id, String name, String description, Customer customer, Company company, List<Task> tasks, Boolean active) {
 			super();
 			this.id = id;
 			this.name = name;
+			this.description = description;
 			this.customer = customer;
 			this.company = company;
 			this.tasks = tasks;
@@ -100,6 +103,16 @@ public class Project {
 		public void setName(String name) {
 			this.name = name;
 		}
+
+		public String getDescription() {
+			return description;
+		}
+
+
+		public void setDescription(String description) {
+			this.description = description;
+		}
+
 
 		public Company getCompany() {
 			return company;
