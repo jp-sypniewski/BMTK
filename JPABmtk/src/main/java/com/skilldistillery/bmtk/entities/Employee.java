@@ -1,10 +1,15 @@
 package com.skilldistillery.bmtk.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -29,6 +34,13 @@ public class Employee {
 		private Company comp;
 
 		private Boolean active;
+		
+		@JsonIgnore
+		@ManyToMany(cascade= {CascadeType.PERSIST, CascadeType.REMOVE})
+		@JoinTable(name="employee_has_task",
+			joinColumns=@JoinColumn(name="employee_id"),
+			inverseJoinColumns=@JoinColumn(name="task_id"))
+		private List<Task> tasks;
 		
 		
 		public Employee() {
@@ -78,6 +90,16 @@ public class Employee {
 		public void setComp(Company comp) {
 			this.comp = comp;
 		}
+
+		public List<Task> getTasks() {
+			return tasks;
+		}
+
+
+		public void setTasks(List<Task> tasks) {
+			this.tasks = tasks;
+		}
+
 
 		@Override
 		public String toString() {

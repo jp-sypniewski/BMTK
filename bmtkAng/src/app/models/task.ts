@@ -1,3 +1,4 @@
+import { Employee } from './employee';
 export class Task {
 
   id: number;
@@ -16,12 +17,13 @@ export class Task {
   paymentDetails: string;
   price: Float64Array;
   active: Boolean;
+  employees: Employee[];
 
   constructor(id?: number, name?: string, description?: string, dueDate?: Date,
     paid?: boolean, createdAt?: Date, updatedAt?: Date, template?: boolean,
     startDate?: Date, completeDate?: Date, status?: string, type?: string,
     priority?: string, paymentDetails?: string, price?: Float64Array,
-    active?: Boolean){
+    active?: Boolean, employees?: Employee[]){
 
       this.id = id;
       this.name = name;
@@ -39,6 +41,7 @@ export class Task {
       this.paymentDetails = paymentDetails;
       this.price = price;
       this.active = active;
+      this.employees = employees;
   }
 
 

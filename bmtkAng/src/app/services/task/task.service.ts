@@ -51,4 +51,21 @@ export class TaskService {
         })
       );
     }
+
+    getTasksByEmpUsername(){
+      const credentials = this.userSvc.getCredentials();
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `Basic ${credentials}`
+        })
+      };
+      return this.http.get<Task[]>(this.baseUrl+'api/tasks', httpOptions)
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError('TaskService.getTasksByEmpUsername(): error getting employee\'s tasks.');
+        })
+      );
+    }
 }

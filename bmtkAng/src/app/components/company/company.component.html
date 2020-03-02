@@ -8,9 +8,43 @@
 
 
 <!-- owner relationship, need qual from user -->
+
+<div *ngIf="showEmployees">
+  <div *ngIf="aCompany.employees.length > 0">
+    <h3>My Employees</h3>
+    <table class = "table table-bordered">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of aCompany.employees">
+         <td>{{employee.userDetail.firstName}}</td>
+         <td>{{employee.userDetail.lastName}}</td>
+         <td>{{employee.userDetail.email}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- TODO Fix add employee -->
+    <button>Add Employee</button>
+  </div>
+  <div *ngIf="aCompany.employees.length == 0">
+    <h3>No Employees!</h3>
+    <!-- TODO Fix add employee -->
+    <button>Add Employee</button>
+  </div>
+  <button (click)="showEmployees = false">Hide Employees</button>
+</div>
+<div *ngIf="!showEmployees">
+  <button (click)="showEmployees = true">Show Employees</button>
+</div>
+
 <div *ngIf="projectsForCompany.length > 0">
   <h3>Our Customer's Requests</h3>
-  <table>
+  <table class="table table-bordered">
     <thead>
       <tr>
         <th>Name</th>
@@ -47,11 +81,12 @@
 
     <button (click)="showEditProject(selectedProject)">Edit {{selectedProject.name}}</button>
     <h3>{{selectedProject.name}} Tasks</h3>
-    <table>
+    <table class="table table-bordered">
       <thead>
         <tr>
           <th>Task Name</th>
           <th>Task Due Date</th>
+          <th>Employee(s)</th>
           <th>Delete Task</th>
         </tr>
       </thead>
@@ -59,6 +94,13 @@
         <tr *ngFor="let task of selectedProject.tasks | taskIsActive: true">
           <td (click)="showEditTask(task)">{{task.name}}</td>
           <td>{{task.dueDate}}</td>
+          <td>
+            <span *ngFor="let emp of task.employees">
+              {{emp.userDetail.firstName}} {{emp.userDetail.lastName}} <br>
+              <i>{{emp.userDetail.email}}</i>
+              <br>
+            </span>
+          </td>
           <td><button (click)="disableTask(task)">Delete {{task.name}}</button></td>
         </tr>
       </tbody>
@@ -77,8 +119,6 @@
       <input type="type" name="description" [(ngModel)]="newTask.description"><br>
       <label for="dueDate">DueDate:</label>
       <input type="date" name="dueDate" [(ngModel)]="newTask.dueDate"><br>
-      <label for="paid">Paid:</label>
-      <input type="checkbox" name="paid" [(ngModel)]="newTask.paid"><br>
       <label for="startDate">Start Date:</label>
       <input type="date" name="startDate" [(ngModel)]="newTask.startDate"><br>
       <label for="completeDate">Complete Date:</label>
@@ -90,6 +130,14 @@
         <option value="INPROGRESS">In Progress</option>
         <option value="COMPLETE">Complete</option>
       </select><br>
+      <!-- no idea if this will work...need to test with multiple employees and add multiselect? -->
+      <span *ngIf="aCompany.employees.length > 0">
+        <label for="employees">Assigned Employees:</label>
+        <select name="employees" [(ngModel)]="newTask.employees">
+            <option *ngFor="let employee of aCompany.employees" value="{{employee}}">{{employee.userDetail.firstName}} {{employee.userDetail.lastName}}</option>
+        </select><br>
+      </span>
+      <!-- end of the (probably) bad idea -->
       <label for="type">Type:</label>
       <input type="text" name="type" [(ngModel)]="newTask.type"><br>
       <label for="priority">Priority:</label>
@@ -98,20 +146,20 @@
       <input type="text" name="paymentDetails" [(ngModel)]="newTask.paymentDetails"><br>
       <label for="price">Price:</label>
       <input type="number" step="0.01" name="price" [(ngModel)]="newTask.price"><br>
+      <label for="paid">Paid:</label>
+      <input type="checkbox" name="paid" [(ngModel)]="newTask.paid"><br>
       <button *ngIf="!editingATask" (click)="saveNewTask()">Create New Task</button>
       <button *ngIf="editingATask" (click)="saveEditTask()">Save Task</button>
     </form>
     <hr>
   </div>
-
-
 </div>
 
 <!-- emp relationship, need qual from user -->
 
 <div *ngIf="empTasksToDo.length > 0">
-  <h3>Tasks To Do</h3>
-  <table>
+  <h3>My Tasks To Do</h3>
+  <table class="table table-bordered">
     <thead>
       <tr>
         <th>Task Name</th>
@@ -135,7 +183,7 @@
 <div>
   <div *ngIf="projectsRequested.length > 0">
     <h3>Projects Requested</h3>
-    <table>
+    <table class="table table-bordered">
       <thead>
         <tr>
           <th>Name</th>

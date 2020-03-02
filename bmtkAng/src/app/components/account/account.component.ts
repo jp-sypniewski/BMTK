@@ -1,3 +1,4 @@
+import { TaskService } from './../../services/task/task.service';
 import { ProjectService } from './../../services/project/project.service';
 import { CompanyService } from './../../services/company/company.service';
 import { Project } from './../../models/project';
@@ -19,65 +20,74 @@ export class AccountComponent implements OnInit {
   newUser: User = new User();
   newUserDetail: UserDetail = new UserDetail();
   userCreated: String = new String();
-  userTable: boolean = false;
-  companyTable: boolean = false;
-  projectTable: boolean = false;
-  editProject: Project = new Project();
-  editCompany: Company = new Company();
 
   currentUser: User;
+
+  headerMessage: string = null;
+
+  editUser: User = null;
+  editProject: Project = null;
+  editCompany: Company = null;
 
   companiesOwned: Company[] = [];
   tasksToDo: Task[] = [];
   projectsRequested: Project[] = [];
 
   constructor(private router: Router,
-    private userSvc: UserService, private compSvc: CompanyService, private projSvc: ProjectService) { }
+    private userSvc: UserService,
+    private compSvc: CompanyService,
+    private projSvc: ProjectService,
+    private taskSvc: TaskService) { }
 
   ngOnInit(): void {
     this.reload();
   }
 
-reload(){
-  if (this.userSvc.checkLogin()){
-    this.userSvc.getUserInfo().subscribe(
-      data => {
-        this.currentUser = data;
-      },
-      err => {
-        this.newUser = new User();
-        this.newUserDetail = new UserDetail();
-        console.error('UserComponent.init(): error getting user data with principal.');
-      }
-    );
+  reload(){
+    if (this.userSvc.checkLogin()){
+      this.userSvc.getUserInfo().subscribe(
+        data => {
+          this.currentUser = data;
+        },
+        err => {
+          this.newUser = new User();
+          this.newUserDetail = new UserDetail();
+          console.error('UserComponent.reload(): error getting user data with principal.');
+        }
+      );
 
-    this.compSvc.getMyCompanies().subscribe(
-      data => {
-        this.companiesOwned= data;
-      },
-      err => {
+      this.compSvc.getMyCompanies().subscribe(
+        data => {
+          this.companiesOwned = data;
+        },
+        err => {
+          console.error('UserComponent.reload(): error getting user owner company data.');
+        }
+      );
 
-        console.error('UserComponent.init(): error getting user data with principal.');
-      }
-    );
+      this.taskSvc.getTasksByEmpUsername().subscribe(
+        data => {
+          this.tasksToDo = data;
+        },
+        err => {
+          console.error('UserComponent.reload(): error getting user owner company data.');
+        }
+      );
 
-    this.projSvc.getMyProjectRequests().subscribe(
-      data => {
-        this.projectsRequested= data;
-        console.log()
-      },
-      err => {
+      this.projSvc.getMyProjectRequests().subscribe(
+        data => {
+          this.projectsRequested = data;
+        },
+        err => {
+          console.error('UserComponent.reload(): error getting user customer project data.');
+        }
+      );
 
-        console.error('UserComponent.init(): error getting user data with principal.');
-      }
-    );
-
-  } else {
-    this.newUser = new User();
-    this.newUserDetail = new UserDetail();
+    } else {
+      this.newUser = new User();
+      this.newUserDetail = new UserDetail();
+    }
   }
-
-}
 
 
 
@@ -97,63 +107,76 @@ reload(){
     this.router.navigateByUrl('/company/'+cid);
   }
 
-  displayUserInfo(){
-    this.userTable = true;
+  showEditUser(){
+    this.cancelAllEditForms();
+    this.nullHeaderMessage();
+    this.editUser = Object.assign({}, this.currentUser);
   }
 
-  displayCompanyInfo(cid){
-    this.companyTable = true;
-    this.compSvc.getSingleCompany(cid).subscribe(
+  saveEditUser(){
+    this.userSvc.updateUser(this.editUser).subscribe(
       data => {
-        this.editCompany = data;
-          err => {
-            console.error('CompanyComponent: error getting company by id');
-          }
-        }
-        );
-
-  }
-
-  editUserInfo(){}
-
-  editCompanyInfo(){
-    this.compSvc.updateCompany(this.editCompany).subscribe(
-      data => {
-        this.editCompany = null;
-        this.companyTable = false;
-        this.reload();
-        },
-        err => {
-          console.error('CompanyComponent: error editing company');
-        }
-        );
-  }
-
-  displayProjectInfo(project){
-    this.projectTable = true;
-    this.editProject = project;
-    /*this.projSvc.getSingleProject(pid).subscribe(
-      data => {
-        this.editCompany = data;
-          err => {
-            console.error('CompanyComponent: error getting company by id');
-          }
-        }
-        );*/
-  }
-
-  saveProjectInfo(){
-    this.projSvc.updateProject(this.editProject, this.editProject.company.id, this.editProject.id).subscribe(
-      data => {
-        this.editProject = null;
-        this.projectTable = false;
+        this.headerMessage = "User: " + data.username + " updated!";
+        this.editUser = null;
         this.reload();
       },
-          err => {
-            console.error('ProjectComponent: error getting updating project');
-          }
+      err => {
+        console.error('CompanyComponent: error updating user');
+      }
+    );
+  }
 
-        );
+  showEditCompany(company){
+    this.cancelAllEditForms();
+    this.nullHeaderMessage();
+    this.editCompany = Object.assign({}, company);
+  }
+
+  saveEditCompany(){
+    this.compSvc.updateCompany(this.editCompany).subscribe(
+      data => {
+        this.headerMessage = "Company: " + data.name + " updated!";
+        this.editCompany = null;
+        this.reload();
+      },
+      err => {
+        console.error('CompanyComponent: error editing company');
+      }
+    );
+  }
+
+
+  showEditProject(project){
+    this.cancelAllEditForms();
+    this.nullHeaderMessage();
+    this.editProject = Object.assign({}, project);
+  }
+
+  saveEditProject(){
+    this.projSvc.updateProject(this.editProject, this.editProject.company.id, this.editProject.id).subscribe(
+      data => {
+        this.headerMessage = "Project: " + data.name + " updated!";
+        this.editProject = null;
+        this.reload();
+      },
+      err => {
+        console.error('ProjectComponent: error getting updating project');
+      }
+    );
+  }
+
+  cancelAllEditForms(){
+    this.editUser = null;
+    this.editCompany = null;
+    this.editProject = null;
+  }
+
+  redirToSignIn(){
+    this.router.navigateByUrl('/login');
+  }
+
+  nullHeaderMessage(){
+    this.headerMessage = null;
   }
 
 }
