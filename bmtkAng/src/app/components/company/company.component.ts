@@ -1,3 +1,4 @@
+import { Employee } from './../../models/employee';
 import { TaskIsActivePipe } from './../../pipes/task-is-active.pipe';
 import { IsCustomerPipe } from './../../pipes/is-customer.pipe';
 import { User } from 'src/app/models/user';
@@ -20,6 +21,8 @@ import { UserDetail } from 'src/app/models/userDetail';
 export class CompanyComponent implements OnInit {
 
   currentUser: User;
+
+  showEmployees: Boolean = false;
 
   aCompany: Company = new Company();
   projectsForCompany: Project[] = [];

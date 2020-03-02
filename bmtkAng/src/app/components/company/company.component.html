@@ -8,6 +8,40 @@
 
 
 <!-- owner relationship, need qual from user -->
+
+<div *ngIf="showEmployees">
+  <div *ngIf="aCompany.employees.length > 0">
+    <h3>My Employees</h3>
+    <table class = "table table-bordered">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of aCompany.employees">
+         <td>{{employee.userDetail.firstName}}</td>
+         <td>{{employee.userDetail.lastName}}</td>
+         <td>{{employee.userDetail.email}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- TODO Fix add employee -->
+    <button>Add Employee</button>
+  </div>
+  <div *ngIf="aCompany.employees.length == 0">
+    <h3>No Employees!</h3>
+    <!-- TODO Fix add employee -->
+    <button>Add Employee</button>
+  </div>
+  <button (click)="showEmployees = false">Hide Employees</button>
+</div>
+<div *ngIf="!showEmployees">
+  <button (click)="showEmployees = true">Show Employees</button>
+</div>
+
 <div *ngIf="projectsForCompany.length > 0">
   <h3>Our Customer's Requests</h3>
   <table class="table table-bordered">
@@ -105,7 +139,7 @@
             <option *ngFor="let employee of aCompany.employees" value="{{employee}}">{{employee.userDetail.firstName}} {{employee.userDetail.lastName}}</option>
         </select><br>
       </span>
-      <!-- end of the bad idea -->
+      <!-- end of the (probably) bad idea -->
       <label for="type">Type:</label>
       <input type="text" name="type" [(ngModel)]="newTask.type"><br>
       <label for="priority">Priority:</label>
@@ -119,8 +153,6 @@
     </form>
     <hr>
   </div>
-
-
 </div>
 
 <!-- emp relationship, need qual from user -->
