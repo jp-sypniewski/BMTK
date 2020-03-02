@@ -66,13 +66,11 @@ public class Task {
 		
 		private Boolean active;
 		
-		
 		@JsonIgnore
 		@ManyToOne
 		@JoinColumn(name="project_id")
 		private Project project;
 		
-		@JsonIgnore
 		@ManyToMany(mappedBy="tasks")
 		private List<Employee> employees;
 		

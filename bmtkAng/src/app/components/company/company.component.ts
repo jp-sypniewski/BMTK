@@ -107,7 +107,11 @@ export class CompanyComponent implements OnInit {
               this.empTasksToDo = [];
               for (let i = 0; i < projData.length; i++){
                 for (let j = 0; j < projData[i].tasks.length; j++){
-                  this.empTasksToDo.push(projData[i].tasks[j])
+                   for (let k = 0; k < projData[i].tasks[j].employees.length; k++){
+                     if (projData[i].tasks[j].employees[k].userDetail.id === this.currentUser.userDetail.id){
+                      this.empTasksToDo.push(projData[i].tasks[j]);
+                     }
+                   }
                 }
               }
               // assigns projects into array to display if the user is the customer for a given company project
