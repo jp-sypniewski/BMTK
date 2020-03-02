@@ -51,6 +51,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 			employee.setComp(company);
 			UserDetail ud = user.getUserDetail();
 			employee.setUserDetail(ud);
+			employee.setActive(true);
 			employee = empRepo.saveAndFlush(employee);
 		} else {
 			employee = null;

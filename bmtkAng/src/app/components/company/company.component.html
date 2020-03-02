@@ -64,7 +64,7 @@
               Current Employee
             </span>
             <span *ngIf="!userIsAlreadyEmp(user.userDetail.id)">
-              <button>Add as Employee</button>
+              <button (click)="registerEmployee(user)">Add as Employee</button>
             </span>
           </td>
         </tr>

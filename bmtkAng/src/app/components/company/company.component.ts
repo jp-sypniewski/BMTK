@@ -274,4 +274,15 @@ export class CompanyComponent implements OnInit {
     return false;
   }
 
+  registerEmployee(user){
+    this.userSvc.registerEmployee(user, this.aCompany.id).subscribe(
+      data => {
+        this.reload(this.aCompany.id);
+      },
+      err => {
+        console.error('CompanyComponent: error adding user as employee')
+      }
+    );
+  }
+
 }

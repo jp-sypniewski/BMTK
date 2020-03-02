@@ -43,7 +43,6 @@ public class EmployeeController {
 	@PostMapping(value = "companies/{cid}/employee")
 	public Employee createEmployee(@PathVariable("cid") Integer cid,
 			@RequestBody User user){
-		user = authSvc.register(user);
 		Employee employee = empSvc.createEmployee(cid, user);
 		return employee;
 	}

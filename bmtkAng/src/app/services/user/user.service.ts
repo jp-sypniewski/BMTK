@@ -1,3 +1,4 @@
+import { Employee } from './../../models/employee';
 import { Injectable } from '@angular/core';
 import { User } from "../../models/user";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -129,6 +130,24 @@ getCredentials() {
     catchError((err: any) => {
       console.log(err);
       return throwError('UserService.searchUsersByEmail(): error finding users.');
+    })
+  );
+ }
+
+ registerEmployee(user, cid){
+  const credentials = this.getCredentials();
+  const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
+      'Authorization': `Basic ${credentials}`
+    })
+  };
+  return this.http.post<Employee>(this.baseUrl+'api/companies/'+cid+'/employee', user, httpOptions)
+  .pipe(
+    catchError((err: any) => {
+      console.log(err);
+      return throwError('UserService.registerEmployee(): error registering user as employee.');
     })
   );
  }
