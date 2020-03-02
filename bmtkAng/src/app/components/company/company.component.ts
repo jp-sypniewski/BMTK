@@ -24,6 +24,11 @@ export class CompanyComponent implements OnInit {
 
   showEmployees: Boolean = false;
 
+  addingEmployee: Boolean = false;
+
+  emailSearch: String = "";
+  usersFound: User[] = [];
+
   aCompany: Company = new Company();
   projectsForCompany: Project[] = [];
   selectedProject: Project;
@@ -146,6 +151,17 @@ export class CompanyComponent implements OnInit {
     }
   }
 
+  performSearch(){
+    this.userSvc.searchUsersByEmail(this.emailSearch).subscribe(
+      data => {
+        this.usersFound = data;
+      },
+      err => {
+        console.error('CompanyComponent: error searching users');
+      }
+    );
+  }
+
 
   showProjectDetails(project){
     this.selectedProject = project;
@@ -247,6 +263,15 @@ export class CompanyComponent implements OnInit {
         console.error('CompanyComponent: error saving project update');
       }
     )
+  }
+
+  userIsAlreadyEmp(id){
+    for (let i = 0; i < this.aCompany.employees.length; i++){
+      if (id == this.aCompany.employees[i].userDetail.id){
+        return true;
+      }
+    }
+    return false;
   }
 
 }

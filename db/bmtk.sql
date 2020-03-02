@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `company` (
   `phone` VARCHAR(45) NULL,
   `address` VARCHAR(45) NULL,
   `city` VARCHAR(45) NULL,
-  `state` VARCHAR(5) NULL,
+  `state` VARCHAR(45) NULL,
   `zip` VARCHAR(45) NULL,
   `company_url` VARCHAR(500) NULL,
   `active` TINYINT NOT NULL DEFAULT 1,
@@ -355,10 +355,10 @@ INSERT INTO `customer` (`id`, `payment_method`, `user_detail_id`, `active`) VALU
 INSERT INTO `customer` (`id`, `payment_method`, `user_detail_id`, `active`) VALUES (7, 'paypal', 16, 1);
 INSERT INTO `customer` (`id`, `payment_method`, `user_detail_id`, `active`) VALUES (8, 'paypal', 8, 1);
 INSERT INTO `customer` (`id`, `payment_method`, `user_detail_id`, `active`) VALUES (9, 'paypal', 9, 1);
-INSERT INTO `customer` (`id`, `payment_method`, `user_detail_id`, `active`) VALUES (10, 'paypal', 10, 1);
-INSERT INTO `customer` (`id`, `payment_method`, `user_detail_id`, `active`) VALUES (11, 'paypal', 11, 1);
-INSERT INTO `customer` (`id`, `payment_method`, `user_detail_id`, `active`) VALUES (12, 'paypal', 12, 1);
-INSERT INTO `customer` (`id`, `payment_method`, `user_detail_id`, `active`) VALUES (13, 'paypal', 13, 1);
+INSERT INTO `customer` (`id`, `payment_method`, `user_detail_id`, `active`) VALUES (10, 'paypal', 2, 1);
+INSERT INTO `customer` (`id`, `payment_method`, `user_detail_id`, `active`) VALUES (11, 'paypal', 10, 1);
+INSERT INTO `customer` (`id`, `payment_method`, `user_detail_id`, `active`) VALUES (12, 'paypal', 3, 1);
+INSERT INTO `customer` (`id`, `payment_method`, `user_detail_id`, `active`) VALUES (13, 'paypal', 1, 1);
 
 COMMIT;
 

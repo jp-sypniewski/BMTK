@@ -2,6 +2,7 @@ package com.skilldistillery.bmtk.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import com.skilldistillery.bmtk.entities.User;
 import com.skilldistillery.bmtk.entities.UserDetail;
@@ -21,5 +22,7 @@ public interface UserService {
 	UserDetail updateUserDetail(int id, UserDetail ud);
 
 	User getUserByPrincipal(String username);
+
+	Set<User> findByEmail(String searchTerm);
 
 }

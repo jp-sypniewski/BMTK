@@ -1,7 +1,7 @@
 package com.skilldistillery.bmtk.controllers;
 
 import java.security.Principal;
-import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.bmtk.entities.User;
-import com.skilldistillery.bmtk.entities.UserDetail;
 import com.skilldistillery.bmtk.services.UserService;
 
 @RestController
@@ -41,6 +40,27 @@ public class UserController {
 			Principal principal) {
 		User user = userSvc.getUserByPrincipal(principal.getName());
 		return user;
+	}
+	
+	@GetMapping(value="user/{searchEmail}")
+	public Set<User> getUsersByEmail(HttpServletRequest req,
+			HttpServletResponse res,
+			Principal principal,
+			@PathVariable("searchEmail") String searchEmail){
+		try {
+			Set<User> users = userSvc.findByEmail(searchEmail);
+			if (users.size() == 0) {
+				res.setStatus(404);
+				users = null;
+				return users;
+			}
+			res.setStatus(200);
+			return users;
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+			return null;
+		}
 	}
 	
 	

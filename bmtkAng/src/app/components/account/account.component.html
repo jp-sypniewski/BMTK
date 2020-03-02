@@ -20,6 +20,8 @@
     <input type="text" id="street" name="street" [(ngModel)]="newUserDetail.street"><br><br>
     <label for="city">City:</label>
     <input type="text" id="city" name="city" [(ngModel)]="newUserDetail.city"><br><br>
+    <label for="state">State:</label>
+    <input type="text" id="state" name="state" [(ngModel)]="newUserDetail.state"><br><br>
     <label for="zipcode">Zipcode:</label>
     <input type="text" id="zipcode" name="zipcode" [(ngModel)]="newUserDetail.zipcode"><br><br>
     <label for="country">Country:</label>
@@ -46,7 +48,9 @@
       Name: {{currentUser.userDetail.firstName}} {{currentUser.userDetail.lastName}}<br>
       Email: {{currentUser.userDetail.email}}<br>
       Street: {{currentUser.userDetail.street}}<br>
-      City: {{currentUser.userDetail.city}} Zip: {{currentUser.userDetail.zipcode}}
+      City: {{currentUser.userDetail.city}}<br>
+      State: {{currentUser.userDetail.state}}<br>
+      Zip: {{currentUser.userDetail.zipcode}}
     </p>
     <button type="button" (click)="showEditUser()">Edit Account Information</button>
     <hr>
@@ -133,6 +137,8 @@
       <input type="text" name="street" [(ngModel)]="editUser.userDetail.street"><br>
       <label for="city">City:</label>
       <input type="text" name="city" [(ngModel)]="editUser.userDetail.city"><br>
+      <label for="state">State:</label>
+      <input type="text" name="state" [(ngModel)]="editUser.userDetail.state"><br>
       <label for="zipcode">Zipcode:</label>
       <input type="text" name="zipcode" [(ngModel)]="editUser.userDetail.zipcode"><br>
       <label for="country">Country:</label>
@@ -154,7 +160,13 @@
       <label for="type">Company Type:</label>
       <input type="text" name="type"  [(ngModel)]="editCompany.type"><br>
       <label for="address">Company Address:</label>
-      <input size = "50" type="text" name="address" [(ngModel)]="editCompany.address"><br>
+      <input type="text" name="address" [(ngModel)]="editCompany.address"><br>
+      <label for="city">Company City:</label>
+      <input type="text" name="city" [(ngModel)]="editCompany.city"><br>
+      <label for="state">Company State:</label>
+      <input type="text" name="state" [(ngModel)]="editCompany.state"><br>
+      <label for="zip">Company Zip:</label>
+      <input type="text" name="zip" [(ngModel)]="editCompany.zip"><br>
       <label for="phone">Company Phone:</label>
       <input type="text" name="phone" [(ngModel)]="editCompany.phone"><br>
       <label for="companyurl">Company URL:</label>

@@ -8,13 +8,14 @@ export class UserDetail {
   email: string;
   street: string;
   city: string;
+  state: string;
   zipcode: string;
   country: string;
   phone: string;
   user: User;
 
   constructor(id?:number, firstName?:string, lastName?:string,
-    email?: string, street?: string, city?:string, zipcode?:string,
+    email?: string, street?: string, city?: string, state?: string, zipcode?:string,
     country?:string, phone?:string, user?:User ){
 
       this.id = id;
@@ -23,6 +24,7 @@ export class UserDetail {
       this.email = email;
       this.street = street;
       this.city = city;
+      this.state = state;
       this.zipcode = zipcode;
       this.country = country;
       this.phone = phone;

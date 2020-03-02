@@ -39,8 +39,9 @@ public class User {
 	
 	private String role;
 	
+
 	@OneToOne
-	@JoinColumn(name="user_detail_id")
+	@JoinColumn(name="user_detail_id", unique = true)
 	private UserDetail userDetail;
 	
 	

@@ -115,4 +115,22 @@ getCredentials() {
   return localStorage.getItem('credentials');
  }
 
+ searchUsersByEmail(searchTerm){
+  const credentials = this.getCredentials();
+  const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
+      'Authorization': `Basic ${credentials}`
+    })
+  };
+  return this.http.get<User[]>(this.baseUrl+'api/user/'+searchTerm, httpOptions)
+  .pipe(
+    catchError((err: any) => {
+      console.log(err);
+      return throwError('UserService.searchUsersByEmail(): error finding users.');
+    })
+  );
+ }
+
 }
