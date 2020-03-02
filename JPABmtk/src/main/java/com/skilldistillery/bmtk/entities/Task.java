@@ -1,6 +1,7 @@
 package com.skilldistillery.bmtk.entities;
 
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -33,8 +34,10 @@ public class Task {
 		
 		private String name;
 		private String description;
+		
 		@Column(name="due_date")
-		private String dueDate;
+		private LocalDate dueDate;
+		
 		private Boolean paid;
 		
 		@CreationTimestamp
@@ -50,9 +53,10 @@ public class Task {
 		private Boolean template;
 		
 		@Column(name="start_date")
-		private String startDate;
+		private LocalDate startDate;
+		
 		@Column(name="complete_date")
-		private String completeDate;
+		private LocalDate completeDate;
 		
 		@Enumerated(EnumType.STRING)
 		private Status status;
@@ -77,8 +81,8 @@ public class Task {
 		public Task() {
 			super();
 		}
-		public Task(int id, String name, String description, String dueDate, boolean paid, Date createdAt,
-				Date updatedAt, boolean template, String startDate, String completeDate, Status status,
+		public Task(int id, String name, String description, LocalDate dueDate, boolean paid, Date createdAt,
+				Date updatedAt, boolean template, LocalDate startDate, LocalDate completeDate, Status status,
 				String type, String priority, String paymentDetail, double price) {
 			super();
 			this.id = id;
@@ -99,8 +103,8 @@ public class Task {
 		}
 		
 		
-		public Task(int id, String name, String description, String dueDate, Boolean paid, Date createdAt,
-				Date updatedAt, Boolean template, String startDate, String completeDate, Status status, String type,
+		public Task(int id, String name, String description, LocalDate dueDate, Boolean paid, Date createdAt,
+				Date updatedAt, Boolean template, LocalDate startDate, LocalDate completeDate, Status status, String type,
 				String priority, String paymentDetail, Double price, Boolean active, Project project) {
 			super();
 			this.id = id;
@@ -155,11 +159,11 @@ public class Task {
 			this.description = description;
 		}
 
-		public String getDueDate() {
+		public LocalDate getDueDate() {
 			return dueDate;
 		}
 
-		public void setDueDate(String dueDate) {
+		public void setDueDate(LocalDate dueDate) {
 			this.dueDate = dueDate;
 		}
 
@@ -195,19 +199,19 @@ public class Task {
 			this.template = template;
 		}
 
-		public String getStartDate() {
+		public LocalDate getStartDate() {
 			return startDate;
 		}
 
-		public void setStartDate(String startDate) {
+		public void setStartDate(LocalDate startDate) {
 			this.startDate = startDate;
 		}
 
-		public String getCompleteDate() {
+		public LocalDate getCompleteDate() {
 			return completeDate;
 		}
 
-		public void setCompleteDate(String completeDate) {
+		public void setCompleteDate(LocalDate completeDate) {
 			this.completeDate = completeDate;
 		}
 
