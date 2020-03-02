@@ -29,6 +29,7 @@ public class UserDetail {
 		private String email;
 		private String street;
 		private String city;
+		private String state;
 		private String zipcode;
 		private String country;
 		private String phone;
@@ -54,7 +55,7 @@ public class UserDetail {
 
 
 	public UserDetail(int id, String firstName, String lastName, String email, String street, String city,
-			String zipcode, String country, String phone) {
+			String state, String zipcode, String country, String phone) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -62,6 +63,7 @@ public class UserDetail {
 		this.email = email;
 		this.street = street;
 		this.city = city;
+		this.state = state;
 		this.zipcode = zipcode;
 		this.country = country;
 		this.phone = phone;
@@ -146,6 +148,18 @@ public class UserDetail {
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+
+
+
+	public String getState() {
+		return state;
+	}
+
+
+
+	public void setState(String state) {
+		this.state = state;
 	}
 
 

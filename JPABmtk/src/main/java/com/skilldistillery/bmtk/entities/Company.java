@@ -28,6 +28,9 @@ public class Company {
 		private String name;
 		private String type;
 		private String address;
+		private String city;
+		private String state;
+		private String zip;
 		private String phone;
 		private String description;
 		@Column(name="company_url")
@@ -77,13 +80,16 @@ public class Company {
 			this.active = active;
 		}
 
-		public Company(int id, String name, String type, String address, String phone, String description,
+		public Company(int id, String name, String type, String address, String city, String state, String zip, String phone, String description,
 				String companyUrl, List<Employee> employees) {
 			super();
 			this.id = id;
 			this.name = name;
 			this.type = type;
 			this.address = address;
+			this.city = city;
+			this.state = state;
+			this.zip = zip;
 			this.phone = phone;
 			this.description = description;
 			this.companyUrl = companyUrl;
@@ -136,6 +142,49 @@ public class Company {
 		public void setAddress(String address) {
 			this.address = address;
 		}
+		
+
+		public String getCity() {
+			return city;
+		}
+
+
+
+
+		public void setCity(String city) {
+			this.city = city;
+		}
+
+
+
+
+		public String getState() {
+			return state;
+		}
+
+
+
+
+		public void setState(String state) {
+			this.state = state;
+		}
+
+
+
+
+		public String getZip() {
+			return zip;
+		}
+
+
+
+
+		public void setZip(String zip) {
+			this.zip = zip;
+		}
+
+
+
 
 		public String getPhone() {
 			return phone;

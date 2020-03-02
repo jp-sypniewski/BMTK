@@ -27,6 +27,7 @@ CREATE TABLE IF NOT EXISTS `user_detail` (
   `email` VARCHAR(45) NOT NULL,
   `street` VARCHAR(45) NULL,
   `city` VARCHAR(45) NULL,
+  `state` VARCHAR(45) NULL,
   `zipcode` VARCHAR(5) NULL,
   `country` VARCHAR(45) NULL,
   `phone` VARCHAR(10) NULL,
@@ -88,9 +89,12 @@ CREATE TABLE IF NOT EXISTS `company` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `type` VARCHAR(45) NULL,
-  `address` VARCHAR(45) NULL,
-  `phone` VARCHAR(45) NULL,
   `description` VARCHAR(500) NULL,
+  `phone` VARCHAR(45) NULL,
+  `address` VARCHAR(45) NULL,
+  `city` VARCHAR(45) NULL,
+  `state` VARCHAR(5) NULL,
+  `zip` VARCHAR(45) NULL,
   `company_url` VARCHAR(500) NULL,
   `active` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`))
@@ -292,22 +296,22 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bmtkdb`;
-INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (1, 'adminFirst', 'adminLast', 'admin@admin.com', '12345', NULL, '80111', 'US', '5555555555');
-INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (2, 'ownerFirst', 'ownerLast', 'owner@owner.com', '123456', 'denver', '80111', 'US', '5555555555');
-INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (3, 'empFirst', 'empLast', 'emp@emp.com', '1234567', 'denver', '80237', 'US', '3333333333');
-INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (4, 'userFirst', 'userLast', 'user@user.com', '123', 'denver', '80111', 'US', '2222222222');
-INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (5, 'Mary', 'Sanders', 'marysanders@gmail.com', '5944 round rock street', 'boulder', '80301', 'US', '8546733211');
-INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (6, 'Mark', 'Wayside', 'markwayside@gmail.com', '8711 hay street', 'dallas', '75001', 'US', '8176819021');
-INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (7, 'Bill', 'Jacobs', 'billjacobs@gmail.com', '3498 mill street', 'denver', '80111', 'US', '2543618355');
-INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (8, 'John', 'Pine', 'johnpine@gmail.com', ' 5341 north street', 'denver', '80111', 'US', '6537912333');
-INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (9, 'Ann', 'Good', 'anngood@gmail.com', '7834 bell street', 'denver', '80111', 'US', '9325812312');
-INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (10, 'Sarah', 'Walker', 'sarahwalker@gmail.com', '321 high street', 'denver', '80111', 'US', '6234117553');
-INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (11, 'Gary', 'Newland', 'garynewland@gmail.com', '734 dryer street', 'denver', '80111', 'US', '8745557433');
-INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (12, 'Joe', 'Keppler', 'joekeppler@gmail.com', '632 green street', 'denver', '80111', 'US', '2546719233');
-INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (13, 'Sam', 'Miller', 'sammiller@gmail.com', '7822 hill street', 'denver', '80111', 'US', '6234778211');
-INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (14, 'Diane', 'Weller', 'dianeweller@gmail.com', '7188 bell street', 'denver', '80111', 'US', '6123776399');
-INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (15, 'Matt', 'Simmons', 'mattsimmons@gmail.com', '832 elm street', 'denver', '80111', 'US', '6234517288');
-INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `zipcode`, `country`, `phone`) VALUES (16, 'Harold', 'Mole', 'haroldmole@gmail.com', '8732 copper street', 'denver', '80111', 'US', '9345612544');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `state`, `zipcode`, `country`, `phone`) VALUES (1, 'adminFirst', 'adminLast', 'admin@admin.com', '12345', 'test city', 'CO', '80111', 'US', '5555555555');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `state`, `zipcode`, `country`, `phone`) VALUES (2, 'ownerFirst', 'ownerLast', 'owner@owner.com', '123456', 'denver', 'CO', '80111', 'US', '5555555555');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `state`, `zipcode`, `country`, `phone`) VALUES (3, 'empFirst', 'empLast', 'emp@emp.com', '1234567', 'denver', 'CO', '80237', 'US', '3333333333');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `state`, `zipcode`, `country`, `phone`) VALUES (4, 'userFirst', 'userLast', 'user@user.com', '123', 'denver', 'CO', '80111', 'US', '2222222222');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `state`, `zipcode`, `country`, `phone`) VALUES (5, 'Mary', 'Sanders', 'marysanders@gmail.com', '5944 round rock street', 'boulder', 'CO', '80301', 'US', '8546733211');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `state`, `zipcode`, `country`, `phone`) VALUES (6, 'Mark', 'Wayside', 'markwayside@gmail.com', '8711 hay street', 'dallas', 'CO', '75001', 'US', '8176819021');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `state`, `zipcode`, `country`, `phone`) VALUES (7, 'Bill', 'Jacobs', 'billjacobs@gmail.com', '3498 mill street', 'denver', 'CO', '80111', 'US', '2543618355');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `state`, `zipcode`, `country`, `phone`) VALUES (8, 'John', 'Pine', 'johnpine@gmail.com', ' 5341 north street', 'denver', 'CO', '80111', 'US', '6537912333');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `state`, `zipcode`, `country`, `phone`) VALUES (9, 'Ann', 'Good', 'anngood@gmail.com', '7834 bell street', 'denver', 'CO', '80111', 'US', '9325812312');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `state`, `zipcode`, `country`, `phone`) VALUES (10, 'Sarah', 'Walker', 'sarahwalker@gmail.com', '321 high street', 'denver', 'CO', '80111', 'US', '6234117553');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `state`, `zipcode`, `country`, `phone`) VALUES (11, 'Gary', 'Newland', 'garynewland@gmail.com', '734 dryer street', 'denver', 'CO', '80111', 'US', '8745557433');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `state`, `zipcode`, `country`, `phone`) VALUES (12, 'Joe', 'Keppler', 'joekeppler@gmail.com', '632 green street', 'denver', 'CO', '80111', 'US', '2546719233');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `state`, `zipcode`, `country`, `phone`) VALUES (13, 'Sam', 'Miller', 'sammiller@gmail.com', '7822 hill street', 'denver', 'CO', '80111', 'US', '6234778211');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `state`, `zipcode`, `country`, `phone`) VALUES (14, 'Diane', 'Weller', 'dianeweller@gmail.com', '7188 bell street', 'denver', 'CO', '80111', 'US', '6123776399');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `state`, `zipcode`, `country`, `phone`) VALUES (15, 'Matt', 'Simmons', 'mattsimmons@gmail.com', '832 elm street', 'denver', 'CO', '80111', 'US', '6234517288');
+INSERT INTO `user_detail` (`id`, `first_name`, `last_name`, `email`, `street`, `city`, `state`, `zipcode`, `country`, `phone`) VALUES (16, 'Harold', 'Mole', 'haroldmole@gmail.com', '8732 copper street', 'denver', 'CO', '80111', 'US', '9345612544');
 
 COMMIT;
 
@@ -364,13 +368,13 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bmtkdb`;
-INSERT INTO `company` (`id`, `name`, `type`, `address`, `phone`, `description`, `company_url`, `active`) VALUES (1, 'Test Company', 'Construction', '12345 test st', '5554443333', 'test description', NULL, DEFAULT);
-INSERT INTO `company` (`id`, `name`, `type`, `address`, `phone`, `description`, `company_url`, `active`) VALUES (2, 'Bob\'s Plumbing', 'Plumbing', '34 pipe st, Denver, CO,  80014', '8176534591', 'All residential plumbing work from new construction to remodeling to repairs. Free estimates. We supply fixtures. ', 'bobsplumbing.com', 1);
-INSERT INTO `company` (`id`, `name`, `type`, `address`, `phone`, `description`, `company_url`, `active`) VALUES (3, 'Fast Action Painting', 'Painting', '571 white street, Dallas, TX, 75001', '6239456789', 'All residential painting, interior or exterior, new construction or remodeling.  Barns, houses, workshops. ', 'fastactionpainting.com', 1);
-INSERT INTO `company` (`id`, `name`, `type`, `address`, `phone`, `description`, `company_url`, `active`) VALUES (4, 'County HVAC Service', 'HVAC', '9231 snow street, Alma, CO, 80420', '3256718324', 'Residential and commercial HVAC repair. We install new units. $75 estimate fee is applied towards work order. All of our work is guaranteed. ', 'countyhvac.com', 1);
-INSERT INTO `company` (`id`, `name`, `type`, `address`, `phone`, `description`, `company_url`, `active`) VALUES (5, 'Long Valley Surveying', 'Surveying', '7541 west street,  Broomfield , CO 80020 ', '4578934581', 'Land surveys, property lines verified, land subdivided. We can handle all of your surveying needs. ', 'longvalleysurveying.com', 1);
-INSERT INTO `company` (`id`, `name`, `type`, `address`, `phone`, `description`, `company_url`, `active`) VALUES (6, 'Hot Switch Electric', 'Electrician', '6324 cherry street, Georgetown, CO, 80444', '9514359111', 'Licensed electricians. Commercial and Residential. Repairs, Remodeling, New Construction. Call to schedule an estimate. ', 'hotswitchelectic.com', 1);
-INSERT INTO `company` (`id`, `name`, `type`, `address`, `phone`, `description`, `company_url`, `active`) VALUES (7, 'Uptown Catering', 'Catering', '89324 Hill Street, Boulder, CO,  80301', '5678213733', 'Catering for events, parties, and business meetings. ', 'uptowncatering.com', 1);
+INSERT INTO `company` (`id`, `name`, `type`, `description`, `phone`, `address`, `city`, `state`, `zip`, `company_url`, `active`) VALUES (1, 'Test Company', 'Construction', 'test description', '5554443333', '12345 test st', 'Denver', 'CO', '80111', NULL, DEFAULT);
+INSERT INTO `company` (`id`, `name`, `type`, `description`, `phone`, `address`, `city`, `state`, `zip`, `company_url`, `active`) VALUES (2, 'Bob\'s Plumbing', 'Plumbing', 'All residential plumbing work from new construction to remodeling to repairs. Free estimates. We supply fixtures. ', '8176534591', '34 pipe st, Denver, CO,  80014', 'Denver', 'CO', '80111', 'bobsplumbing.com', 1);
+INSERT INTO `company` (`id`, `name`, `type`, `description`, `phone`, `address`, `city`, `state`, `zip`, `company_url`, `active`) VALUES (3, 'Fast Action Painting', 'Painting', 'All residential painting, interior or exterior, new construction or remodeling.  Barns, houses, workshops. ', '6239456789', '571 white street, Dallas, TX, 75001', 'Denver', 'CO', '80111', 'fastactionpainting.com', 1);
+INSERT INTO `company` (`id`, `name`, `type`, `description`, `phone`, `address`, `city`, `state`, `zip`, `company_url`, `active`) VALUES (4, 'County HVAC Service', 'HVAC', 'Residential and commercial HVAC repair. We install new units. $75 estimate fee is applied towards work order. All of our work is guaranteed. ', '3256718324', '9231 snow street, Alma, CO, 80420', 'Denver', 'CO', '80111', 'countyhvac.com', 1);
+INSERT INTO `company` (`id`, `name`, `type`, `description`, `phone`, `address`, `city`, `state`, `zip`, `company_url`, `active`) VALUES (5, 'Long Valley Surveying', 'Surveying', 'Land surveys, property lines verified, land subdivided. We can handle all of your surveying needs. ', '4578934581', '7541 west street,  Broomfield , CO 80020 ', 'Denver', 'CO', '80111', 'longvalleysurveying.com', 1);
+INSERT INTO `company` (`id`, `name`, `type`, `description`, `phone`, `address`, `city`, `state`, `zip`, `company_url`, `active`) VALUES (6, 'Hot Switch Electric', 'Electrician', 'Licensed electricians. Commercial and Residential. Repairs, Remodeling, New Construction. Call to schedule an estimate. ', '9514359111', '6324 cherry street, Georgetown, CO, 80444', 'Denver', 'CO', '80111', 'hotswitchelectic.com', 1);
+INSERT INTO `company` (`id`, `name`, `type`, `description`, `phone`, `address`, `city`, `state`, `zip`, `company_url`, `active`) VALUES (7, 'Uptown Catering', 'Catering', 'Catering for events, parties, and business meetings. ', '5678213733', '89324 Hill Street, Boulder, CO,  80301', 'Denver', 'CO', '80111', 'uptowncatering.com', 1);
 
 COMMIT;
 
