@@ -19,6 +19,7 @@
           <th>First Name</th>
           <th>Last Name</th>
           <th>Email</th>
+          <th>Remove</th>
         </tr>
       </thead>
       <tbody>
@@ -26,16 +27,17 @@
          <td>{{employee.userDetail.firstName}}</td>
          <td>{{employee.userDetail.lastName}}</td>
          <td>{{employee.userDetail.email}}</td>
+         <td><button (click)="removeEmployee(employee.id)">Remove</button></td>
         </tr>
       </tbody>
     </table>
     <!-- TODO Fix add employee -->
-    <button (click)="addingEmployee = true">Add Employee</button>
+    <button *ngIf="!addingEmployee" (click)="addingEmployee = true">Add Employee</button>
   </div>
   <div *ngIf="aCompany.employees.length == 0">
     <h3>No Employees!</h3>
     <!-- TODO Fix add employee -->
-    <button (click)="addingEmployee = true">Add Employee</button>
+    <button *ngIf="!addingEmployee" (click)="addingEmployee = true">Add Employee</button>
   </div>
   <div *ngIf="!addingEmployee">
     <button (click)="showEmployees = false">Hide Employees</button>
@@ -46,6 +48,7 @@
       <label for="email">Email:</label>
       <input type="text" name="email" required [(ngModel)]="emailSearch"><br><br>
       <button (click)="performSearch()">Search</button>
+      <button (click)="addingEmployee = false">Cancel</button>
     </form>
     <table class="table table-bordered">
       <thead>
@@ -106,6 +109,7 @@
       <label for="active">Active:</label>
       <input type="checkbox" name="active" required [(ngModel)]="editingProject.active"><br>
       <button (click)="saveEditProject()">Save Edits for {{selectedProject.name}}</button>
+      <button (click)="cancelEditProject()">Cancel</button>
     </form>
     <hr>
   </div>
@@ -116,6 +120,7 @@
     <h3>Selected Project: {{selectedProject.name}}</h3>
 
     <button (click)="showEditProject(selectedProject)">Edit {{selectedProject.name}}</button>
+    <button (click)="selectedProject = null">Hide Details</button>
     <h3>{{selectedProject.name}} Tasks</h3>
     <table class="table table-bordered">
       <thead>
@@ -142,7 +147,7 @@
         </tr>
       </tbody>
     </table>
-    <button (click)="showCreateTask()">Add new task to {{selectedProject.name}}</button>
+    <button *ngIf="editingATask == null" (click)="showCreateTask()">Add new task to {{selectedProject.name}}</button>
     <hr>
   </div>
   <!-- add/edit task? -->
@@ -167,28 +172,12 @@
         <option value="INPROGRESS">In Progress</option>
         <option value="COMPLETE">Complete</option>
       </select><br>
-      <!-- no idea if this will work...need to test with multiple employees and add multiselect? -->
-      <!-- <span *ngIf="aCompany.employees.length > 0">
-        <form>
-          <span *ngFor="let employee of selectingEmployees">
-            <label for="{{employee.userDetail.email}}">{{employee.userDetail.firstName}} {{employee.userDetail.lastName}}</label>
-            <input type="checkbox" name={{employee.userDetail.email}}>
-          </span>
-        </form>
-      </span> -->
-      <!-- not working below, fix attempt above -->
       <span *ngIf="aCompany.employees.length > 0">
         <label for="employees">Assigned Employees:</label>
         <select name="employees" [(ngModel)]="selectedEmployee">
             <option *ngFor="let employee of aCompany.employees" value="{{employee.id}}">{{employee.userDetail.firstName}} {{employee.userDetail.lastName}}</option>
         </select><br>
       </span>
-      <!-- <span *ngIf="aCompany.employees.length > 0">
-        <label for="employees">Assigned Employees:</label>
-        <select name="employees" ngOptions="employee.userDetail.email for employee in aCompany.employees" [(ngModel)]="newTask.employee">
-        </select><br>
-      </span> -->
-      <!-- end of the (probably) bad idea -->
       <label for="type">Type:</label>
       <input type="text" name="type" [(ngModel)]="newTask.type"><br>
       <label for="priority">Priority:</label>
@@ -201,6 +190,7 @@
       <input type="checkbox" name="paid" [(ngModel)]="newTask.paid"><br>
       <button *ngIf="!editingATask" (click)="saveNewTask()">Create New Task</button>
       <button *ngIf="editingATask" (click)="saveEditTask()">Save Task</button>
+      <button (click)="cancelNewOrEditTask()">Cancel</button>
     </form>
     <hr>
   </div>

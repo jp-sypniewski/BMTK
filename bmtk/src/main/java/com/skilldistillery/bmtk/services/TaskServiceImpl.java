@@ -50,10 +50,9 @@ public class TaskServiceImpl implements TaskService {
 	}
 
 	@Override
-	public Task updateTask(int pid, int tid, Task task) {
-		Optional<Project> optproj = projRepo.findById(pid);
+	public Task updateTask(int tid, Task task) {
 		Optional<Task> opttask = taskRepo.findById(tid);
-		if (optproj.isPresent()) {
+
 			if (opttask.isPresent()) {
 				Task managedTask = opttask.get();
 				if (task.getName() != null) {
@@ -95,16 +94,16 @@ public class TaskServiceImpl implements TaskService {
 				if (task.getActive() != null) {
 					managedTask.setActive(task.getActive());
 				}
-				if (task.getEmployees().size() != 0) {
+				if (task.getEmployees() != null) {
 					managedTask.setEmployees(task.getEmployees());
 				}
+//				if (task.getEmployees().size() != 0) {
+//					managedTask.setEmployees(task.getEmployees());
+//				}
 				task = taskRepo.saveAndFlush(managedTask);
 			} else {
 				task = null;
 			}
-		} else {
-			task = null;
-		}
 		return task;
 	}
 	

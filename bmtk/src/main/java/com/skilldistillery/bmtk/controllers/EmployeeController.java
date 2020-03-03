@@ -71,7 +71,20 @@ public class EmployeeController {
 	}
 	
 	@DeleteMapping(value = "employee/{id}")
-	public Boolean deleteEmployee(@PathVariable("id") int id) {
-		return empSvc.deleteEmployee(id).booleanValue();
+	public void deleteEmployee(HttpServletRequest req,
+			HttpServletResponse res,
+			@PathVariable("id") int id) {
+		try {
+			boolean deleted = empSvc.deleteEmployee(id);
+			if (deleted) {
+				res.setStatus(204);
+			}
+			else {
+				res.setStatus(404);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			res.setStatus(400);
+		}
 	}
 }

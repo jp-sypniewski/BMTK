@@ -28,11 +28,13 @@ export class AccountComponent implements OnInit {
   editUser: User = null;
   editProject: Project = null;
   editCompany: Company = null;
+  editTask: Task = null;
 
   changingPassword: boolean;
   currentPassword: string;
   newPassword: string;
   repeatPassword: string;
+  passwordMessage: string;
 
   companiesOwned: Company[] = [];
   tasksToDo: Task[] = [];
@@ -137,24 +139,35 @@ export class AccountComponent implements OnInit {
         this.reload();
       },
       err => {
-        console.error('CompanyComponent: error updating user');
+        console.error('CompanyComponent: error updating user information');
       }
     );
   }
 
   saveEditUserNewPassword(){
+    if (this.newPassword == this.repeatPassword){
+      this.editUser.password = this.newPassword;
+      this.userSvc.updateUser(this.editUser).subscribe(
+        data => {
+          this.userSvc.logout();
+          this.userSvc.login(this.editUser.username, this.newPassword);
+          this.headerMessage = "User: " + data.username + " updated!";
+          this.editUser = null;
+          this.passwordMessage = null;
+          this.currentPassword = null;
+          this.newPassword = null;
+          this.repeatPassword = null;
+          this.reload();
+        },
+        err => {
+          console.error('CompanyComponent: error updating user password');
+        }
+      );
+    } else {
+      this.passwordMessage = "Please ensure current password is correct and new password matches."
+    }
 
 
-    this.userSvc.updateUser(this.editUser).subscribe(
-      data => {
-        this.headerMessage = "User: " + data.username + " updated!";
-        this.editUser = null;
-        this.reload();
-      },
-      err => {
-        console.error('CompanyComponent: error updating user');
-      }
-    );
   }
 
   showEditCompany(company){
@@ -174,6 +187,24 @@ export class AccountComponent implements OnInit {
         console.error('CompanyComponent: error editing company');
       }
     );
+  }
+
+  showEditTask(task){
+    this.editTask = Object.assign({}, task);
+  }
+
+  saveEditTask(){
+    this.taskSvc.updateTask(this.editTask, this.editTask.id).subscribe(
+      dataTask => {
+        this.editTask = null;
+        this.reload();
+      },
+      errTask => {
+        console.error('AccountComponent: error saving task update');
+      }
+    );
+
+
   }
 
 
@@ -199,6 +230,7 @@ export class AccountComponent implements OnInit {
   cancelAllEditForms(){
     this.editUser = null;
     this.editCompany = null;
+    this.editTask = null;
     this.editProject = null;
   }
 

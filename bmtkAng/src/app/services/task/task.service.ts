@@ -35,7 +35,7 @@ export class TaskService {
     }
 
     // updates a task, takes in project id and task id to confirm correct task is being updated
-    updateTask(task, pid, tid){
+    updateTask(task, tid){
       const credentials = this.userSvc.getCredentials();
       const httpOptions = {
         headers: new HttpHeaders({
@@ -43,7 +43,7 @@ export class TaskService {
           'Authorization': `Basic ${credentials}`
         })
       };
-      return this.http.put<Task>(this.baseUrl+'api/projects/'+pid+'/tasks/'+tid, task, httpOptions)
+      return this.http.put<Task>(this.baseUrl+'api/tasks/'+tid, task, httpOptions)
       .pipe(
         catchError((err: any) => {
           console.log(err);

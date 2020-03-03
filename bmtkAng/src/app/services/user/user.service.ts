@@ -152,4 +152,22 @@ getCredentials() {
   );
  }
 
+ removeEmployee(eid){
+  const credentials = this.getCredentials();
+  const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
+      'Authorization': `Basic ${credentials}`
+    })
+  };
+  return this.http.delete<Employee>(this.baseUrl+'api/employee/'+eid, httpOptions)
+  .pipe(
+    catchError((err: any) => {
+      console.log(err);
+      return throwError('UserService.removeEmployee(): error removing employee.');
+    })
+  );
+ }
+
 }

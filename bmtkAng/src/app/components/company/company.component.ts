@@ -199,7 +199,7 @@ export class CompanyComponent implements OnInit {
 
 
   showEditTask(task){
-    this.newTask = task;
+    this.newTask = Object.assign({}, task);
     this.selectedEmployee = task.employees[0].id;
     this.editingATask = true;
   }
@@ -213,7 +213,7 @@ export class CompanyComponent implements OnInit {
         this.newTask.employees.push(anEmployee);
       }
     }
-    this.taskSvc.updateTask(this.newTask, this.selectedProject.id, this.newTask.id).subscribe(
+    this.taskSvc.updateTask(this.newTask, this.newTask.id).subscribe(
       data => {
         this.needToPreselectProject = true;
         this.selectedProjectId = this.selectedProject.id;
@@ -225,6 +225,13 @@ export class CompanyComponent implements OnInit {
       }
     );
   }
+
+  cancelNewOrEditTask(){
+    this.newTask = null;
+    this.selectedEmployee = null;
+    this.editingATask = null;
+  }
+
 
   // shows the form to request a new project as a customer
   // will redirect to login if there is not a logged in user
@@ -251,7 +258,7 @@ export class CompanyComponent implements OnInit {
 
   disableTask(task){
     task.active = false;
-    this.taskSvc.updateTask(task, this.selectedProject.id, task.id).subscribe(
+    this.taskSvc.updateTask(task, task.id).subscribe(
       data => {
         this.needToPreselectProject = true;
         this.selectedProjectId = this.selectedProject.id;
@@ -282,6 +289,10 @@ export class CompanyComponent implements OnInit {
     )
   }
 
+  cancelEditProject(){
+    this.editingProject = null;
+  }
+
   userIsAlreadyEmp(id){
     for (let i = 0; i < this.aCompany.employees.length; i++){
       if (id == this.aCompany.employees[i].userDetail.id){
@@ -298,6 +309,17 @@ export class CompanyComponent implements OnInit {
       },
       err => {
         console.error('CompanyComponent: error adding user as employee')
+      }
+    );
+  }
+
+  removeEmployee(id){
+    this.userSvc.removeEmployee(id).subscribe(
+      data => {
+        this.reload(this.aCompany.id);
+      },
+      err => {
+        console.error('CompanyComponent: error removing employee')
       }
     );
   }

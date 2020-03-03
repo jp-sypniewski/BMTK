@@ -95,7 +95,7 @@
        <tr *ngFor="let task of tasksToDo">
          <td>{{task.name}}</td>
          <td>{{task.dueDate}}</td>
-         <td><button>Edit {{task.name}} Information</button></td>
+         <td><button (click)="showEditTask(task)">Edit {{task.name}} Information</button></td>
         </tr>
       </tbody>
     </table>
@@ -151,14 +151,15 @@
   </div>
 
   <div *ngIf="editUser != null && changingPassword">
+    <h3 *ngIf="passwordMessage != null">{{passwordMessage}}</h3>
     <form>
       <label for="current">Current password: </label>
-      <input type="password" name="current"><br>
+      <input type="password" name="current" [(ngModel)]="currentPassword"><br>
       <label for="new">New password: </label>
-      <input type="password" name="new"><br>
+      <input type="password" name="new" [(ngModel)]="newPassword">><br>
       <label for="current">Repeat new password: </label>
-      <input type="repeat" name="repeat"><br>
-      <button>Update Password</button>
+      <input type="repeat" name="repeat" [(ngModel)]="repeatPassword">><br>
+      <button (click)="saveEditUserNewPassword()">Update Password</button>
     </form>
   </div>
 
@@ -181,13 +182,42 @@
       <input type="text" name="zip" [(ngModel)]="editCompany.zip"><br>
       <label for="phone">Company Phone:</label>
       <input type="tel" pattern="[0-9]{10}" name="phone" [(ngModel)]="editCompany.phone"><br>
-      <label for="companyurl">Company URL:</label>
-      <input type="text" name="companyurl" [(ngModel)]="editCompany.companyUrl"><br>
       <label for="active">Company Active:</label>
       <input type="checkbox" name="active"  required [(ngModel)]="editCompany.active"><br>
       <button type="button" class="btn btn-primary" (click)="saveEditCompany()">Save Company Information</button>
       <button type="button" (click)="cancelAllEditForms()">Cancel</button>
     </form>
+  </div>
+
+  <!-- div for edit task info -->
+  <div *ngIf="editTask != null">
+    <form>
+      <h3 *ngIf="editTask != null">Edit Task Form:</h3>
+      <label for="name">Name:</label>
+      <input type="text" name="name" required [(ngModel)]="editTask.name"><br>
+      <label for="description">Description:</label>
+      <input type="type" name="description" [(ngModel)]="editTask.description"><br>
+      <label for="dueDate">DueDate:</label>
+      <input type="date" name="dueDate" [(ngModel)]="editTask.dueDate"><br>
+      <label for="startDate">Start Date:</label>
+      <input type="date" name="startDate" [(ngModel)]="editTask.startDate"><br>
+      <label for="completeDate">Complete Date:</label>
+      <input type="date" name="completeDate" [(ngModel)]="editTask.completeDate"><br>
+      <label for="status">Status:</label>
+      <select name="status" [(ngModel)]="editTask.status">
+        <option value="NOTASSIGNED">Not Assigned</option>
+        <option value="ASSIGNED">Assigned</option>
+        <option value="INPROGRESS">In Progress</option>
+        <option value="COMPLETE">Complete</option>
+      </select><br>
+      <label for="type">Type:</label>
+      <input type="text" name="type" [(ngModel)]="editTask.type"><br>
+      <label for="priority">Priority:</label>
+      <input type="text" name="priority" [(ngModel)]="editTask.priority"><br>
+      <button (click)="saveEditTask()">Save Task</button>
+      <button type="button" (click)="cancelAllEditForms()">Cancel</button>
+    </form>
+    <hr>
   </div>
 
   <!-- div for edit project info -->

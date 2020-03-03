@@ -52,15 +52,14 @@ public class TaskController {
 		}
 	}
 	
-	@PutMapping("projects/{pid}/tasks/{tid}")
+	@PutMapping("tasks/{tid}")
 	public Task updateTask(HttpServletRequest req,
 			HttpServletResponse res,
 			Principal principal,
-			@PathVariable("pid") Integer pid, 
 			@PathVariable("tid") Integer tid,
 			@RequestBody Task task) {
 		try {
-			task = taskSvc.updateTask(pid, tid, task);
+			task = taskSvc.updateTask(tid, task);
 			if (task == null) {
 				res.setStatus(404);
 				return task;
