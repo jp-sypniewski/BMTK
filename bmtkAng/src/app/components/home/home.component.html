@@ -1,3 +1,4 @@
+<div class="container">
 <!-- show to any user upon reaching this page, hide when user attempts to add company -->
 <div *ngIf="newCompany == null && !isSearching">
   <form>
@@ -5,7 +6,7 @@
     <input type="text" name="namesearch" [(ngModel)]="searchTerm">
     <button (click)="searchByCompanyName()">Search</button>
   </form><br>
-  <table>
+  <table class="table table-bordered">
     <thead>
       <tr>
         <th>Name</th>
@@ -33,7 +34,7 @@
 <!-- show search terms -->
 
 <div *ngIf="newCompany == null && isSearching">
-  <table>
+  <table class="table table-bordered">
     <thead>
       <tr>
         <th>Name</th>
@@ -86,7 +87,7 @@
 
   <div id = "createCompanyError">{{companyCreated}}</div>
 </div>
-
+</div>
 
 
 
