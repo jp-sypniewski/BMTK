@@ -213,7 +213,7 @@ export class CompanyComponent implements OnInit {
         this.newTask.employees.push(anEmployee);
       }
     }
-    this.taskSvc.updateTask(this.newTask, this.selectedProject.id, this.newTask.id).subscribe(
+    this.taskSvc.updateTask(this.newTask, this.newTask.id).subscribe(
       data => {
         this.needToPreselectProject = true;
         this.selectedProjectId = this.selectedProject.id;
@@ -251,7 +251,7 @@ export class CompanyComponent implements OnInit {
 
   disableTask(task){
     task.active = false;
-    this.taskSvc.updateTask(task, this.selectedProject.id, task.id).subscribe(
+    this.taskSvc.updateTask(task, task.id).subscribe(
       data => {
         this.needToPreselectProject = true;
         this.selectedProjectId = this.selectedProject.id;

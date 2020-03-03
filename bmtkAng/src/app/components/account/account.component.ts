@@ -28,6 +28,7 @@ export class AccountComponent implements OnInit {
   editUser: User = null;
   editProject: Project = null;
   editCompany: Company = null;
+  editTask: Task = null;
 
   changingPassword: boolean;
   currentPassword: string;
@@ -186,6 +187,24 @@ export class AccountComponent implements OnInit {
         console.error('CompanyComponent: error editing company');
       }
     );
+  }
+
+  showEditTask(task){
+    this.editTask = Object.assign({}, task);
+  }
+
+  saveEditTask(){
+    this.taskSvc.updateTask(this.editTask, this.editTask.id).subscribe(
+      dataTask => {
+        this.editTask = null;
+        this.reload();
+      },
+      errTask => {
+        console.error('AccountComponent: error saving task update');
+      }
+    );
+
+
   }
 
 

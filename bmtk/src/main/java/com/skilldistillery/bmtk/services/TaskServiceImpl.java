@@ -50,10 +50,9 @@ public class TaskServiceImpl implements TaskService {
 	}
 
 	@Override
-	public Task updateTask(int pid, int tid, Task task) {
-		Optional<Project> optproj = projRepo.findById(pid);
+	public Task updateTask(int tid, Task task) {
 		Optional<Task> opttask = taskRepo.findById(tid);
-		if (optproj.isPresent()) {
+
 			if (opttask.isPresent()) {
 				Task managedTask = opttask.get();
 				if (task.getName() != null) {
@@ -102,9 +101,6 @@ public class TaskServiceImpl implements TaskService {
 			} else {
 				task = null;
 			}
-		} else {
-			task = null;
-		}
 		return task;
 	}
 	
