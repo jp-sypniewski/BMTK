@@ -8,9 +8,10 @@ export class CompanyNameSearchPipe implements PipeTransform {
 
   transform(value: Company[], term: string): Company[] {
     let filteredCompanies: Company[] = [];
-
+    let termLower = term.toLowerCase();
     value.forEach((company) => {
-      if (company.name.includes(term)) {
+      let nameLower = company.name.toLowerCase();
+      if (nameLower.includes(termLower)) {
         filteredCompanies.push(company);
       }
     });
