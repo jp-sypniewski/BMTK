@@ -2,11 +2,11 @@
 <!-- show to any user upon reaching this page, hide when user attempts to add company -->
 <div *ngIf="newCompany == null && !isSearching">
   <form>
-    <label for="namesearch">Search by company name:</label>
+    <label class="searchText text-light"for="namesearch">Search by company name:</label>
     <input type="text" name="namesearch" [(ngModel)]="searchTerm">
-    <button (click)="searchByCompanyName()">Search</button>
+    <button class="buttonGreen" (click)="searchByCompanyName()">Search</button>
   </form><br>
-  <table class="table table-bordered">
+  <table class="table table-bordered table-hover">
     <thead>
       <tr>
         <th>Name</th>
@@ -16,7 +16,7 @@
         <th>Description</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="text-light">
       <tr *ngFor="let company of companies">
         <td width="15%" (click)="goToCompanyPage(company.id)">{{company.name}}</td>
         <td width="15%">{{company.type}}</td>
@@ -28,13 +28,14 @@
     </tbody>
   </table>
   <br>
-  <button (click)="showCreateCompany()">Add New Company</button>
+  <button class="buttonGreen" (click)="showCreateCompany()">Add New Company</button>
 </div>
 
 <!-- show search terms -->
 
-<div *ngIf="newCompany == null && isSearching">
-  <table class="table table-bordered">
+<div class="companySearchDiv" *ngIf="newCompany == null && isSearching">
+  <h3>Companies Currently Using BMTK</h3>
+  <table class="table table-bordered table-hover">
     <thead>
       <tr>
         <th>Name</th>
@@ -45,7 +46,7 @@
       </tr>
     </thead>
     <tbody>
-      <tbody>
+      <tbody class="text-light">
         <tr *ngFor="let company of companies | companyNameSearch: searchTerm">
           <td width="15%" (click)="goToCompanyPage(company.id)">{{company.name}}</td>
           <td width="15%">{{company.type}}</td>
@@ -57,32 +58,34 @@
        </tbody>
  </table>
     <br>
-    <button (click)="showAll()">Show All</button><br>
-    <button (click)="showCreateCompany()">button that will change something to show add company form</button>
+    <button class="buttonGreen" (click)="showCreateCompany()">Add New Company</button>
+    <button class="buttonRed"(click)="showAll()">Show All</button><br>
+
 </div>
 
 <!-- show once user attempt to add company -->
 
-<div *ngIf="newCompany != null">
+<div class="editCompanyForm" *ngIf="newCompany != null">
+  <h3>Create New Company</h3>
   <form>
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required [(ngModel)]="newCompany.name"><br><br>
-    <label for="type">Type:</label>
-    <input type="type" id="type" name="type" [(ngModel)]="newCompany.type"><br><br>
-    <label for="address">Address:</label>
-    <input type="text" id="address" name="address" [(ngModel)]="newCompany.address"><br><br>
-    <label for="city">City:</label>
-    <input type="text" id="city" name="city" [(ngModel)]="newCompany.city"><br><br>
-    <label for="state">State:</label>
-    <input type="text" id="state" name="state" [(ngModel)]="newCompany.state"><br><br>
-    <label for="zip">Zip:</label>
-    <input type="text" id="zip" name="zip" [(ngModel)]="newCompany.zip"><br><br>
-    <label for="phone">Phone:</label>
-    <input type="text" id="phone" name="phone" [(ngModel)]="newCompany.phone"><br><br>
-    <label for="description">Description:</label>
-    <input type="text" id="description" name="description" [(ngModel)]="newCompany.description"><br><br>
-    <button (click)="saveCreateCompany()">Create New Company</button>
-    <button (click)="cancelCreate()">Cancel</button>
+    <label for="name">Name:</label><br>
+    <input size="80%" type="text" id="name" name="name" required [(ngModel)]="newCompany.name"><br><br>
+    <label for="type">Type:</label><br>
+    <input size="80%" type="type" id="type" name="type" [(ngModel)]="newCompany.type"><br><br>
+    <label for="address">Address:</label><br>
+    <input size="80%" type="text" id="address" name="address" [(ngModel)]="newCompany.address"><br><br>
+    <label for="city">City:</label><br>
+    <input size="80%" type="text" id="city" name="city" [(ngModel)]="newCompany.city"><br><br>
+    <label for="state">State:</label><br>
+    <input size="80%" type="text" id="state" name="state" [(ngModel)]="newCompany.state"><br><br>
+    <label for="zip">Zip:</label><br>
+    <input size="80%" type="text" id="zip" name="zip" [(ngModel)]="newCompany.zip"><br><br>
+    <label for="phone">Phone:</label><br>
+    <input size="80%" type="text" id="phone" name="phone" [(ngModel)]="newCompany.phone"><br><br>
+    <label for="description">Description:</label><br>
+    <input size="80%" type="text" id="description" name="description" [(ngModel)]="newCompany.description"><br><br>
+    <button class="buttonGreen" (click)="saveCreateCompany()">Create New Company</button>
+    <button class="buttonRed" (click)="cancelCreate()">Cancel</button>
   </form>
 
   <div id = "createCompanyError">{{companyCreated}}</div>
