@@ -1,13 +1,15 @@
 <div class="container">
+<div class="editLoginForm">
 <h3>User Login</h3>
  <form #login="ngForm">
-  <label for="username">username:</label>
-  <input type="text" name="username" ngModel><br><br>
-  <label for="password">password:</label>
-  <input type="password" name="password" ngModel><br><br>
-  <button type="submit" (click)="logIn(login)">Login</button>
+  <label for="username">Username:</label><br>
+  <input class="input" size="50%" type="text" name="username" ngModel><br><br>
+  <label for="password">Password:</label><br>
+  <input class="input" size="50%" type="password" name="password" ngModel><br><br>
+  <button class="buttonGreen"type="submit" (click)="logIn(login)">Login</button>
 </form>
 <br>
 <br>
-<button (click)="redirToSignUp()">Sign up for account</button>
+<button class="buttonRed" (click)="redirToSignUp()">Sign up for account</button>
+</div>
 </div>

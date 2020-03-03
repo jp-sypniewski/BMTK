@@ -234,6 +234,10 @@ export class CompanyComponent implements OnInit {
     this.editingATask = null;
   }
 
+  cancelNewProject(){
+    this.newProject = null;
+  }
+
 
   // shows the form to request a new project as a customer
   // will redirect to login if there is not a logged in user
