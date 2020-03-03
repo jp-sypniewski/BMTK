@@ -21,17 +21,15 @@
 
 
 <div *ngIf="!checkForUser()">
-<a [routerLink] = "'login'" routerLinkActive="active">Login</a>
-<br>
-<a [routerLink] = "'account'" routerLinkActive="active">Sign Up</a>
-<br>
+  <a [routerLink] = "'login'" routerLinkActive="active">Login</a>
+  <br>
+  <a [routerLink] = "'account'" routerLinkActive="active">Sign Up</a>
+  <br>
 </div>
 <div *ngIf="checkForUser()">
-<a [routerLink] = "'account'" routerLinkActive="active">Account</a>
-<br>
-<a (click)="logout()" [routerLink] = "'login'" routerLinkActive="active">Sign Out</a>
-<br>
+  <a [routerLink] = "'account'" routerLinkActive="active">Account</a>
+  <br>
+  <a (click)="logout()" [routerLink] = "'login'" routerLinkActive="active">Sign Out</a>
+  <br>
 </div>
-<div id = "navend">
-<!--<h5>end navbar</h5>-->
-</div>
+
