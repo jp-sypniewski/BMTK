@@ -30,6 +30,9 @@ import { AccountComponent } from './components/account/account.component';
 import { DragScrollModule } from 'ngx-drag-scroll';
 
 
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,6 +58,8 @@ import { DragScrollModule } from 'ngx-drag-scroll';
     HttpClientModule,
     FormsModule,
     DragScrollModule,
+
+
 
   ],
   providers: [UserService, EmployeeService, ProjectService, TaskService, IsCustomerPipe, TaskIsActivePipe,
