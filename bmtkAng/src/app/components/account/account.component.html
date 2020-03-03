@@ -182,8 +182,6 @@
       <input type="text" name="zip" [(ngModel)]="editCompany.zip"><br>
       <label for="phone">Company Phone:</label>
       <input type="tel" pattern="[0-9]{10}" name="phone" [(ngModel)]="editCompany.phone"><br>
-      <label for="companyurl">Company URL:</label>
-      <input type="text" name="companyurl" [(ngModel)]="editCompany.companyUrl"><br>
       <label for="active">Company Active:</label>
       <input type="checkbox" name="active"  required [(ngModel)]="editCompany.active"><br>
       <button type="button" class="btn btn-primary" (click)="saveEditCompany()">Save Company Information</button>
@@ -217,6 +215,7 @@
       <label for="priority">Priority:</label>
       <input type="text" name="priority" [(ngModel)]="editTask.priority"><br>
       <button (click)="saveEditTask()">Save Task</button>
+      <button type="button" (click)="cancelAllEditForms()">Cancel</button>
     </form>
     <hr>
   </div>

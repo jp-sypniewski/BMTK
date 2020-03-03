@@ -199,7 +199,7 @@ export class CompanyComponent implements OnInit {
 
 
   showEditTask(task){
-    this.newTask = task;
+    this.newTask = Object.assign({}, task);
     this.selectedEmployee = task.employees[0].id;
     this.editingATask = true;
   }

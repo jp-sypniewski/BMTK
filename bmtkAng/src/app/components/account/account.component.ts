@@ -230,6 +230,7 @@ export class AccountComponent implements OnInit {
   cancelAllEditForms(){
     this.editUser = null;
     this.editCompany = null;
+    this.editTask = null;
     this.editProject = null;
   }
 
