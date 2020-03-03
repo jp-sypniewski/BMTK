@@ -1,3 +1,43 @@
-<div id = "head">
-  <h1>All about BMTK</h1>
+<section id = section>
+<div id = "top">
+  <h1 id = "head">Your Workflow Without BMTK</h1>
+
+    <img id="website" src="../../../assets/images/invoice1.png" width="90" height="90"/>
+    <img id="payable" src="../../../assets/images/invoice2.png" width="90" height="90"/>
+    <img id="receivable" src="../../../assets/images/invoice3.png" width="90" height="90"/>
+    <img id="data" src="../../../assets/images/invoice4.png"  width="90" height="90"/>
+    <img id="bids" src="../../../assets/images/invoice5.png"  width="90" height="90"/>
+    <img id="customer" src="../../../assets/images/invoice6.png"  width="90" height="90"/>
+    <img id="internal" src="../../../assets/images/invoice7.png"  width="90" height="90"/>
+    <img id="empCom" src="../../../assets/images/invoice8.png" width="90" height="90"/>
+    <img id="custCom" src="../../../assets/images/invoice9.png" width="90" height="90"/>
+</div>
+
+  <div id = "base">
+  <h1 id = "basehead">Your Workflow With BMTK</h1>
+  <h3 id = "basehead2"> Engineering Business Management for a Mobile Lifestyle</h3>
   </div>
+
+  <div class="scene">
+<div [ngStyle]="carStyle" class="carousel">
+  <div class="carousel__cell"><img src="../../../assets/images/mobileApp.png" width="300" height="300"/></div>
+  <div class="carousel__cell"><img src="../../../assets/images/cloud.png" width="300" height="300"/></div>
+  <div class="carousel__cell"><img src="../../../assets/images/data.png" width="300" height="300"/></div>
+  <div class="carousel__cell"><img src="../../../assets/images/InternalCom.png" width="300" height="300"/></div>
+  <div class="carousel__cell"><img src="../../../assets/images/custCom.png" width="300" height="300"/></div>
+</div>
+</div>
+
+<div id = "btn">
+<p style="text-align: center;">
+<button type="button" class="btn btn-primary" (click) = prev()>Previous</button>
+<button  type="button" class="btn btn-primary" (click) = next()>Next</button>
+</p>
+</div>
+</section>
+
+
+
+
+
+
