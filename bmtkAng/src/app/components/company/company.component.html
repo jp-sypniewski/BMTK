@@ -30,12 +30,12 @@
       </tbody>
     </table>
     <!-- TODO Fix add employee -->
-    <button (click)="addingEmployee = true">Add Employee</button>
+    <button *ngIf="!addingEmployee" (click)="addingEmployee = true">Add Employee</button>
   </div>
   <div *ngIf="aCompany.employees.length == 0">
     <h3>No Employees!</h3>
     <!-- TODO Fix add employee -->
-    <button (click)="addingEmployee = true">Add Employee</button>
+    <button *ngIf="!addingEmployee" (click)="addingEmployee = true">Add Employee</button>
   </div>
   <div *ngIf="!addingEmployee">
     <button (click)="showEmployees = false">Hide Employees</button>
@@ -46,6 +46,7 @@
       <label for="email">Email:</label>
       <input type="text" name="email" required [(ngModel)]="emailSearch"><br><br>
       <button (click)="performSearch()">Search</button>
+      <button (click)="addingEmployee = false">Cancel</button>
     </form>
     <table class="table table-bordered">
       <thead>
@@ -117,6 +118,7 @@
     <h3>Selected Project: {{selectedProject.name}}</h3>
 
     <button (click)="showEditProject(selectedProject)">Edit {{selectedProject.name}}</button>
+    <button (click)="selectedProject = null">Hide Details</button>
     <h3>{{selectedProject.name}} Tasks</h3>
     <table class="table table-bordered">
       <thead>
