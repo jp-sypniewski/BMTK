@@ -94,9 +94,12 @@ public class TaskServiceImpl implements TaskService {
 				if (task.getActive() != null) {
 					managedTask.setActive(task.getActive());
 				}
-				if (task.getEmployees().size() != 0) {
+				if (task.getEmployees() != null) {
 					managedTask.setEmployees(task.getEmployees());
 				}
+//				if (task.getEmployees().size() != 0) {
+//					managedTask.setEmployees(task.getEmployees());
+//				}
 				task = taskRepo.saveAndFlush(managedTask);
 			} else {
 				task = null;

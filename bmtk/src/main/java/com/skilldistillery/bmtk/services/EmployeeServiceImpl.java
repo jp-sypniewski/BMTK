@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.bmtk.entities.Company;
 import com.skilldistillery.bmtk.entities.Employee;
+import com.skilldistillery.bmtk.entities.Task;
 import com.skilldistillery.bmtk.entities.User;
 import com.skilldistillery.bmtk.entities.UserDetail;
 import com.skilldistillery.bmtk.repositories.CompanyRepository;
@@ -29,6 +30,9 @@ public class EmployeeServiceImpl implements EmployeeService{
 	
 	@Autowired
 	private UserDetailRepository udRepo;
+	
+	@Autowired
+	private TaskService taskSvc;
 
 	@Override
 	public List<Employee> listAllEmployee() {
@@ -86,8 +90,25 @@ public class EmployeeServiceImpl implements EmployeeService{
 
 	@Override
 	public Boolean deleteEmployee(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Boolean deleted = false;
+		Optional<Employee> optemp = empRepo.findById(id);
+		if (empRepo.existsById(id) && optemp.isPresent()) {
+			Employee emp = optemp.get();
+			List<Task> tasks = taskSvc.findTasksByEmpUsername(emp.getUserDetail().getUser().getUsername());
+			for (Task task : tasks) {
+				List<Employee> emps = null;
+				task.setEmployees(emps);
+				taskSvc.updateTask(task.getId(), task);
+			}
+			
+			
+			
+			empRepo.deleteById(id);
+			deleted = true;
+		}
+		
+		
+		return deleted;
 	}
 
 }

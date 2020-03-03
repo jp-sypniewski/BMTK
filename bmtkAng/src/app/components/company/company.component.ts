@@ -313,4 +313,15 @@ export class CompanyComponent implements OnInit {
     );
   }
 
+  removeEmployee(id){
+    this.userSvc.removeEmployee(id).subscribe(
+      data => {
+        this.reload(this.aCompany.id);
+      },
+      err => {
+        console.error('CompanyComponent: error removing employee')
+      }
+    );
+  }
+
 }

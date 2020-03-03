@@ -19,6 +19,7 @@
           <th>First Name</th>
           <th>Last Name</th>
           <th>Email</th>
+          <th>Remove</th>
         </tr>
       </thead>
       <tbody>
@@ -26,6 +27,7 @@
          <td>{{employee.userDetail.firstName}}</td>
          <td>{{employee.userDetail.lastName}}</td>
          <td>{{employee.userDetail.email}}</td>
+         <td><button (click)="removeEmployee(employee.id)">Remove</button></td>
         </tr>
       </tbody>
     </table>
