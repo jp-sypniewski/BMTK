@@ -175,7 +175,8 @@ animation-play-state: running;
 .carousel__cell:nth-child(9) { transform: rotateY(320deg) translateZ(288px); }*/
 
 .carousel__cell:nth-child(1) { transform: rotateY(  0deg) translateZ(288px); }
-.carousel__cell:nth-child(2) { transform: rotateY( 72deg) translateZ(288px); }
-.carousel__cell:nth-child(3) { transform: rotateY( 144deg) translateZ(288px); }
-.carousel__cell:nth-child(4) { transform: rotateY(216deg) translateZ(288px); }
-.carousel__cell:nth-child(5) { transform: rotateY(288deg) translateZ(288px); }
+.carousel__cell:nth-child(2) { transform: rotateY( 60deg) translateZ(288px); }
+.carousel__cell:nth-child(3) { transform: rotateY( 120deg) translateZ(288px); }
+.carousel__cell:nth-child(4) { transform: rotateY(180deg) translateZ(288px); }
+.carousel__cell:nth-child(5) { transform: rotateY(240deg) translateZ(288px); }
+.carousel__cell:nth-child(6) { transform: rotateY(300deg) translateZ(288px); }
