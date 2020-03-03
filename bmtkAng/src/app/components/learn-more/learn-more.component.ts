@@ -11,7 +11,7 @@ import { DragScrollComponent } from 'ngx-drag-scroll';
 export class LearnMoreComponent implements OnInit {
   carStyle;
 carousel = document.getElementsByClassName('.carousel');
-cellCount = 5;
+cellCount = 6;
 selectedIndex = 0;
 
   constructor() { }
