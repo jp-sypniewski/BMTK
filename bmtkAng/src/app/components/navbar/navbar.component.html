@@ -1,35 +1,18 @@
-
-
-<!--
-<a [routerLink] = "'learn'" routerLinkActive="active">Learn More About BMTK</a>
-<br>
-<a [routerLink] = "'currentcustomer'" routerLinkActive="active">See Companies Using BMTK</a>
-<br>
-<a [routerLink] = "'employee'" routerLinkActive="active">Create an employee</a>
-<br>
-<a [routerLink] = "'customer'" routerLinkActive="active">Create a customer</a>
-<br>
-<a [routerLink] = "'companycreated'" routerLinkActive="active">Company Created</a>
-<br> -->
-
-<a [routerLink] = "'learn'" routerLinkActive="active">Learn More About BMTK</a>
-<br>
-<a [routerLink] = "'currentcustomer'" routerLinkActive="active">See Companies Using BMTK</a>
-<br>
-<a [routerLink] = "'home'" routerLinkActive="active">Home</a>
-<br>
-
-
-<div *ngIf="!checkForUser()">
-  <a [routerLink] = "'login'" routerLinkActive="active">Login</a>
-  <br>
-  <a [routerLink] = "'account'" routerLinkActive="active">Sign Up</a>
-  <br>
-</div>
-<div *ngIf="checkForUser()">
-  <a [routerLink] = "'account'" routerLinkActive="active">Account</a>
-  <br>
-  <a (click)="logout()" [routerLink] = "'login'" routerLinkActive="active">Sign Out</a>
-  <br>
-</div>
-
+<nav class="navbar navbar-dark bg-dark navbar-expand-md">
+  <a class="navbar-brand" [routerLink] = "'home'" routerLinkActive="active">Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <div class="nav navbar-nav navbar-left mr-auto">
+      <a class="nav-item nav-link" [routerLink] = "'learn'" routerLinkActive="active">About</a>
+      <a class="nav-item nav-link" [routerLink] = "'currentcustomer'" routerLinkActive="active">Expo</a>
+    </div>
+    <div class="nav navbar-nav">
+      <a *ngIf="!checkForUser()" class="nav-item nav-link" [routerLink] = "'login'" routerLinkActive="active">Login</a>
+      <a *ngIf="!checkForUser()" class="nav-item nav-link" [routerLink] = "'account'" routerLinkActive="active">Sign Up</a>
+      <a *ngIf="checkForUser()" class="nav-item nav-link" [routerLink] = "'account'" routerLinkActive="active">Account</a>
+      <a *ngIf="checkForUser()" class="nav-item nav-link" (click)="logout()" [routerLink] = "'login'" routerLinkActive="active">Sign Out</a>
+    </div>
+  </div>
+</nav>
