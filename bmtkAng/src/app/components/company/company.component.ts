@@ -200,7 +200,9 @@ export class CompanyComponent implements OnInit {
 
   showEditTask(task){
     this.newTask = Object.assign({}, task);
-    this.selectedEmployee = task.employees[0].id;
+    if (task.employees.length != 0){
+      this.selectedEmployee = task.employees[0].id;
+    }
     this.editingATask = true;
   }
 
@@ -316,6 +318,8 @@ export class CompanyComponent implements OnInit {
   removeEmployee(id){
     this.userSvc.removeEmployee(id).subscribe(
       data => {
+        this.needToPreselectProject = true;
+        this.selectedProjectId = this.selectedProject.id;
         this.reload(this.aCompany.id);
       },
       err => {
