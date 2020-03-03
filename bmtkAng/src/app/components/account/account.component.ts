@@ -33,6 +33,7 @@ export class AccountComponent implements OnInit {
   currentPassword: string;
   newPassword: string;
   repeatPassword: string;
+  passwordMessage: string;
 
   companiesOwned: Company[] = [];
   tasksToDo: Task[] = [];
@@ -137,24 +138,29 @@ export class AccountComponent implements OnInit {
         this.reload();
       },
       err => {
-        console.error('CompanyComponent: error updating user');
+        console.error('CompanyComponent: error updating user information');
       }
     );
   }
 
   saveEditUserNewPassword(){
+    if (this.newPassword == this.repeatPassword){
+      this.userSvc.updateUser(this.editUser).subscribe(
+        data => {
+          this.headerMessage = "User: " + data.username + " updated!";
+          this.editUser = null;
+          this.passwordMessage = null;
+          this.reload();
+        },
+        err => {
+          console.error('CompanyComponent: error updating user password');
+        }
+      );
+    } else {
+      this.passwordMessage = "Please ensure current password is correct and new password matches."
+    }
 
 
-    this.userSvc.updateUser(this.editUser).subscribe(
-      data => {
-        this.headerMessage = "User: " + data.username + " updated!";
-        this.editUser = null;
-        this.reload();
-      },
-      err => {
-        console.error('CompanyComponent: error updating user');
-      }
-    );
   }
 
   showEditCompany(company){
