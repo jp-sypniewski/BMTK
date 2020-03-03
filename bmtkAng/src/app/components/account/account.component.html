@@ -1,3 +1,4 @@
+<div class="targetClass">
 <div class="container">
 <!-- if no user logged in, create new account -->
 <div *ngIf="currentUser == null">
@@ -61,7 +62,7 @@
   <!-- div for owner relationships -->
   <div *ngIf="companiesOwned.length > 0">
     <h3>My Companies</h3>
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover text-light">
       <thead>
         <tr>
           <th>Company Name</th>
@@ -83,7 +84,7 @@
   <!-- div for employee relationships -->
   <div *ngIf="tasksToDo.length > 0">
     <h3>My Tasks</h3>
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover text-light">
       <thead>
         <tr>
           <th>Task Name</th>
@@ -105,7 +106,7 @@
   <!-- div for customer relationships -->
   <div *ngIf="projectsRequested.length > 0">
     <h3>My Project Requests</h3>
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover text-light">
       <thead>
         <tr>
           <th>Project Name</th>
@@ -232,5 +233,6 @@
     </form>
   </div>
 <!-- end user info div -->
+</div>
 </div>
 </div>
