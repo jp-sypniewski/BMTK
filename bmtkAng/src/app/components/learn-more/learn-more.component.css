@@ -112,7 +112,7 @@ animation-fill-mode: none;
 animation-play-state: running;
 }*/
 .scene {
-  border: 1px solid #CCC;
+  /*border: 1px solid #CCC;*/
   margin: 40px 0;
   position: relative;
   width: 210px;
