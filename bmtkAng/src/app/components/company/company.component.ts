@@ -226,6 +226,13 @@ export class CompanyComponent implements OnInit {
     );
   }
 
+  cancelNewOrEditTask(){
+    this.newTask = null;
+    this.selectedEmployee = null;
+    this.editingATask = null;
+  }
+
+
   // shows the form to request a new project as a customer
   // will redirect to login if there is not a logged in user
   showRequestNewProject(){
@@ -280,6 +287,10 @@ export class CompanyComponent implements OnInit {
         console.error('CompanyComponent: error saving project update');
       }
     )
+  }
+
+  cancelEditProject(){
+    this.editingProject = null;
   }
 
   userIsAlreadyEmp(id){
