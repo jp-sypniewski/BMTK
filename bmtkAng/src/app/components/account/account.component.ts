@@ -145,11 +145,17 @@ export class AccountComponent implements OnInit {
 
   saveEditUserNewPassword(){
     if (this.newPassword == this.repeatPassword){
+      this.editUser.password = this.newPassword;
       this.userSvc.updateUser(this.editUser).subscribe(
         data => {
+          this.userSvc.logout();
+          this.userSvc.login(this.editUser.username, this.newPassword);
           this.headerMessage = "User: " + data.username + " updated!";
           this.editUser = null;
           this.passwordMessage = null;
+          this.currentPassword = null;
+          this.newPassword = null;
+          this.repeatPassword = null;
           this.reload();
         },
         err => {
