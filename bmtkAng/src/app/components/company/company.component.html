@@ -14,7 +14,7 @@
 
 
 <!-- owner relationship, need qual from user -->
-
+<div *ngIf="isOwner">
 <div *ngIf="showEmployees">
   <div *ngIf="aCompany.employees.length > 0">
     <h3>My Employees</h3>
@@ -84,6 +84,7 @@
 </div>
 <div *ngIf="!showEmployees">
   <button class="buttonGreen" (click)="showEmployees = true">Show Employees</button>
+</div>
 </div>
 
 <div *ngIf="projectsForCompany.length > 0">

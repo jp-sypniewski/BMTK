@@ -94,6 +94,7 @@ export class CompanyComponent implements OnInit {
                 isOwnerCheck => {
                   if (isOwnerCheck){
                     this.projectsForCompany = projData;
+                    this.isOwner = true;
                   }
                 },
                 err => {
