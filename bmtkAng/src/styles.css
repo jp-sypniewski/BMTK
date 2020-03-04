@@ -52,7 +52,8 @@ body {
 }
 
 .editCompanyForm h3 {
-  color: #212529;
+  color: silver;
+  /* color: gray; */
 }
 
 .searchText{
@@ -76,7 +77,7 @@ body {
 }
 
 .editLoginForm h3 {
-  color: #212529;
+  color: silver;
 }
 
 .companyTopInfo{
@@ -84,4 +85,8 @@ body {
 }
 .companyTopInfo h5 {
   /* color: #212529; */
+}
+
+th{
+  color: rgb(149, 200, 241);
 }
