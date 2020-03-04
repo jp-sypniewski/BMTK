@@ -1,11 +1,24 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { DragScrollComponent } from 'ngx-drag-scroll';
+import { Component, OnInit, ViewChild, NgModule, HostBinding } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgStyle } from '@angular/common';
 
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  // ...
+} from '@angular/animations';
 
 @Component({
   selector: 'app-learn-more',
   templateUrl: './learn-more.component.html',
-  styleUrls: ['./learn-more.component.css']
+  styleUrls: ['./learn-more.component.css'],
+  animations: [
+    // animation triggers go here
+  ]
 })
 
 export class LearnMoreComponent implements OnInit {
@@ -19,7 +32,6 @@ selectedIndex = 0;
   ngOnInit(): void {
 
   }
-
 
   prev(){
     this.selectedIndex--;

@@ -1,36 +1,37 @@
 <div class="targetClass">
 <div class="container">
 <!-- if no user logged in, create new account -->
-<div *ngIf="currentUser == null">
-  <button (click)="redirToSignIn()">Sign In</button>
+<div class="editCompanyForm" *ngIf="currentUser == null">
+  <h3>Already Have an Account?</h3>
+  <button class="buttonRed"(click)="redirToSignIn()">Sign In</button>
   <br>
   <hr>
   <br>
   <h3>Create A New Account</h3>
   <form>
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required [(ngModel)]="newUser.username"><br><br>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required [(ngModel)]="newUser.password"><br><br>
-    <label for="firstName">First name:</label>
-    <input type="text" id="firstName" name="firstName" required [(ngModel)]="newUserDetail.firstName"><br><br>
-    <label for="lastName">Last name:</label>
-    <input type="text" id="lastName" name="lastName" [(ngModel)]="newUserDetail.lastName"><br><br>
-    <label for="email">Email:</label>
-    <input type="text" id="email" name="email" required [(ngModel)]="newUserDetail.email"><br><br>
-    <label for="street">Street address:</label>
-    <input type="text" id="street" name="street" [(ngModel)]="newUserDetail.street"><br><br>
-    <label for="city">City:</label>
-    <input type="text" id="city" name="city" [(ngModel)]="newUserDetail.city"><br><br>
-    <label for="state">State:</label>
-    <input type="text" id="state" name="state" [(ngModel)]="newUserDetail.state"><br><br>
-    <label for="zipcode">Zipcode:</label>
-    <input type="text" id="zipcode" name="zipcode" [(ngModel)]="newUserDetail.zipcode"><br><br>
-    <label for="country">Country:</label>
-    <input type="text" id="country" name="country" [(ngModel)]="newUserDetail.country"><br><br>
-    <label for="phone">Phone:</label>
-    <input type="tel" pattern="[0-9]{10}" id="phone" name="phone" [(ngModel)]="newUserDetail.phone"><br><br>
-    <button (click)="saveCreateUser()">Create Account</button>
+    <label for="username">Username:</label><br>
+    <input size="60%" type="text" id="username" name="username" required [(ngModel)]="newUser.username"><br>
+    <label for="password">Password:</label><br>
+    <input size="60%" type="password" id="password" name="password" required [(ngModel)]="newUser.password"><br>
+    <label for="firstName">First name:</label><br>
+    <input size="60%" type="text" id="firstName" name="firstName" required [(ngModel)]="newUserDetail.firstName"><br>
+    <label for="lastName">Last name:</label><br>
+    <input size="60%" type="text" id="lastName" name="lastName" [(ngModel)]="newUserDetail.lastName"><br>
+    <label for="email">Email:</label><br>
+    <input size="60%" type="text" id="email" name="email" required [(ngModel)]="newUserDetail.email"><br>
+    <label for="street">Street address:</label><br>
+    <input size="60%" type="text" id="street" name="street" [(ngModel)]="newUserDetail.street"><br>
+    <label for="city">City:</label><br>
+    <input size="60%" type="text" id="city" name="city" [(ngModel)]="newUserDetail.city"><br>
+    <label for="state">State:</label><br>
+    <input size="60%" type="text" id="state" name="state" [(ngModel)]="newUserDetail.state"><br>
+    <label for="zipcode">Zipcode:</label><br>
+    <input size="60%" type="text" id="zipcode" name="zipcode" [(ngModel)]="newUserDetail.zipcode"><br>
+    <label for="country">Country:</label><br>
+    <input size="60%" type="text" id="country" name="country" [(ngModel)]="newUserDetail.country"><br>
+    <label for="phone">Phone:</label><br>
+    <input size="60%" type="tel" pattern="[0-9]{10}" id="phone" name="phone" [(ngModel)]="newUserDetail.phone"><br><br>
+    <button class="buttonGreen" (click)="saveCreateUser()">Create Account</button>
   </form>
   <div id = "createUserError">{{userCreated}}</div>
 </div>
@@ -54,7 +55,7 @@
       State: {{currentUser.userDetail.state}}<br>
       Zip: {{currentUser.userDetail.zipcode}}
     </p>
-    <button type="button" (click)="showEditUser()">Edit Account Information</button>
+    <button class="buttonGreen" type="button" (click)="showEditUser()">Edit Account Information</button>
     <button (click)="showEditPassword()">Change Password</button>
     <hr>
   </div>
@@ -62,7 +63,7 @@
   <!-- div for owner relationships -->
   <div *ngIf="companiesOwned.length > 0">
     <h3>My Companies</h3>
-    <table class="table table-bordered table-hover text-light">
+    <table class="table table-bordered table-hover text-light eventTable">
       <thead>
         <tr>
           <th>Company Name</th>
@@ -74,7 +75,7 @@
         <tr *ngFor="let company of companiesOwned">
           <td (click)="goToCompanyPage(company.id)">{{company.name}}</td>
           <td>{{company.description}}</td>
-          <td><button (click)="showEditCompany(company)">Edit {{company.name}} Information</button></td>
+          <td><button class="buttonGreen" (click)="showEditCompany(company)">Edit {{company.name}} Information</button></td>
         </tr>
       </tbody>
     </table>
@@ -96,7 +97,7 @@
        <tr *ngFor="let task of tasksToDo">
          <td>{{task.name}}</td>
          <td>{{task.dueDate}}</td>
-         <td><button (click)="showEditTask(task)">Edit {{task.name}} Information</button></td>
+         <td><button class="buttonGreen" (click)="showEditTask(task)">Edit {{task.name}} Information</button></td>
         </tr>
       </tbody>
     </table>
@@ -118,7 +119,7 @@
         <tr *ngFor="let project of projectsRequested">
           <td>{{project.name}}</td>
           <td (click)="goToCompanyPage(project.company.id)">{{project.company.name}}</td>
-          <td><button (click)="showEditProject(project)">Edit {{project.name}} Information</button></td>
+          <td><button class="buttonGreen" (click)="showEditProject(project)">Edit {{project.name}} Information</button></td>
         </tr>
       </tbody>
     </table>
@@ -126,28 +127,29 @@
   </div>
 
   <!-- div for edit user info -->
-  <div *ngIf="editUser != null && !changingPassword">
+  <div class="editCompanyForm" *ngIf="editUser != null && !changingPassword">
+    <h3>Edit Account Info</h3>
     <form>
-      <label for="firstName">First name:</label>
-      <input type="text" name="firstName" required [(ngModel)]="editUser.userDetail.firstName"><br>
-      <label for="lastName">Last name:</label>
-      <input type="text" name="lastName" [(ngModel)]="editUser.userDetail.lastName"><br>
-      <label for="email">Email:</label>
-      <input type="text" name="email" required [(ngModel)]="editUser.userDetail.email"><br>
-      <label for="street">Street address:</label>
-      <input type="text" name="street" [(ngModel)]="editUser.userDetail.street"><br>
-      <label for="city">City:</label>
-      <input type="text" name="city" [(ngModel)]="editUser.userDetail.city"><br>
-      <label for="state">State:</label>
-      <input type="text" name="state" [(ngModel)]="editUser.userDetail.state"><br>
-      <label for="zipcode">Zipcode:</label>
-      <input type="text" name="zipcode" [(ngModel)]="editUser.userDetail.zipcode"><br>
-      <label for="country">Country:</label>
-      <input type="text" name="country" [(ngModel)]="editUser.userDetail.country"><br>
-      <label for="phone">Phone:</label>
-      <input type="text" name="phone" [(ngModel)]="editUser.userDetail.phone"><br>
-      <button type="button" class="btn btn-primary" (click)="saveEditUser()">Save User Info</button>
-      <button type="button" (click)="cancelAllEditForms()">Cancel</button>
+      <label for="firstName">First name:</label><br>
+      <input size="80%" type="text" name="firstName" required [(ngModel)]="editUser.userDetail.firstName"><br>
+      <label for="lastName">Last name:</label><br>
+      <input size="80%" type="text" name="lastName" [(ngModel)]="editUser.userDetail.lastName"><br>
+      <label for="email">Email:</label><br>
+      <input size="80%" type="text" name="email" required [(ngModel)]="editUser.userDetail.email"><br>
+      <label for="street">Street address:</label><br>
+      <input size="80%" type="text" name="street" [(ngModel)]="editUser.userDetail.street"><br>
+      <label for="city">City:</label><br>
+      <input size="80%" type="text" name="city" [(ngModel)]="editUser.userDetail.city"><br>
+      <label for="state">State:</label><br>
+      <input size="80%" type="text" name="state" [(ngModel)]="editUser.userDetail.state"><br>
+      <label for="zipcode">Zipcode:</label><br>
+      <input size="80%" type="text" name="zipcode" [(ngModel)]="editUser.userDetail.zipcode"><br>
+      <label for="country">Country:</label><br>
+      <input size="80%" type="text" name="country" [(ngModel)]="editUser.userDetail.country"><br>
+      <label for="phone">Phone:</label><br>
+      <input size="80%" type="text" name="phone" [(ngModel)]="editUser.userDetail.phone"><br>
+      <button class="buttonGreen"type="button" (click)="saveEditUser()">Save User Info</button>
+      <button class="buttonRed" type="button" (click)="cancelAllEditForms()">Cancel</button>
     </form>
   </div>
 
@@ -165,71 +167,75 @@
   </div>
 
   <!-- div for edit company info -->
-  <div *ngIf="editCompany != null">
-    <form>
-      <label for="name">Company Name:</label>
-      <input size = "50" type="text" id="companyname" name="name" required [(ngModel)]="editCompany.name"><br>
-      <label for="description">Company Description:</label>
-      <input size = "100" type="text" name="description" required [(ngModel)]="editCompany.description"><br>
-      <label for="type">Company Type:</label>
-      <input type="text" name="type"  [(ngModel)]="editCompany.type"><br>
-      <label for="address">Company Address:</label>
-      <input type="text" name="address" [(ngModel)]="editCompany.address"><br>
-      <label for="city">Company City:</label>
-      <input type="text" name="city" [(ngModel)]="editCompany.city"><br>
-      <label for="state">Company State:</label>
-      <input type="text" name="state" [(ngModel)]="editCompany.state"><br>
-      <label for="zip">Company Zip:</label>
-      <input type="text" name="zip" [(ngModel)]="editCompany.zip"><br>
-      <label for="phone">Company Phone:</label>
-      <input type="tel" pattern="[0-9]{10}" name="phone" [(ngModel)]="editCompany.phone"><br>
+  <div class="editCompanyForm" *ngIf="editCompany != null">
+    <h3>Edit Company Info</h3>
+    <form class="form">
+      <label for="name">Company Name:</label><br>
+      <input size="80%" type="text" id="companyname" name="name" required [(ngModel)]="editCompany.name"><br>
+      <label for="description">Company Description:</label><br>
+      <input size="80%" type="text" name="description" required [(ngModel)]="editCompany.description"><br>
+      <label for="type">Company Type:</label><br>
+      <input size="80%" type="text" name="type"  [(ngModel)]="editCompany.type"><br>
+      <label for="address">Company Address:</label><br>
+      <input size="80%" type="text" name="address" [(ngModel)]="editCompany.address"><br>
+      <label for="city">Company City:</label><br>
+      <input size="80%" type="text" name="city" [(ngModel)]="editCompany.city"><br>
+      <label for="state">Company State:</label><br>
+      <input size="80%" type="text" name="state" [(ngModel)]="editCompany.state"><br>
+      <label for="zip">Company Zip:</label><br>
+      <input size="80%" type="text" name="zip" [(ngModel)]="editCompany.zip"><br>
+      <label for="phone">Company Phone:</label><br>
+      <input size="80%" type="tel" pattern="[0-9]{10}" name="phone" [(ngModel)]="editCompany.phone"><br>
       <label for="active">Company Active:</label>
       <input type="checkbox" name="active"  required [(ngModel)]="editCompany.active"><br>
-      <button type="button" class="btn btn-primary" (click)="saveEditCompany()">Save Company Information</button>
-      <button type="button" (click)="cancelAllEditForms()">Cancel</button>
+      <button type="button" class="buttonGreen" (click)="saveEditCompany()">Save Company Information</button>
+      <button class="buttonRed" type="button" (click)="cancelAllEditForms()">Cancel</button>
     </form>
   </div>
 
   <!-- div for edit task info -->
-  <div *ngIf="editTask != null">
+  <div class="editCompanyForm" *ngIf="editTask != null">
     <form>
       <h3 *ngIf="editTask != null">Edit Task Form:</h3>
-      <label for="name">Name:</label>
-      <input type="text" name="name" required [(ngModel)]="editTask.name"><br>
-      <label for="description">Description:</label>
-      <input type="type" name="description" [(ngModel)]="editTask.description"><br>
-      <label for="dueDate">DueDate:</label>
+      <label for="name">Name:</label><br>
+      <input size="80%" type="text" name="name" required [(ngModel)]="editTask.name"><br>
+      <label for="description">Description:</label><br>
+      <input size="80%" type="type" name="description" [(ngModel)]="editTask.description"><br>
+      <label for="type">Type:</label><br>
+      <input size="80%" type="text" name="type" [(ngModel)]="editTask.type"><br>
+      <label for="priority">Priority:</label><br>
+      <input size="80%" type="text" name="priority" [(ngModel)]="editTask.priority"><br>
+      <label for="dueDate">DueDate:</label><br>
       <input type="date" name="dueDate" [(ngModel)]="editTask.dueDate"><br>
-      <label for="startDate">Start Date:</label>
+      <label for="startDate">Start Date:</label><br>
       <input type="date" name="startDate" [(ngModel)]="editTask.startDate"><br>
-      <label for="completeDate">Complete Date:</label>
+      <label for="completeDate">Complete Date:</label><br>
       <input type="date" name="completeDate" [(ngModel)]="editTask.completeDate"><br>
-      <label for="status">Status:</label>
+      <label for="status">Status:</label><br>
       <select name="status" [(ngModel)]="editTask.status">
         <option value="NOTASSIGNED">Not Assigned</option>
         <option value="ASSIGNED">Assigned</option>
         <option value="INPROGRESS">In Progress</option>
         <option value="COMPLETE">Complete</option>
       </select><br>
-      <label for="type">Type:</label>
-      <input type="text" name="type" [(ngModel)]="editTask.type"><br>
-      <label for="priority">Priority:</label>
-      <input type="text" name="priority" [(ngModel)]="editTask.priority"><br>
-      <button (click)="saveEditTask()">Save Task</button>
-      <button type="button" (click)="cancelAllEditForms()">Cancel</button>
+
+      <br>
+      <button class="buttonGreen" (click)="saveEditTask()">Save Task</button>
+      <button class="buttonRed" type="button" (click)="cancelAllEditForms()">Cancel</button>
     </form>
     <hr>
   </div>
 
   <!-- div for edit project info -->
-  <div *ngIf="editProject != null">
+  <div class="editCompanyForm"*ngIf="editProject != null">
+    <h3>Edit Project Info</h3>
     <form>
-      <label for="projectname">Project Name:</label>
-      <input size = "50" type="text" id="projectname" name="projectname"  required [(ngModel)]="editProject.name"><br>
-      <label for="projectactive">Project Active:</label>
-      <input  type="checkbox" id="projectactive" name="projectactive"  required [(ngModel)]="editProject.active"><br>
-      <button type="button" class="btn btn-primary" (click)="saveEditProject()">Save Project Information</button>
-      <button type="button" (click)="cancelAllEditForms()">Cancel</button>
+      <label for="projectname">Project Name:</label><br>
+      <input size = "50%" type="text" id="projectname" name="projectname"  required [(ngModel)]="editProject.name"><br>
+      <label for="projectactive">Project Active:</label><br>
+      <input  type="checkbox" id="projectactive" name="projectactive"  required [(ngModel)]="editProject.active"><br><br>
+      <button class="buttonGreen" type="button" (click)="saveEditProject()">Save Project Information</button>
+      <button class="buttonRed" type="button" (click)="cancelAllEditForms()">Cancel</button>
     </form>
   </div>
 <!-- end user info div -->
