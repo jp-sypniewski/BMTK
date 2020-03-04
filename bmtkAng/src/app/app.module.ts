@@ -29,7 +29,7 @@ import { AccountComponent } from './components/account/account.component';
 
 import { DragScrollModule } from 'ngx-drag-scroll';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FooterComponent } from './components/footer/footer.component';
+
 
 
 
@@ -51,7 +51,6 @@ import { FooterComponent } from './components/footer/footer.component';
     IsCustomerPipe,
     TaskIsActivePipe,
     CompanyNameSearchPipe,
-    FooterComponent
 
   ],
   imports: [
