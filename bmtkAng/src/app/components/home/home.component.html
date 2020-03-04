@@ -1,11 +1,15 @@
 <div class="container">
 <!-- show to any user upon reaching this page, hide when user attempts to add company -->
+<h1 style="text-align: center;">Current Companies Utilizing BMTK</h1>
 <div *ngIf="newCompany == null && !isSearching">
+
   <form>
     <label class="searchText text-light"for="namesearch">Search by company name:</label>
     <input type="text" name="namesearch" [(ngModel)]="searchTerm">
     <button class="buttonGreen" (click)="searchByCompanyName()">Search</button>
-  </form><br>
+  </form>
+  <br>
+
   <table class="table table-bordered">
     <thead>
       <tr>
