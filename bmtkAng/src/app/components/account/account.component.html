@@ -5,7 +5,6 @@
   <h3>Already Have an Account?</h3>
   <button class="buttonRed"(click)="redirToSignIn()">Sign In</button>
   <br>
-  <hr>
   <br>
   <h3>Create A New Account</h3>
   <form>
@@ -45,19 +44,16 @@
   </div>
 
   <!-- div for account info -->
-  <div>
-    <h3>User: {{currentUser.username}}</h3>
-    <p>
-      Name: {{currentUser.userDetail.firstName}} {{currentUser.userDetail.lastName}}<br>
-      Email: {{currentUser.userDetail.email}}<br>
-      Street: {{currentUser.userDetail.street}}<br>
-      City: {{currentUser.userDetail.city}}<br>
-      State: {{currentUser.userDetail.state}}<br>
-      Zip: {{currentUser.userDetail.zipcode}}
-    </p>
+  <div class="col-sm leftInfo">
+    <h3> <span style="color: #212529">Username: </span> {{currentUser.username}}</h3>
+
+    <p> <span style="color: #212529">Name: </span> {{currentUser.userDetail.firstName}} {{currentUser.userDetail.lastName}}</p>
+    <p> <span style="color: #212529">Email: </span> {{currentUser.userDetail.email}}</p>
+    <p> <span style="color: #212529">Street: </span> {{currentUser.userDetail.street}}</p>
+    <p> <span style="color: #212529">City: </span> {{currentUser.userDetail.city}}</p>
+    <p><span style="color: #212529">State: </span> {{currentUser.userDetail.state}}</p>
+    <p><span style="color: #212529">Zip: </span>{{currentUser.userDetail.zipcode}}</p>
     <button class="buttonGreen" type="button" (click)="showEditUser()">Edit Account Information</button>
-    <button (click)="showEditPassword()">Change Password</button>
-    <hr>
   </div>
 
   <!-- div for owner relationships -->
@@ -79,7 +75,6 @@
         </tr>
       </tbody>
     </table>
-    <hr>
   </div>
 
   <!-- div for employee relationships -->
@@ -101,10 +96,10 @@
         </tr>
       </tbody>
     </table>
-    <hr>
   </div>
 
   <!-- div for customer relationships -->
+  <br>
   <div *ngIf="projectsRequested.length > 0">
     <h3>My Project Requests</h3>
     <table class="table table-bordered text-light">
@@ -123,7 +118,6 @@
         </tr>
       </tbody>
     </table>
-    <hr>
   </div>
 
   <!-- div for edit user info -->
@@ -223,7 +217,6 @@
       <button class="buttonGreen" (click)="saveEditTask()">Save Task</button>
       <button class="buttonRed" type="button" (click)="cancelAllEditForms()">Cancel</button>
     </form>
-    <hr>
   </div>
 
   <!-- div for edit project info -->

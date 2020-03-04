@@ -102,7 +102,7 @@
       </tr>
     </tbody>
   </table>
-  <hr>
+
 
   <!-- show edit project -->
 
@@ -116,7 +116,6 @@
       <button class="buttonGreen" (click)="saveEditProject()">Save Edits for {{selectedProject.name}}</button>
       <button class="buttonRed" (click)="cancelEditProject()">Cancel</button>
     </form>
-    <hr>
   </div>
 
   <!-- single project view with tasks -->
@@ -153,7 +152,6 @@
       </tbody>
     </table>
     <button class="buttonGreen" *ngIf="editingATask == null" (click)="showCreateTask()">Add new task to {{selectedProject.name}}</button>
-    <hr>
   </div>
   <!-- add/edit task? -->
   <div class="editCompanyForm"*ngIf="newTask != null">
@@ -199,7 +197,6 @@
       <button class="buttonGreen" *ngIf="editingATask" (click)="saveEditTask()">Save Task</button>
       <button class="buttonRed" (click)="cancelNewOrEditTask()">Cancel</button>
     </form>
-    <hr>
   </div>
 </div>
 
@@ -221,7 +218,6 @@
       </tr>
     </tbody>
   </table>
-  <hr>
   <!-- edit single task -->
 
 </div>
@@ -246,11 +242,9 @@
       </tbody>
     </table>
   </div>
-  <hr>
   <div>
     <button class="buttonGreen" (click)="showRequestNewProject()">Request new project</button>
   </div>
-  <hr>
   <!-- request new project -->
   <div class="editCompanyForm" *ngIf="newProject != null">
     <form>
