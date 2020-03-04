@@ -6,7 +6,7 @@
     <input type="text" name="namesearch" [(ngModel)]="searchTerm">
     <button class="buttonGreen" (click)="searchByCompanyName()">Search</button>
   </form><br>
-  <table class="table table-bordered table-hover">
+  <table class="table table-bordered">
     <thead>
       <tr>
         <th>Name</th>
@@ -35,7 +35,7 @@
 
 <div class="companySearchDiv" *ngIf="newCompany == null && isSearching">
   <h3>Companies Currently Using BMTK</h3>
-  <table class="table table-bordered table-hover">
+  <table class="table table-bordered">
     <thead>
       <tr>
         <th>Name</th>
