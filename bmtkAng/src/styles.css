@@ -90,3 +90,20 @@ body {
 th{
   color: rgb(149, 200, 241);
 }
+
+tr:hover{
+  color: rgb(149, 200, 241);
+}
+
+.rightInfo{
+  color: rgb(149, 200, 241);
+}
+
+.leftInfo{
+  color: rgb(149, 200, 241);
+
+}
+
+.row{
+  margin-top: 10px;
+}
