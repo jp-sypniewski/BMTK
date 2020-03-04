@@ -3,64 +3,59 @@
   font-family: "Times New Roman", Times, serif;
 }
 
-#motion{
-  /*offset-path: path('M20,20 C20,100 200,0 200,100');*/
- /* offset-path: path('M200,200,A100,100,90,0,1,1000,1000');*/
-  offset-path: path('M200,300, L600,50 L1000,300, L600,550');
+#top{
+  position: relative;
 
-  /*animation: move 3000ms infinite alternate ease-in-out;*/
-animation: move 6000ms infinite ease-in-out;
-  width: 40px;
-  height: 40px;
-  background: black;
+
+
 }
 
 #website{
-  offset-path: path('M300,200, L300,100, L400,100, L600,300 Z' );
+  offset-path: path('M600,200, L600,100, L650,100, L600,300 Z' );
   animation: move 5000ms infinite ease-in-out;
 
 
 }
 
 #payable{
-  offset-path: path('M300,200, L300,100, L400,100, L600,300 Z' );
+  offset-path: path('M600,200, L600,100, L650,100, L600,300 Z' );
   animation: move 6000ms infinite ease-in-out;
 
 }
 
 #receivable{
-  offset-path: path('M300,200, L300,100, L400,100, L600,300 Z' );
+  offset-path: path('M600,200, L600,100, L650,100, L600,300 Z' );
   animation: move 7000ms infinite ease-in-out;
 
 }
 #data{
-  offset-path: path('M300,200, L300,100, L400,100, L600,300 Z'  );
+  offset-path: path('M300,200, L300,100, L350,100, L300,300 Z'  );
   animation: move 4000ms infinite ease-in-out;
 
 }
 #bids{
-  offset-path: path('M300,200, L300,100, L400,100, L600,300 Z'  );
+  offset-path: path('M300,200, L300,100, L350,100, L300,300 Z'  );
   animation: move 3000ms infinite ease-in-out;
 
 }
 #customer{
-  offset-path: path('M300,200, L300,100, L400,100, L600,300 Z'  );
+  offset-path: path('M300,200, L300,100, L350,100, L300,300 Z'  );
   animation: move 2000ms infinite ease-in-out;
 
 }
 #internal{
-  offset-path: path('M300,200, L300,100, L400,100, L600,300 Z'  );
+  offset-path: path('M300,200, L300,100, L350,100, L300,300 Z'  );
   animation: move 8000ms infinite ease-in-out;
 
 
 }
 #empCom{
-  offset-path: path('M300,200, L300,100, L400,100, L600,300 Z'  );
+  offset-path: path('M300,200, L300,100, L350,100, L300,300 Z'  );
   animation: move 9000ms infinite ease-in-out;
 
 }
 #custCom{
-  offset-path: path('M300,200, L300,100, L400,100, L600,300 Z'  );
+  offset-path: path('M300,200, L300,100, L350,100, L300,300 Z'  );
   animation: move 10000ms infinite ease-in-out;
 
 }
@@ -96,8 +91,8 @@ animation: move 6000ms infinite ease-in-out;
 
 
 #section{
-  background-image: url("../../../assets/images/backgroundBlue.png");
-  background-size:  auto;
+  /*background-image: url("../../../assets/images/backgroundBlue.png");
+  background-size:  auto;*/
 
 }
 

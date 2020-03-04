@@ -28,7 +28,7 @@ import { CompanyComponent } from './components/company/company.component';
 import { AccountComponent } from './components/account/account.component';
 
 import { DragScrollModule } from 'ngx-drag-scroll';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -58,6 +58,7 @@ import { DragScrollModule } from 'ngx-drag-scroll';
     HttpClientModule,
     FormsModule,
     DragScrollModule,
+    BrowserAnimationsModule
 
 
 
