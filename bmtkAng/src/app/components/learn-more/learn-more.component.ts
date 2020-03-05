@@ -20,12 +20,12 @@ selectedIndex = 0;
 
   }
 
-
   prev(){
     this.selectedIndex--;
     var angle = this.selectedIndex / this.cellCount * -360;
+    var x = 0;
   /*this.carousel.style.transform = 'translateZ(-288px) rotateY(' + angle + 'deg)';*/
-  this.carStyle = {transform: 'translateZ(-288px) rotateY(' + angle + 'deg)'};
+  this.carStyle = {transform: 'translateX('+x +'px) translateZ(-288px) rotateY(' + angle + 'deg)'};
   }
 
   next(){
