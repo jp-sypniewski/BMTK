@@ -367,6 +367,8 @@ START TRANSACTION;
 USE `bmtkdb`;
 INSERT INTO `employee` (`id`, `user_detail_id`, `company_id`, `active`) VALUES (1, 2, 1, 1);
 INSERT INTO `employee` (`id`, `user_detail_id`, `company_id`, `active`) VALUES (2, 3, 1, 1);
+INSERT INTO `employee` (`id`, `user_detail_id`, `company_id`, `active`) VALUES (3, 1, 2, 1);
+
 
 COMMIT;
 
@@ -388,5 +390,6 @@ COMMIT;
 START TRANSACTION;
 USE `bmtkdb`;
 INSERT INTO `employee_has_task` (`employee_id`, `task_id`) VALUES (2, 1);
+INSERT INTO `employee_has_task` (`employee_id`, `task_id`) VALUES (3, 2);
 
 COMMIT;
