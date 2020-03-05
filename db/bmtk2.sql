@@ -354,7 +354,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `bmtkdb`;
-INSERT INTO `task` (`id`, `name`, `description`, `due_date`, `paid`, `created_at`, `updated_at`, `template`, `start_date`, `complete_date`, `status`, `type`, `priority`, `payment_detail`, `price`, `project_id`, `active`) VALUES (1, 'Get bigger shovel', 'Lowe\'s/HD, pay with company card', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1);
+INSERT INTO `task` (`id`, `name`, `description`, `due_date`, `paid`, `created_at`, `updated_at`, `template`, `start_date`, `complete_date`, `status`, `type`, `priority`, `payment_detail`, `price`, `project_id`, `active`) VALUES (1, 'Get bigger shovel', 'Lowe\'s/HD, pay with company card', '2020-02-29', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1);
+INSERT INTO `task` (`id`, `name`, `description`, `due_date`, `paid`, `created_at`, `updated_at`, `template`, `start_date`, `complete_date`, `status`, `type`, `priority`, `payment_detail`, `price`, `project_id`, `active`) VALUES (2, 'Order cabinets', 'From dealer in Denver', '2020-03-05', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 1);
 
 COMMIT;
 
@@ -389,4 +390,3 @@ USE `bmtkdb`;
 INSERT INTO `employee_has_task` (`employee_id`, `task_id`) VALUES (2, 1);
 
 COMMIT;
-
