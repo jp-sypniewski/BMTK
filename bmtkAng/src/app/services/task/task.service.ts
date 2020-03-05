@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserService } from '../user/user.service';
@@ -11,7 +12,8 @@ import { Task } from 'src/app/models/task';
 })
 export class TaskService {
 
-  baseUrl = 'http://localhost:8085/';
+  // private baseUrl = 'http://localhost:8085/';
+  private baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient,
     private userSvc: UserService) { }

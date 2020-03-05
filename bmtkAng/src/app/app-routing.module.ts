@@ -12,7 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AccountComponent } from './components/account/account.component';
 
 const routes: Routes = [
-  {path: 'employee', component: EmployeeListComponent},
+    {path: 'employee', component: EmployeeListComponent},
     {path: 'user',component: UserListComponent},
     {path: 'login', component: LoginComponent},
     {path: 'learn', component: LearnMoreComponent},
@@ -22,6 +22,7 @@ const routes: Routes = [
     {path: 'home', component: HomeComponent},
     {path: 'account', component: AccountComponent},
     {path: 'company/:id', component: CompanyComponent},
+    {path: '', component:LearnMoreComponent}
 
 
 

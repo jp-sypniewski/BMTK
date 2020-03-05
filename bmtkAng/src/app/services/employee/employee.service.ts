@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Employee } from "../../models/employee";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -10,7 +11,8 @@ import {catchError} from 'rxjs/operators';
 export class EmployeeService {
   [x: string]: any;
 
-  private baseUrl = 'http://localhost:8085/api/';
+  // private baseUrl = 'http://localhost:8085/';
+  private baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient) { }
 
@@ -23,7 +25,7 @@ export class EmployeeService {
 
   createEmployee(employee: Employee): Observable<Employee> {
 
-    return this.http.post<Employee>(this.baseUrl+'createEmployee', employee, {headers: new HttpHeaders({
+    return this.http.post<Employee>(this.baseUrl+'api/createEmployee', employee, {headers: new HttpHeaders({
       'Content-Type': 'application/json', 'Access-Control-Allow-Methods': 'POST',
       'Access-Control-Allow-Headers': 'Content-Type, Authorization'
     })
