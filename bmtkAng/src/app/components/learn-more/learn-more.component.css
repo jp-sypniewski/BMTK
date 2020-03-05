@@ -5,9 +5,6 @@
 
 #top{
   position: relative;
-
-
-
 }
 
 #website{
@@ -85,15 +82,7 @@
 #base{
   /*offset-path: path('M800,400')*/
   position: relative;
-  top: 350px;
-}
-
-
-
-#section{
-  /*background-image: url("../../../assets/images/backgroundBlue.png");
-  background-size:  auto;*/
-
+  top: 360px;
 }
 
 /*{
@@ -115,8 +104,23 @@ animation-play-state: running;
   margin: 40px auto;
   perspective: 1000px;
   /*offset-path: path('M50,400')*/
-  position: relative;
   top: 350px;
+}
+
+#names{
+  position: relative;
+  top: 325px;
+}
+
+#namesH4{
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+  color: yellow;
+}
+
+#inspire{
+  font-style: italic;
+  color: orange;
 }
 
 #btn {
