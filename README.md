@@ -6,9 +6,13 @@
 #### Travis Roberts - Developer, DBA, Scrum Master
 #### JP Sypniewski - Developer, Repo Owner
 
-#### Routes
+### Overview
 
-PLACEHOLDERS
+The Business Management Toolkit (BMTK) application provides users a solution to post-it notes and random to-do's that get lost in the everyday rush.  BMTK allows users to create a company, to which customers (internal/external) provide requests for service.  These requests (projects) have sub-items (tasks), which the company owner/manager may delegate.
+
+Within the application, users may fill multiple roles at the same time as it relates to one company.  For example, while one company may have a different owner, employee, and customer, a different company may use the application with one user as the owner, employee, and customer! 
+
+#### API Routes
 
 | Return Type | Route                 | Functionality                  |
 |-------------|---------------------------------|--------------------------------|
