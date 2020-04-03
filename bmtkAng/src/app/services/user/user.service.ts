@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Employee } from './../../models/employee';
 import { Injectable } from '@angular/core';
 import { User } from "../../models/user";
@@ -14,7 +15,8 @@ export class UserService {
 
   // go back and update with environment information
 
-  baseUrl = 'http://localhost:8085/';
+  // private baseUrl = 'http://localhost:8085/';
+  private baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient ) { }
 

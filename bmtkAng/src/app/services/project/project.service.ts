@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Project } from './../../models/project';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -12,7 +13,8 @@ import { throwError } from 'rxjs';
 export class ProjectService {
 
 
-  baseUrl = 'http://localhost:8085/';
+  // private baseUrl = 'http://localhost:8085/';
+  private baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient,
     private userSvc: UserService) { }

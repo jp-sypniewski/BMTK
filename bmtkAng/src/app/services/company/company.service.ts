@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { Project } from './../../models/project';
 import { UserService } from 'src/app/services/user/user.service';
 import { Injectable } from '@angular/core';
@@ -12,7 +13,8 @@ import {catchError} from 'rxjs/operators';
 export class CompanyService {
   [x: string]: any;
 
-  baseUrl = 'http://localhost:8085/';
+  // private baseUrl = 'http://localhost:8085/';
+  private baseUrl = environment.baseUrl;
 
   constructor(private http: HttpClient,
     private userSvc: UserService) { }
