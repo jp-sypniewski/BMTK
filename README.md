@@ -8,11 +8,23 @@
 
 ### Overview
 
-The Business Management Toolkit (BMTK) application provides users a solution to post-it notes and random to-do's that get lost in the everyday rush.  BMTK allows users to create a company, to which customers (internal/external) provide requests for service.  These requests (projects) have sub-items (tasks), which the company owner/manager may delegate.
+The Business Management Toolkit (BMTK) application provides users a solution to post-it notes and random to-do's that get lost in the everyday rush.
 
-Within the application, users may fill multiple roles at the same time as it relates to one company.  For example, while one company may have a different owner, employee, and customer, a different company may use the application with one user as the owner, employee, and customer! 
+### Description
 
-#### API Routes
+BMTK allows users to create a company, to which customers (internal/external) provide requests for service.  These requests (projects) have sub-items (tasks), which the company owner/manager may delegate.
+
+Within the application, users may fill multiple roles at the same time as it relates to one company.  For example, while one company may have a different owner, employee, and customer, a different company may use the application with one user as the owner, employee, and customer!
+
+### Implementation
+
+The project is built as an Angular front-end, with a Spring Boot RESTful API and Spring Data JPA interacting with a MySQL database.  The project is hosted on an AWS EC2 instance.
+
+The main entities/objects in the application are the User, Company, Project, and Task.  The database includes join tables to define owner-Users, customer-Users, and employee-Users and their relationships to Company, Project, and Task objects.
+
+Within the API, there are endpoints that are publicly accessible, including the list of Companies.  Most endpoints are not publicly accessible and require the appropriate user information to be passed for a successful request.
+
+### API Routes
 
 | Return Type | Route                 | Functionality                  |
 |-------------|---------------------------------|--------------------------------|
