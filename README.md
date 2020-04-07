@@ -24,6 +24,25 @@ The main entities/objects in the application are the User, Company, Project, and
 
 Within the API, there are endpoints that are publicly accessible, including the list of Companies.  Most endpoints are not publicly accessible and require the appropriate user information to be passed for a successful request.
 
+### Technologies Used
+
+* Java 8
+* Spring Boot/RESTful API
+* Angular
+* Typescript/Javascript
+* VSCode
+* Spring Tool Suite
+* Spring Data JPA
+* MySQL
+* MAMP - local MySQL hosting
+* HTML/CSS/Bootstrap
+* Github/Git - version control
+* AWS EC2
+* Gradle
+* Tomcat
+* Trello
+* Agile development
+
 ### API Routes
 
 | Return Type | Route                 | Functionality                  |
