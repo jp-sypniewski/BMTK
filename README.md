@@ -56,10 +56,14 @@ Within the API, there are endpoints that are publicly accessible, including the 
 | `List<Task>`  |`GET api/tasks` | Gets all tasks for a single employee (requires user) |
 | `List<Company>`  |`GET api/myCompanies` | Gets all companies for a single owner (requires user) |
 | `Company`  |`GET api/companies/{companyId}` | Gets a company by ID |
+| `List<User>`  | `GET api/users/{searchEmail}` | Gets users by user email address |
 ||||
 | `Company`  |`POST api/companies` | Creates a company and an owner-company relationship (requires user) |
 | `Project`  |`POST api/companies/{companyId}/projects` | Creates a project for a single company (requires user) |
 | `Employee`  |`POST api/companies/{companyId}/employees` | Creates an employee for a single company |
 | `Task`  |`POST api/projects/{projectId}/tasks` | Creates a task for a project |
 ||||
-| `Company`  |`PUT api/companies/{id}` | Updates a company (requires user) |
+| `Company`  |`PUT api/companies/{companyId}` | Updates a company (requires user is owner) |
+| `Customer`  |`PUT api/customers/{customerId}` | Updates a customer (requires user is customer) |
+| `Project`  |`PUT api/companies/{companyId}/projects/{projectId}` | Updates a project (requires user is owner or customer for project) |
+| `Task`  |`PUT api/tasks/{taskId}` | Updates a task (requires user is owner or employee for task) |
