@@ -43,20 +43,23 @@ Within the API, there are endpoints that are publicly accessible, including the 
 * Trello
 * Agile development
 
-### API Routes
+### API Routes (all routes relative to BMTK site)
 
 | Return Type | Route                 | Functionality                  |
 |-------------|---------------------------------|--------------------------------|
 | `Register` | `POST register` | Register user with detail |
 | `Authenticate` | `GET authenticate` | Authenticate existing user |
 ||||
+| `List<Company>`  |`GET api/companies` | Gets all companies for list display |
 | `List<Project>`  |`GET api/companies/{companyId}/projects` | Gets all projects for a single company |
-| `List<Project>`  |`GET api/projects` | Gets all projects for a single customer (with auth) |
-| `List<Task>`  |`GET api/tasks` | Gets all tasks for a single employee (with auth) |
-| `List<Company>`  |`GET api/myCompanies` | Gets all companies for a single owner (with auth) |
+| `List<Project>`  |`GET api/projects` | Gets all projects for a single customer (requires user) |
+| `List<Task>`  |`GET api/tasks` | Gets all tasks for a single employee (requires user) |
+| `List<Company>`  |`GET api/myCompanies` | Gets all companies for a single owner (requires user) |
 | `Company`  |`GET api/companies/{companyId}` | Gets a company by ID |
 ||||
-| `Company`  |`POST api/companies` | Creates a company and an owner-company relationship |
-| `Project`  |`POST api/companies/{companyId}/projects` | Creates a project for a single company |
+| `Company`  |`POST api/companies` | Creates a company and an owner-company relationship (requires user) |
+| `Project`  |`POST api/companies/{companyId}/projects` | Creates a project for a single company (requires user) |
 | `Employee`  |`POST api/companies/{companyId}/employees` | Creates an employee for a single company |
 | `Task`  |`POST api/projects/{projectId}/tasks` | Creates a task for a project |
+||||
+| `Company`  |`PUT api/companies/{id}` | Updates a company (requires user) |

@@ -25,7 +25,7 @@ public class CustomerController {
 	private CustomerService custSvc;
 	
 	@PutMapping(value = "customers/{cid}")
-	public Customer updateCompany(HttpServletRequest req,
+	public Customer updateCustomer(HttpServletRequest req,
 			HttpServletResponse res,
 			Principal principal,
 			@PathVariable("cid") Integer cid, @RequestBody Customer customer) {
