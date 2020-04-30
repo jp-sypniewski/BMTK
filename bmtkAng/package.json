@@ -21,7 +21,7 @@
     "@angular/router": "~9.0.1",
     "bootstrap": "^4.4.1",
     "button-styles": "^1.0.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ngx-carousel-3d": "^1.0.1",
     "ngx-carousels": "0.0.6",
     "ngx-drag-scroll": "^8.0.0-beta.2",
