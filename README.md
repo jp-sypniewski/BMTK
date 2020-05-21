@@ -67,3 +67,9 @@ Within the API, there are endpoints that are publicly accessible, including the 
 | `Customer`  |`PUT api/customers/{customerId}` | Updates a customer (requires user is customer) |
 | `Project`  |`PUT api/companies/{companyId}/projects/{projectId}` | Updates a project (requires user is owner or customer for project) |
 | `Task`  |`PUT api/tasks/{taskId}` | Updates a task (requires user is owner or employee for task) |
+
+### Stretch Goals
+
+* (done) Add employee-user with appropriate relationships to project, tasks
+* Add company-equipment for assignment to projects
+* Add company-inventory and appropriate transaction information
